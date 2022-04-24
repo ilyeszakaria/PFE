@@ -129,21 +129,25 @@ class _StudentpageState extends State<Studentpage> {
                 Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-                  Container(
-                 alignment: Alignment.topLeft,
-                 child: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),radius: 30,backgroundColor: Colors.grey,),
-                 height: 80,
-                 width: 200,
-                 
-                ),
+                  
                 Container(
                   alignment: Alignment.topRight,
                   child: Column(children: [
                      Text("التلميذ  ",style: TextStyle(fontSize:30,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
-                     Text(  widget.username ,style: TextStyle(fontFamily: 'Cairo'))
+                     Text(  widget.username ,style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold))
                   ],),
                  height: 105,
-                 width: 207,
+                 
+                 
+                ),
+                  Container(
+                    
+                 alignment: Alignment.topLeft,
+                 child: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),radius: 30,backgroundColor: Colors.grey,),
+                 height: 80,
+                 
+                 
+                 margin: EdgeInsets.only(right: 10),
                  
                 ),
         
@@ -180,7 +184,7 @@ class _StudentpageState extends State<Studentpage> {
           alignment: Alignment.centerRight,
           child: Text(" : التصحيحات الواردة  ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 33,
-          width: 180,
+         
          
           
         )
@@ -223,14 +227,14 @@ class _StudentpageState extends State<Studentpage> {
                              
                              height: 28,
                              
-                             width: 130,
+                             
                              child:Text(message.username,style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.w600,fontSize: 16,),),
                            ),
                            
                            Container(
                              alignment: Alignment.centerRight,
                              
-                             width: 130,
+                             
                              child:Text(message.date,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 8,fontFamily: 'Cairo'),),
                            ),
                           
@@ -292,7 +296,7 @@ class _StudentpageState extends State<Studentpage> {
           alignment: Alignment.centerRight,
           child: Text(" : الرسائل الواردة  ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 33,
-          width: 150,
+          
           
           
         )
@@ -333,15 +337,16 @@ class _StudentpageState extends State<Studentpage> {
                            Container(
                              alignment: Alignment.centerRight,
                               height: 28,
+                              
+                              width: 70,
                              
-                             width: 130,
                              child:Text("ilyes",style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.w600,fontSize: 16,),),
                            ),
                            
                            Container(
                              alignment: Alignment.centerRight,
                              
-                             width: 130,
+                             
                              child:Text("20/02/2022   12:30",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 8,fontFamily: 'Cairo'),),
                            ),
                           

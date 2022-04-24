@@ -121,25 +121,39 @@ class _TeacherPageState extends State<TeacherPage> {
                 vertical: 3
                 
               ),
-              child: Column(children: [
+              child: Container(
+                width: double.infinity,
+            
+                margin: EdgeInsets.all(5),
+                
+                child: Column(children: [
                 Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-               Container(
+               
+                Container(
+                  
+                  alignment: Alignment.topRight,
+                  child: Column(children: [
+                     Container(
+                       alignment: Alignment.topCenter,
+                       height: 60,
+                       child: Text("المعلم  ",style: TextStyle(fontSize:35,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
+                       
+                     ),
+                     Text(widget.username,style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold),)
+                  ],),
+                 
+                 
+                ),
+                
+                Container(
                  alignment: Alignment.topLeft,
                  child: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),radius: 30,backgroundColor: Colors.grey,),
                  height: 80,
-                 width: 200,
                  
-                ),
-                Container(
-                  alignment: Alignment.topRight,
-                  child: Column(children: [
-                     Text("المعلم  ",style: TextStyle(fontSize:35,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
-                     Text(widget.username,style: TextStyle(fontFamily: 'Cairo'),)
-                  ],),
-                 height: 105,
-                 width: 207,
+                 
+                 margin: EdgeInsets.only(left: 0),
                  
                 ),
         
@@ -150,9 +164,9 @@ class _TeacherPageState extends State<TeacherPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
+              width: 200,
               
-              height: 33,
-              width: 240,
+              
               child: Column(
                 children: [
                   Container(
@@ -176,8 +190,8 @@ class _TeacherPageState extends State<TeacherPage> {
           alignment: Alignment.centerRight,
           child: Text(" : التلاوات الواردة     ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 33,
-          width: 150,
           
+       
           
         )
           ],
@@ -201,12 +215,21 @@ class _TeacherPageState extends State<TeacherPage> {
                child: Container(
                child: Row(children: [
                  Container(
-                   margin: EdgeInsets.symmetric(horizontal: 5),
+                   margin: EdgeInsets.only(left: 10,right: 10),
                    child: Row(mainAxisAlignment: MainAxisAlignment.end,
                      children: [
-                       Icon(Icons.play_arrow),
-                       VerticalDivider(color: Colors.grey,),
-                       Text(message.time,style: TextStyle(fontFamily: 'Cairo')),
+                       Container(),
+                       Container(
+                      
+                         child: Icon(Icons.play_arrow),
+                         margin: EdgeInsets.only(right: 20),
+                       ),
+                       
+                       Container(
+                        
+                         margin: EdgeInsets.only(right: 0),
+                         child: Text(message.time,style: TextStyle(fontFamily: 'Cairo')),
+                       ),
                        VerticalDivider(width: 100,color: Colors.grey,),
                        Container(
                          margin: EdgeInsets.only(top: 15),
@@ -217,14 +240,14 @@ class _TeacherPageState extends State<TeacherPage> {
                              
                              height: 28,
                              
-                             width: 130,
+                             
                              child:Text(message.username,style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.w600,fontSize: 16,),),
                            ),
                            
                            Container(
                              alignment: Alignment.centerRight,
                              
-                             width: 130,
+                             
                              child:Text(message.date,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 8,fontFamily: 'Cairo'),),
                            ),
                           
@@ -232,7 +255,11 @@ class _TeacherPageState extends State<TeacherPage> {
                        ),
                        ),
                        VerticalDivider(color: Colors.grey,),
-                         CircleAvatar(child: Icon(Icons.person,color: Colors.black,size: 30,),backgroundColor: Color.fromARGB(255, 240, 238, 238),radius: 25,),
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          color: Colors.grey,
+                           child:CircleAvatar(child: Icon(Icons.person,color: Colors.black,size: 30,),backgroundColor: Color.fromARGB(255, 240, 238, 238),radius: 25,),
+                        )
                      ],
                    )
                  )
@@ -262,7 +289,7 @@ class _TeacherPageState extends State<TeacherPage> {
             Container(
               
               height: 33,
-              width: 240,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -282,11 +309,11 @@ class _TeacherPageState extends State<TeacherPage> {
                 ),
             ),
             Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          margin: EdgeInsets.only(right: 20),
           alignment: Alignment.centerRight,
           child: Text(" : الرسائل الواردة  ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 33,
-          width: 150,
+          
           
           
         )
@@ -321,22 +348,25 @@ class _TeacherPageState extends State<TeacherPage> {
                            Container(
                              alignment: Alignment.centerRight,
                              height: 27,
-                             width: 130,
+                             
                              child:Text("ilyes",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,fontFamily: 'Cairo'),),
                            ),
                            
                            Container(
                              alignment: Alignment.centerRight,
                              
-                             width: 130,
+                             
                              child:Text("20/02/2022   12:30",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 8,fontFamily: 'Cairo'),),
                            ),
                           
                          ],
                        ),
                        ),
-                       VerticalDivider(color: Colors.grey,),
-                         CircleAvatar(child: Icon(Icons.person,color: Colors.black,size: 30,),backgroundColor: Color.fromARGB(255, 240, 238, 238),radius: 25,),
+                       
+                        Container(
+                          margin: EdgeInsets.only(right: 0),
+                          child:  CircleAvatar(child: Icon(Icons.person,color: Colors.black,size: 30,),backgroundColor: Color.fromARGB(255, 240, 238, 238),radius: 25,),
+                        )
                      ],
                    )
                  )
@@ -359,6 +389,7 @@ class _TeacherPageState extends State<TeacherPage> {
         
         
               ]),
+              )
               
               
               

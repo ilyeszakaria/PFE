@@ -60,10 +60,8 @@ class _SignIn2State extends State<SignIn2> {
                           margin: EdgeInsets.only(right: 30),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left:290),
-                          height: 50,
-                          width: double.infinity,
-                          
+                          margin: EdgeInsets.only(left:270),
+                          alignment: Alignment.centerRight,
                           child: Row(
                children: <Widget>[
                  Text("الذكر",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,fontFamily: 'Cairo'),),
@@ -83,7 +81,7 @@ class _SignIn2State extends State<SignIn2> {
                         ),
                         Container(
                           
-                          margin: EdgeInsets.only(left:295),
+                          margin: EdgeInsets.only(left:272),
                           alignment: Alignment.centerRight,
                           child: Row(
                             children: [

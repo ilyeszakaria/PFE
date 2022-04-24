@@ -60,7 +60,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
             Container(
               
               height: 50,
-              width: 210,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -84,7 +84,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
           alignment: Alignment.topRight,
           child: Text(" : سجل الختبارات      ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 35,
-          width: 180,
+          
          
           
         )
@@ -132,7 +132,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
                            Container(
                              alignment: Alignment.centerRight,
                              height:  40,
-                             width: 250,
+                             
                              child:   Row(
                                mainAxisAlignment: MainAxisAlignment.end,
                                children: [
@@ -149,7 +149,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
                            Container(
                              alignment: Alignment.centerRight,
                              height: 40,
-                             width: 250,
+                             
                              
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.end,

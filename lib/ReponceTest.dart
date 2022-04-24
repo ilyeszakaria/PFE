@@ -68,7 +68,7 @@ class _ReponceTestState extends State<ReponceTest> {
             Container(
               
               height: 50,
-              width: 260,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -93,7 +93,7 @@ class _ReponceTestState extends State<ReponceTest> {
           alignment: Alignment.centerRight,
           child: Text("   :الاختبار",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 45,
-          width: 120,
+          
          
           
         )
@@ -196,7 +196,7 @@ class _ReponceTestState extends State<ReponceTest> {
             Container(
               
               height: 50,
-              width: 260,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -221,7 +221,7 @@ class _ReponceTestState extends State<ReponceTest> {
           alignment: Alignment.centerRight,
           child: Text(":الاجابات  ",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 45,
-          width: 120,
+          
          
           
         )

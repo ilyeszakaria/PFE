@@ -158,7 +158,7 @@ class _ProfilElveState extends State<ProfilElve> {
           alignment: Alignment.centerRight,
           child: Text("   : قائمة المراجعات  ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 37,
-          width: 200,
+          
          
           
         )
@@ -211,7 +211,7 @@ class _ProfilElveState extends State<ProfilElve> {
                            Container(
                              alignment: Alignment.centerRight,
                              height:  40,
-                             width: 250,
+                             
                              child:   Row(
                                mainAxisAlignment: MainAxisAlignment.end,
                                children: [
@@ -228,7 +228,7 @@ class _ProfilElveState extends State<ProfilElve> {
                            Container(
                              alignment: Alignment.centerRight,
                              height: 40,
-                             width: 250,
+                             
                              
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.end,
@@ -303,7 +303,7 @@ class _ProfilElveState extends State<ProfilElve> {
           alignment: Alignment.centerRight,
           child: Text(" :قائمة الاختبارات  ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 37,
-          width: 180,
+          
          
           
         )
@@ -348,7 +348,7 @@ class _ProfilElveState extends State<ProfilElve> {
                            Container(
                              alignment: Alignment.centerRight,
                              height:  40,
-                             width: 250,
+                             
                              child:   Row(
                                mainAxisAlignment: MainAxisAlignment.end,
                                children: [
@@ -365,7 +365,7 @@ class _ProfilElveState extends State<ProfilElve> {
                            Container(
                              alignment: Alignment.centerRight,
                              height: 40,
-                             width: 250,
+                             
                              
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.end,

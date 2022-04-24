@@ -140,7 +140,7 @@ class _parametreState extends State<parametre> {
             Container(
               
               height: 50,
-              width: 180,
+              width: 150,
               child: Column(
                 children: [
                   Container(
@@ -165,7 +165,7 @@ class _parametreState extends State<parametre> {
           alignment: Alignment.center,
           child: Text("  : معلومات الحساب      ",style: TextStyle(fontSize: 21,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 37,
-          width: 200,
+         
          
           
         )
@@ -262,11 +262,11 @@ class _parametreState extends State<parametre> {
                             time=datetime!;
                           });
                   }, icon: Icon(Icons.calendar_month,color: Colors.brown,)),
-                  VerticalDivider(width: 60,color: Colors.white,),
+                  VerticalDivider(width: 40,color: Colors.white,),
                  Container(
                    alignment: Alignment.center,
                    height: 35,
-                   width: 80,
+                   
                    child:  Text(
                      '${time.year}/${time.month}/${time.day}    '
                    ,style: TextStyle(fontFamily: 'Cairo',fontSize: 15,fontWeight: FontWeight.bold),),
@@ -333,7 +333,7 @@ class _parametreState extends State<parametre> {
             Container(
               
               height: 50,
-              width: 300,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -353,12 +353,12 @@ class _parametreState extends State<parametre> {
                 ),
             ),
             Container(
-          margin: EdgeInsets.only(right: 20),
+          margin: EdgeInsets.only(right: 10),
           
           alignment: Alignment.center,
           child: Text(" : الامان      ",style: TextStyle(fontSize: 21,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 37,
-          width: 80,
+          
          
           
         )

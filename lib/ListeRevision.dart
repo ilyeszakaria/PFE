@@ -68,7 +68,7 @@ class _ListeRevisionState extends State<ListeRevision> {
             Container(
               
               height: 50,
-              width: 210,
+              width: 200,
               child: Column(
                 children: [
                   Container(
@@ -92,7 +92,7 @@ class _ListeRevisionState extends State<ListeRevision> {
           alignment: Alignment.centerRight,
           child: Text(": قائمة المراجعات     ",style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 33,
-          width: 180,
+          
          
           
         )
@@ -138,17 +138,18 @@ class _ListeRevisionState extends State<ListeRevision> {
                  Container(
                    
                    height: 100,
-                   width: 330,
+                   
                    child: Column(children: [
                      Container(
                        alignment: Alignment.centerRight,
-                       width: 330,
+                       
+                       margin: EdgeInsets.only(right: 0),
                        height: 20,
                        child: Text(tilawa.date,style: TextStyle(fontFamily: 'Cairo'),),
                      ),
                      Container(
                        height: 40,
-                       width: 330,
+                       
                        
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.end,
@@ -178,7 +179,7 @@ class _ListeRevisionState extends State<ListeRevision> {
                      ),
                      Container(
                        height: 40,
-                       width: 330,
+                       
                        
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.end,
