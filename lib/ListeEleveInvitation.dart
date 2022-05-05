@@ -33,7 +33,9 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                          طلبات  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

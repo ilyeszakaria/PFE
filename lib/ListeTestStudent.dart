@@ -33,7 +33,9 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                      اختبارات  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -82,7 +84,7 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
             Container(
           margin: EdgeInsets.symmetric(horizontal: 5),
           alignment: Alignment.topRight,
-          child: Text(" : سجل الختبارات      ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
+          child: Text(" : سجل الاختبارات      ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           height: 35,
           
          
@@ -111,13 +113,27 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
                child: Container(
                
                child: Row(children: [
-                   Container(
+                   Column(
+                     children: [
+                       Container(
                    
-                   height: 80,
+                   height: 30,
                    width: 100,
                    child: Text(test.date,style: TextStyle(fontFamily: 'Cairo',fontSize: 10),),
                    alignment: Alignment.center,
                  ),
+                 Container(
+                   alignment: Alignment.center,
+                  height: 50,
+                  width: 100,
+                  child: Text("7.5",style: TextStyle(fontSize: 25,fontFamily: 'Cairo',fontWeight: FontWeight.w600),),
+                  
+                 ),
+                 Container(
+
+                 )
+                     ],
+                   ),
                  Container(
                    margin: EdgeInsets.symmetric(horizontal: 5),
                    child: Row(

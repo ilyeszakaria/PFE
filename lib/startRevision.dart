@@ -28,7 +28,9 @@ class _startRevisionState extends State<startRevision> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                         تلاوة  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

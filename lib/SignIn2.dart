@@ -12,6 +12,8 @@ class SignIn2 extends StatefulWidget {
 }
 
 class _SignIn2State extends State<SignIn2> {
+  String debut="";
+  String fin="";
   String dropdownValue1 = 'الفاتحة';
   String dropdownValue2 = 'الفاتحة';
   var flag=true;
@@ -23,8 +25,10 @@ class _SignIn2State extends State<SignIn2> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar:   AppBar(
-        title: Text("                           انشاء حساب  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        title: Text("                    انشاء حساب  ",style: TextStyle(fontFamily: 'Cairo'),),
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -185,7 +189,9 @@ class _SignIn2State extends State<SignIn2> {
                 
                  child: TextFormField(
                    textAlign: TextAlign.end,
-
+                  onChanged: (text){
+                     debut=text;
+                   },
                 keyboardType: TextInputType.number,
                 style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
@@ -254,7 +260,9 @@ class _SignIn2State extends State<SignIn2> {
                 
                  child: TextFormField(
                    textAlign: TextAlign.end,
-
+                   onChanged: (text){
+                    fin=text;
+                   },
                 keyboardType: TextInputType.number,
                 style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
@@ -321,6 +329,25 @@ class _SignIn2State extends State<SignIn2> {
                 Container(
                   margin:EdgeInsets.only(right: 10),
                   child:FlatButton(onPressed: (){
+                    if(sex==null){
+                      final text='الرجاء اختيار الصنف';
+                      final snackbar=SnackBar(content: Container(alignment: Alignment.center,
+                      height: 50,
+                      width: double.infinity,
+                      
+                      child: Text(text,style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    }else{
+                      if(x1==false && x2==false){
+                        final text='الرجاء ادخال نوع المستخدم';
+                      final snackbar=SnackBar(content: Container(alignment: Alignment.center,
+                      height: 50,
+                      width: double.infinity,
+                      
+                      child: Text(text,style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      }
+                    }
                   //Navigator.of(context).push(MaterialPageRoute(builder: (context){return home();} ));
                 },
                 padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),

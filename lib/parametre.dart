@@ -40,7 +40,9 @@ class _parametreState extends State<parametre> {
     return Scaffold(
        appBar:   AppBar(
         title: Text("                 اعدادات الحساب   ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

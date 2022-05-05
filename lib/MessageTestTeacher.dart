@@ -1,23 +1,20 @@
 import 'dart:convert';
+
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
-class Revision extends StatefulWidget {
-  final String idtilawa;
-  final String AyaDebut;
-  final String AyaFin;
-  final String SouraDebut;
-  final String SouraFin;
+class MessageTestTeacher extends StatefulWidget {
+   final String idtest;
+  final String idstudent;
   final String username;
-  const Revision({Key? key,required this.idtilawa, required this.AyaDebut, required this.AyaFin, required this.SouraDebut, required this.SouraFin,required this.username}) : super(key: key);
+  const MessageTestTeacher({Key? key,required this.idstudent,required this.idtest,required this.username}) : super(key: key);
 
   @override
-  State<Revision> createState() => _RevisionState();
+  State<MessageTestTeacher> createState() => _MessageTestTeacherState();
 }
 
-class _RevisionState extends State<Revision> {
+class _MessageTestTeacherState extends State<MessageTestTeacher> {
 
   static Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async{
    final assetBundel = DefaultAssetBundle.of(context);
@@ -26,6 +23,7 @@ class _RevisionState extends State<Revision> {
    return body.map<MessageTilawa>(MessageTilawa.fromJson).toList();
   } 
 
+  late String note;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +34,16 @@ class _RevisionState extends State<Revision> {
       },),
         title: Row(
           children: [
-             VerticalDivider(width: 45,),
-             Text(widget.AyaFin,style: TextStyle(fontFamily: 'Cairo'),),
+             VerticalDivider(width: 20,),
+             Text("18",style: TextStyle(fontFamily: 'Cairo'),),
              VerticalDivider(),
-              Text(widget.SouraFin,style: TextStyle(fontFamily: 'Cairo'),),
-              VerticalDivider(width: 30,),
+              Text("النساء",style: TextStyle(fontFamily: 'Cairo'),),
+              VerticalDivider(width: 25,),
                Text("الى",style: TextStyle(fontFamily: 'Cairo'),),
-               VerticalDivider(width: 25,),
-               Text(widget.AyaDebut,style: TextStyle(fontFamily: 'Cairo'),),
+               VerticalDivider(width: 20,),
+               Text("20",style: TextStyle(fontFamily: 'Cairo'),),
                VerticalDivider(),
-                Text(widget.SouraDebut,style: TextStyle(fontFamily: 'Cairo'),),
+                Text("البقرة",style: TextStyle(fontFamily: 'Cairo'),),
                 Text("من",style: TextStyle(fontFamily: 'Cairo'),),
           ],
         ),
@@ -95,7 +93,7 @@ class _RevisionState extends State<Revision> {
             alignment: Alignment.bottomLeft,
             child: Container(
               padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
-              height: 250,
+              height: 310,
               width: double.infinity,
               color: Colors.white,
               child: Column(
@@ -121,7 +119,7 @@ class _RevisionState extends State<Revision> {
                     child: TextField(
                       textAlign: TextAlign.end,
                       decoration: InputDecoration(
-                         hintText: "ملاحظة",
+                        hintText: "ملاحظة",
                         hintStyle: TextStyle(color: Colors.black54),
                         border: InputBorder.none
                       ),
@@ -138,7 +136,35 @@ class _RevisionState extends State<Revision> {
                   ),
                     ],
                   ),
-                  Text("00:00",style: TextStyle(fontSize: 30,fontFamily: 'Cairo',fontWeight: FontWeight.w600),)
+                  Text("00:00",style: TextStyle(fontSize: 30,fontFamily: 'Cairo',fontWeight: FontWeight.w600),),
+                  Divider(color: Colors.white,),
+                  Text("العلامة",style: TextStyle(fontFamily: 'Cairo',),),
+                  Container(
+                    margin: EdgeInsets.only(right:20,left: 20),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color.fromARGB(255, 101, 74, 64),width: 5)
+                      
+                    ),
+                    height: 60,
+                    width: 60,
+                    child:  TextFormField(
+                      
+                      textAlign: TextAlign.center,
+                       onChanged: (text){
+                         note=text;
+                       },
+                
+                style: TextStyle(fontSize: 40,fontWeight: FontWeight.w600,fontFamily: ' Cairo'),
+                cursorColor: Color.fromARGB(255, 101, 74, 64),
+                
+                 decoration: InputDecoration(
+                   border: InputBorder.none,
+                   
+                   
+
+                   
+                 ),),
+                  ),
                 ],
                 
               ),

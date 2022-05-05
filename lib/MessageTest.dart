@@ -28,6 +28,9 @@ class _MessageTestState extends State<MessageTest> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar:   AppBar(
+         leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         title: Row(
           children: [
              VerticalDivider(width: 20,),
@@ -89,13 +92,14 @@ class _MessageTestState extends State<MessageTest> {
             alignment: Alignment.bottomLeft,
             child: Container(
               padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
-              height: 150,
+              height: 320,
               width: double.infinity,
               color: Colors.white,
               child: Column(
                 children: <Widget>[
                   GestureDetector(
                     onTap: (){
+                      print("recorder");
                     },
                     child: Container(
                       height: 60,
@@ -112,8 +116,9 @@ class _MessageTestState extends State<MessageTest> {
                       SizedBox(width: 15,),
                   Expanded(
                     child: TextField(
+                      textAlign: TextAlign.end,
                       decoration: InputDecoration(
-      
+                        hintText: "ملاحظة",
                         hintStyle: TextStyle(color: Colors.black54),
                         border: InputBorder.none
                       ),
@@ -121,13 +126,22 @@ class _MessageTestState extends State<MessageTest> {
                   ),
                   SizedBox(width: 15,),
                   FloatingActionButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      print("envoyer");
+                    },
                     child: Icon(Icons.send,color: Colors.white,size: 18,),
                     backgroundColor: Colors.brown,
                     elevation: 0,
                   ),
                     ],
-                  )
+                  ),
+                  Text("00:00",style: TextStyle(fontSize: 30,fontFamily: 'Cairo',fontWeight: FontWeight.w600),),
+                  Divider(color: Colors.white,),
+                  Container(
+                    
+                    child:Text("العلامة",style: TextStyle(fontFamily: 'Cairo',),),
+                  ),
+                  Text("7.5",style: TextStyle(fontFamily: 'Cairo',fontSize: 35),)
                 ],
                 
               ),

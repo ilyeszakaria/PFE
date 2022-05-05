@@ -41,7 +41,9 @@ class _TestState extends State<Test> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                         اختبار  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),   
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -231,7 +233,7 @@ class _TestState extends State<Test> {
                           lastDate: DateTime(2100)
                           ) ;
                           setState(() {
-                            time=datetime!;
+                            if(datetime!=null){time=datetime;}
                           });
                   }, icon: Icon(Icons.calendar_month,color: Colors.brown,)),
                  Container(

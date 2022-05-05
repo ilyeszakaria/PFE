@@ -17,9 +17,13 @@ class _LoginState extends State<Login> {
   bool isActivateStudebt=true;
   bool isActivateTeacher=true;
   String username="";
+  String password="";
 
   @override
   Widget build(BuildContext context) {
+
+   
+
     return Scaffold(
        appBar:   AppBar(
         title: Text("                              تسجيل الدخول  ",style: TextStyle(fontFamily: 'Cairo'),),
@@ -79,8 +83,16 @@ class _LoginState extends State<Login> {
                     ),
                     height: 60,
                     width: double.infinity,
-                    child:  TextFormField(
+                    child:  Form(
                       
+                      child: TextFormField(
+                      validator: (text){
+                        if(text=="ilyes"){
+                            return"ilyes";
+                        }else{
+                          return null;
+                        }
+                      },
                       textAlign: TextAlign.end,
                        onChanged: (text){
                          username=text;
@@ -91,11 +103,12 @@ class _LoginState extends State<Login> {
                 
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.person,color: Colors.brown,)
                    
 
                    
                  ),),
+                    )
                   ),
                   Divider(color: Colors.white,),
                   Column(
@@ -115,6 +128,9 @@ class _LoginState extends State<Login> {
                     height: 60,
                     width: double.infinity,
                     child:  TextFormField(
+                      onChanged: ((value) {
+                        password=value;
+                      }),
                       textAlign: TextAlign.end,
                       obscureText: true,
                 
@@ -122,7 +138,7 @@ class _LoginState extends State<Login> {
                 cursorColor: Color.fromARGB(255, 101, 74, 64),
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.key,color: Colors.brown,)
 
                    
                  ),),
@@ -146,7 +162,16 @@ class _LoginState extends State<Login> {
               Container(
                   margin:EdgeInsets.only(right: 5),
                   child:FlatButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return home(username:username);} ));
+                    if(username=="" || password==""){
+                      final text='الرجاء ادخال اسم المستخدم وكلملة المرور معا';
+                      final snackbar=SnackBar(content: Container(alignment: Alignment.center,
+                      height: 50,
+                      width: double.infinity,
+                      
+                      child: Text(text,style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    }else{
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return home(username:username);} ));}
                 },
                 padding: EdgeInsets.symmetric(vertical: 10,horizontal: 130),
                 child: Text("تسجيل الدخول",style:TextStyle(fontSize: 15,fontFamily: 'Cairo'),),
@@ -161,7 +186,9 @@ class _LoginState extends State<Login> {
                   child: Text("انشاء حساب" ,style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
                 ),
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn();} ));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn();} ));
+                  print(username);
+                  print(password);
                 },
                 )
                 ],

@@ -38,6 +38,9 @@ class _ListeEleveState extends State<ListeEleve> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context){return ListeEleveInvitation();} ));
            }, icon: Icon(Icons.person_add))
          ],
+         leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

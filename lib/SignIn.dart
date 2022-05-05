@@ -1,5 +1,6 @@
 import 'package:application3/Login.dart';
 import 'package:application3/SignIn2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,12 +14,21 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
    DateTime time=DateTime.now();
+    String name="";
+    String familyname="";
+    String username="";
+    String email="";
+    String password="";
+    String password2="";
+    String number="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                   انشاء حساب  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },), 
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -58,9 +68,13 @@ class _SignInState extends State<SignIn> {
                     ),
                     height: 45,
                     width: double.infinity,
-                    child:  TextFormField(
+                    child:  Form(
+                      child: TextFormField(
                     textAlign: TextAlign.end,
-                
+                    onChanged: (text){
+                       familyname=text;
+                    },
+                   
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
@@ -69,6 +83,7 @@ class _SignInState extends State<SignIn> {
 
                    
                  ),),
+                    )
                   )
                 ],
               ),
@@ -96,12 +111,15 @@ class _SignInState extends State<SignIn> {
                     width: double.infinity,
                     child: TextFormField(
                       textAlign: TextAlign.end,
-
+                      onChanged: (text){
+                        name=text;
+                      },
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
+                   
                    
 
                    
@@ -151,10 +169,10 @@ class _SignInState extends State<SignIn> {
                           lastDate: DateTime(2100)
                           ) ;
                           setState(() {
-                            time=datetime!;
+                            if(datetime!=null){time=datetime;}
                           });
                   }, icon: Icon(Icons.calendar_month,color: Colors.brown,)),
-                  VerticalDivider(width: 50,),
+                  VerticalDivider(width: 50,color: Colors.white,),
                  Container(
                    alignment: Alignment.center,
                    height: 35,
@@ -196,13 +214,16 @@ class _SignInState extends State<SignIn> {
                     width: double.infinity,
                     child:  TextFormField(
                       textAlign: TextAlign.end,
+                      onChanged: (text){
+                        username=text;
+                      },
 
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.person,color: Colors.brown,)
 
                    
                  ),),
@@ -233,13 +254,15 @@ class _SignInState extends State<SignIn> {
                     width: double.infinity,
                     child:  TextFormField(
                       textAlign: TextAlign.end,
-
+                       onChanged: (text){
+                         email=text;
+                       },
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.email,color: Colors.brown,)
 
                    
                  ),),
@@ -269,14 +292,17 @@ class _SignInState extends State<SignIn> {
                     height: 45,
                     width: double.infinity,
                     child:  TextFormField(
+                      onChanged: ((value) {
+                        password=value;
+                      }),
                     keyboardType: TextInputType.visiblePassword,
                     textAlign: TextAlign.end,
-                
-                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
+                    obscureText: true,
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.key,color: Colors.brown,)
 
                    
                  ),),
@@ -307,15 +333,18 @@ class _SignInState extends State<SignIn> {
                     height: 45,
                     width: double.infinity,
                     child: TextFormField(
+                      onChanged: ((value) {
+                        password2=value;
+                      }),
                       textAlign: TextAlign.end,
                     keyboardType: TextInputType.visiblePassword,
-                    
+                    obscureText: true,
                 
-                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.key,color: Colors.brown,)
 
                    
                  ),),
@@ -328,7 +357,7 @@ class _SignInState extends State<SignIn> {
               
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 5,left: 220),
+              margin: EdgeInsets.only(bottom: 5,left: 160),
               child: Column(
                 children: [
                   Container(
@@ -348,13 +377,15 @@ class _SignInState extends State<SignIn> {
                     child: TextFormField(
                       textAlign: TextAlign.end,
                     keyboardType: TextInputType.number,
-                    
+                    onChanged: (text){
+                      number=text;
+                    },
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
                 cursorColor: Colors.brown,
                  decoration: InputDecoration(
                    border: InputBorder.none,
-                   
+                   suffixIcon:Icon(Icons.phone,color: Colors.brown,)
 
                    
                  ),),
@@ -363,7 +394,7 @@ class _SignInState extends State<SignIn> {
               ),
               height: 80,
     
-              width: 200,
+              width: 250,
             
             ),
             Divider(color: Colors.white,),
@@ -375,7 +406,16 @@ class _SignInState extends State<SignIn> {
                 Container(
                   margin:EdgeInsets.only(right: 10),
                   child:FlatButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn2();} ));
+                    if(email=="" || familyname=="" || name=="" || username=="" || password=="" || password2=="" || number==""){
+                      final text='الرجاء ملء كل الحقول';
+                      final snackbar=SnackBar(content: Container(alignment: Alignment.center,
+                      height: 50,
+                      width: double.infinity,
+                      
+                      child: Text(text,style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),));
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    }else{
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn2();} ));}
                 },
                 padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
                 child: Text("مواصلة",style:TextStyle(fontSize: 15,fontFamily: 'Cairo'),),

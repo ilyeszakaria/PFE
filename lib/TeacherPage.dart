@@ -6,6 +6,7 @@ import 'package:application3/ListeTestTeacher.dart';
 import 'package:application3/main.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/parametre.dart';
+import 'package:application3/screens.dart/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,7 +49,9 @@ class _TeacherPageState extends State<TeacherPage> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                        الصفحة الرئيسية  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },), 
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -94,7 +97,9 @@ class _TeacherPageState extends State<TeacherPage> {
         
         ListTile(
           title: Text("                                         المصحف",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
-          onTap: (){},
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){return HomeScreen();} ));
+          },
           leading: Icon(Icons.menu_book),
         ),
         

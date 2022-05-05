@@ -36,7 +36,9 @@ class _ListeRevisionState extends State<ListeRevision> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                                المراجعات  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

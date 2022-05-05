@@ -43,7 +43,9 @@ class _ProfilElveState extends State<ProfilElve> {
     return Scaffold(
       appBar:   AppBar(
         title: Text("                  حساب التلميذ ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

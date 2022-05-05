@@ -3,9 +3,12 @@ import 'package:application3/Conversations.dart';
 import 'package:application3/ListeMessageTilawa.dart';
 import 'package:application3/ListeRevision.dart';
 import 'package:application3/ListeTestStudent.dart';
+import 'package:application3/Messages.dart';
 import 'package:application3/Revision.dart';
+import 'package:application3/doaah.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/parametre.dart';
+import 'package:application3/screens.dart/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,8 +51,10 @@ class _StudentpageState extends State<Studentpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:   AppBar(
-        title: Text("                        الصفحة الرئيسية  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        title: Container(width: double.infinity,alignment: Alignment.center,child: Text("الصفحة الرئيسية",style: TextStyle(fontFamily: 'Cairo'),),),
+        leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+          Navigator.of(context).pop();
+        },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -94,13 +99,22 @@ class _StudentpageState extends State<Studentpage> {
         
         ListTile(
           title: Text("                                         المصحف",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
-          onTap: (){},
-          leading: Icon(Icons.list),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){return HomeScreen();} ));
+          },
+          leading: Icon(Icons.menu_book),
         ),
         ListTile(
           title: Text("                              دعاء ختم القران",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
-          onTap: (){},
-          leading: Icon(Icons.home),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){return doaah();} ));
+          },
+          leading:Container(
+                  width: 25,
+                  height:25,
+                  
+                  child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("img/istockphoto-1206960091-1024x1024 (2).jpg",fit: BoxFit.fill,),),
+                ),
         ),
         ListTile(
           title: Text("                                تسجيل الخروج",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
@@ -206,7 +220,7 @@ class _StudentpageState extends State<Studentpage> {
               final message=messages![index];
              return GestureDetector(
                onTap: (){
-                 
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context){return Revision(idtilawa: "", AyaDebut: "", AyaFin: "", SouraDebut: "", SouraFin: "", username: "");} ));
                },
                child: Container(
                child: Row(children: [
@@ -317,7 +331,7 @@ class _StudentpageState extends State<Studentpage> {
               final message=messages![index];
              return GestureDetector(
                onTap: (){
-                 
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context){return Messages(username: widget.username,);} ));
                },
                child:  Container(
                child: Row(children: [

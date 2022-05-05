@@ -33,8 +33,10 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:   AppBar(
-        title: Text("                                 الاختبارات  ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        title: Text("                      الاختبارات  ",style: TextStyle(fontFamily: 'Cairo'),),
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),

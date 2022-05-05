@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:application3/ListeMessageTilawa.dart';
 import 'package:application3/ListeTestTeacher.dart';
 import 'package:application3/MessageTest.dart';
+import 'package:application3/MessageTestTeacher.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/parametre.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,9 @@ class _ReponceTestState extends State<ReponceTest> {
     return  Scaffold(
       appBar:   AppBar(
         title: Text("                          اختبار   ",style: TextStyle(fontFamily: 'Cairo'),),
-             
+        leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 10,
         backgroundColor: Colors.brown[400]
       ),
@@ -241,7 +244,7 @@ class _ReponceTestState extends State<ReponceTest> {
               final reponce=reponces![index];
              return GestureDetector(
                onTap: (){
-                 Navigator.of(context).push(MaterialPageRoute(builder: (context){return MessageTest(idtest: "",idstudent: "",username: widget.username,);} ));
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context){return MessageTestTeacher(idtest: "",idstudent: "",username: widget.username,);} ));
                },
                child: Container(
                child: Row(children: [
