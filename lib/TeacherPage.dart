@@ -3,6 +3,7 @@ import 'package:application3/Conversations.dart';
 import 'package:application3/ListeEleve.dart';
 import 'package:application3/ListeMessageTilawa.dart';
 import 'package:application3/ListeTestTeacher.dart';
+import 'package:application3/file2.dart';
 import 'package:application3/main.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/parametre.dart';
@@ -98,7 +99,7 @@ class _TeacherPageState extends State<TeacherPage> {
         ListTile(
           title: Text("                                         المصحف",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
           onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context){return HomeScreen();} ));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){return file2();} ));
           },
           leading: Icon(Icons.menu_book),
         ),

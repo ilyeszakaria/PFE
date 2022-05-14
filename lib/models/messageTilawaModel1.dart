@@ -208,19 +208,22 @@ class MessageTilawa{
   final String date;
   final String audio;
   final String text;
+  final String name;
 
   const MessageTilawa({
     required this.sender,
     required this.date,
     required this.audio,
-    required this.text
+    required this.text,
+    required this.name
   });
 
   static MessageTilawa fromJson(json)=> MessageTilawa(
     sender: json['sender'],
     date: json['date'],
     audio: json['audio'],
-    text: json['text']
+    text: json['text'],
+    name: json['name']
   );
 
 }
@@ -247,4 +250,27 @@ class user{
     Teacher: json['Teacher']
     );
 
+}
+
+
+class sorah{
+  final int id;
+  final String revelation_place;
+  final String name_complex;
+  final String name_arabic;
+
+  const sorah({
+    required this.id,
+    required this.revelation_place,
+    required this.name_complex,
+    required this.name_arabic
+  });
+
+  static sorah fromJson(json)=>sorah(
+    id: json['id'],
+    revelation_place: json['revelation_place'],
+    name_complex: json['name_complex'],
+    name_arabic: json['name_arabic']
+    );
+  
 }

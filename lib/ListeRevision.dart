@@ -8,6 +8,7 @@ import 'package:application3/parametre.dart';
 import 'package:application3/startRevision.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
 class ListeRevision extends StatefulWidget {
@@ -35,7 +36,7 @@ class _ListeRevisionState extends State<ListeRevision> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:   AppBar(
-        title: Text("                                المراجعات  ",style: TextStyle(fontFamily: 'Cairo'),),
+        title: Container(width: double.infinity,child: Text(" المراجعات",style: TextStyle(fontFamily: 'Cairo'),),alignment: Alignment.center,),
         leading: IconButton(icon: Icon(Icons.arrow_back,),onPressed: (){
         Navigator.of(context).pop();
       },),
@@ -61,7 +62,20 @@ class _ListeRevisionState extends State<ListeRevision> {
                 
               ),
               child: Column(children: [
-               
+               Container(
+                 padding: EdgeInsets.only(right: 40),
+                 alignment: Alignment.centerRight,
+                 width: double.infinity,
+                 height: 60,
+                 
+                 child: CircularPercentIndicator(
+                  radius: 30,
+                  center: Text("35%",style: TextStyle(fontFamily: 'Cairo',fontSize: 15,fontWeight: FontWeight.w600),),
+                  lineWidth: 10,
+                  progressColor: Color.fromARGB(255, 148, 127, 119),
+                  percent: 0.35,
+                  ),
+               ),
                
         
         Row(

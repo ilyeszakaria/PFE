@@ -10,6 +10,7 @@ import 'package:application3/parametre.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
 class ProfilElve extends StatefulWidget {
@@ -68,9 +69,19 @@ class _ProfilElveState extends State<ProfilElve> {
                   mainAxisAlignment: MainAxisAlignment.end,
           
           children: [
-
+              Container(
+                padding: EdgeInsets.only(right: 70),
+                child: CircularPercentIndicator(
+                  radius: 40,
+                  center: Text("35%",style: TextStyle(fontFamily: 'Cairo',fontSize: 22,fontWeight: FontWeight.w600),),
+                  lineWidth: 10,
+                  progressColor: Color.fromARGB(255, 148, 127, 119),
+                  percent: 0.35,
+                  ),
+              ),
                Container(
                   child: Container(
+                    
                     margin: EdgeInsets.only(top: 30),
                     child:Column(
                       mainAxisAlignment: MainAxisAlignment.start,

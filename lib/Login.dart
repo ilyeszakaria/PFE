@@ -186,7 +186,7 @@ class _LoginState extends State<Login> {
                   child: Text("انشاء حساب" ,style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo'),),
                 ),
                 onTap: (){
-                  //Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn();} ));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn();} ));
                   print(username);
                   print(password);
                 },

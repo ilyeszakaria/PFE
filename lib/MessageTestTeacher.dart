@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MessageTestTeacher extends StatefulWidget {
    final String idtest;
@@ -15,6 +17,40 @@ class MessageTestTeacher extends StatefulWidget {
 }
 
 class _MessageTestTeacherState extends State<MessageTestTeacher> {
+
+  final recorder=FlutterSoundRecorder();
+
+  @override
+  void initState(){
+    super.initState();
+    initRecorder();
+  }
+
+  @override
+  void dispose(){
+    recorder.closeRecorder();
+    super.dispose();
+  }
+
+  Future initRecorder() async{
+     final status=await Permission.microphone.request();
+     if(status != PermissionStatus.granted){
+       throw 'Microphone permission not granted';
+     }
+
+     await recorder.openRecorder();
+     recorder.setSubscriptionDuration(
+       const Duration(milliseconds: 500)
+     );
+  }
+
+  Future record() async{
+    await recorder.startRecorder(toFile: 'audio');
+  }
+
+  Future stop() async{
+    await recorder.stopRecorder();
+  }
 
   static Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async{
    final assetBundel = DefaultAssetBundle.of(context);
@@ -98,20 +134,22 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
               color: Colors.white,
               child: Column(
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: (){
-                      print("recorder");
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(Icons.mic, color: Colors.white, size: 50, ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.brown
                     ),
-                  ),
+                    onPressed: () async{
+                      if(recorder.isRecording){
+                        await stop();
+                      }else{
+                        await record();
+                      }
+                      setState(() {
+                        
+                      });
+                    },
+                     child: Icon(recorder.isRecording?Icons.stop:Icons.mic),
+                     ),
                   Row(
                     children: [
                       SizedBox(width: 15,),

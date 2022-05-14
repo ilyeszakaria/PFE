@@ -1,0 +1,50 @@
+[
+    {
+      
+      "id": 1,
+      "revelation_place": "makkah",
+      "name_complex": "Al-Fātiĥah",
+      "name_arabic": "الفاتحة"
+    },
+    {
+      
+        "id": 2,
+        "revelation_place": "madinah",
+        "name_complex": "Al-Baqarah",
+        "name_arabic": "البقرة"
+        
+      },
+      {
+      
+        "id": 3,
+        "revelation_place": "madinah",
+        "name_complex": "Āli `Imrān",
+        "name_arabic": "آل عمران"
+        
+      },
+      {
+      
+        "id": 4,
+        "revelation_place": "madinah",
+        "name_complex": "An-Nisā",
+        "name_arabic": "النساء"
+        
+      },
+      {
+      
+        "id": 5,
+        "revelation_place": "madinah",
+        "name_complex": "Al-Mā'idah",
+        "name_arabic": "المائدة"
+        
+      },
+      {
+      
+        "id": 6,
+        "revelation_place": "makkah",
+        "name_complex": "Al-'An`ām",
+        "name_arabic": "الأنعام"
+        
+      }
+    
+  ]
