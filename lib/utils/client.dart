@@ -10,7 +10,8 @@ class Client {
   Future<dynamic> get(String endpoint) async {
     var res = await http.get(Uri.parse('$baseUrl$endpoint'));
     if (res.statusCode == 200) {
-      return json.decode(res.body);
+      var decodedRes = utf8.decode(res.bodyBytes);
+      return jsonDecode(decodedRes);
     } else {
       throw Exception('Failed to load data');
     }
@@ -24,7 +25,8 @@ class Client {
       },
       body: jsonEncode(body),
     );
-    return json.decode(res.body);
+    var decodedRes = utf8.decode(res.bodyBytes);
+    return jsonDecode(decodedRes);
   }
 }
 
@@ -43,4 +45,4 @@ void main() async {
   });
 }
 
-var client = Client('https://9d1e-105-107-185-200.ngrok.io');
+var client = Client('https://fbc4-105-107-174-15.ngrok.io');

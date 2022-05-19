@@ -74,7 +74,7 @@ class _LoginState extends State<Login> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.asset(
-                                    "img/imageedit_13_3019360319.jpg",
+                                    "img/imageedit.jpg",
                                     fit: BoxFit.fill,
                                   ),
                                 ))),
@@ -219,7 +219,7 @@ class _LoginState extends State<Login> {
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 home(username: username)));
-                                  }else{
+                                  } else {
                                     print("false");
                                   }
                                 }
