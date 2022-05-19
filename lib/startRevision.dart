@@ -1,8 +1,10 @@
 import 'package:application3/ListeRevision.dart';
 import 'package:application3/Revision.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
+import 'package:application3/utils/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'utils/client.dart';
 
 
 
@@ -20,6 +22,10 @@ class _startRevisionState extends State<startRevision> {
   
   String dropdownValue1 = 'الفاتحة';
   String dropdownValue2 = 'الفاتحة';
+  
+  Future<List<Map>> getSourah() async {
+  return await client.get('/sora');
+  }
 
 
 
@@ -114,13 +120,20 @@ class _startRevisionState extends State<startRevision> {
           dropdownValue1 = newValue!;
         });
       },
-      items: Souar().listSouar
-          .map<DropdownMenuItem<String>>((String value) {
+      items: FutureBuilder<List<Map>>(
+        future: getSourah(),
+        builder: (context,AsyncSnapshot<List<Map>> snapchot){
+          final sourat=snapchot.data;
+         sourat.map<DropdownMenuItem<String>>(( value) {
         return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value,style: TextStyle(fontFamily: 'Cairo'),),
+          value: value['name'],
+          child: Text(value['name'],style: TextStyle(fontFamily: 'Cairo'),),
         );
-      }).toList(),
+      }).toList();
+          
+        },
+      ),
+          
     )
               ),
               VerticalDivider(color: Colors.white,),

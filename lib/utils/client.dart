@@ -43,4 +43,4 @@ void main() async {
   });
 }
 
-var client = Client('http://ec2-13-38-118-129.eu-west-3.compute.amazonaws.com');
+var client = Client('https://9d1e-105-107-185-200.ngrok.io');

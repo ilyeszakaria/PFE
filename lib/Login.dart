@@ -26,7 +26,9 @@ class _LoginState extends State<Login> {
       'password': password,
     });
     try {
+      print(data);
       updateSharedPreferences(data['token']);
+      print("false");
       return true;
     } catch (e) {
       print(e);
@@ -212,10 +214,13 @@ class _LoginState extends State<Login> {
                                       .showSnackBar(snackbar);
                                 } else {
                                   if (await _login()) {
+                                    print("true");
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 home(username: username)));
+                                  }else{
+                                    print("false");
                                   }
                                 }
                               },
