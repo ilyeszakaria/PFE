@@ -9,7 +9,11 @@ class Client {
 
   Future<dynamic> get(String endpoint) async {
     var res = await http.get(Uri.parse('$baseUrl$endpoint'));
-    return json.decode(res.body);
+    if (res.statusCode == 200) {
+      return json.decode(res.body);
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
 
   Future<dynamic> post(String endpoint, {body}) async {
@@ -37,7 +41,6 @@ void main() async {
     "riwayaId": 1,
     "password": "1234"
   });
-  print(res);
 }
 
-var client=Client('http://ec2-13-38-118-129.eu-west-3.compute.amazonaws.com');
+var client = Client('http://ec2-13-38-118-129.eu-west-3.compute.amazonaws.com');
