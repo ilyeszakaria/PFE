@@ -3,5 +3,10 @@
         "Username":"baghdali",
         "Student":"true",
         "Teacher":"false"
+    },
+    {
+        "Username":"ilyes",
+        "Student":"true",
+        "Teacher":"true"
     }
 ]

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:application3/Login.dart';
 import 'package:application3/SignIn2.dart';
+import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,14 +16,24 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
+   static Future<List<user>> getUser(BuildContext context) async{
+   final assetBundel = DefaultAssetBundle.of(context);
+   final data= await assetBundel.loadString('assets/user.json');
+   final body = json.decode(data);
+   return body.map<user>(user.fromJson).toList();
+ } 
+
+
+
    DateTime time=DateTime.now();
-    String name="";
-    String familyname="";
+    String firstName="";
+    String lastName="";
     String username="";
     String email="";
     String password="";
     String password2="";
-    String number="";
+    String phone="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +85,7 @@ class _SignInState extends State<SignIn> {
                       child: TextFormField(
                     textAlign: TextAlign.end,
                     onChanged: (text){
-                       familyname=text;
+                       lastName=text;
                     },
                    
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
@@ -112,7 +125,7 @@ class _SignInState extends State<SignIn> {
                     child: TextFormField(
                       textAlign: TextAlign.end,
                       onChanged: (text){
-                        name=text;
+                        firstName=text;
                       },
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
@@ -378,7 +391,7 @@ class _SignInState extends State<SignIn> {
                       textAlign: TextAlign.end,
                     keyboardType: TextInputType.number,
                     onChanged: (text){
-                      number=text;
+                      phone=text;
                     },
                 
                 style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
@@ -405,8 +418,11 @@ class _SignInState extends State<SignIn> {
               children: [
                 Container(
                   margin:EdgeInsets.only(right: 10),
-                  child:FlatButton(onPressed: (){
-                    if(email=="" || familyname=="" || name=="" || username=="" || password=="" || password2=="" || number==""){
+                  child:FlatButton(onPressed: () async{
+
+
+
+                    if(email=="" || lastName=="" || firstName=="" || username=="" || password=="" || password2=="" || phone==""){
                       final text='الرجاء ملء كل الحقول';
                       final snackbar=SnackBar(content: Container(alignment: Alignment.center,
                       height: 50,
@@ -415,7 +431,15 @@ class _SignInState extends State<SignIn> {
                       child: Text(text,style: TextStyle(fontFamily: 'Cairo',fontSize: 12),),));
                       ScaffoldMessenger.of(context).showSnackBar(snackbar);
                     }else{
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn2();} ));}
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context){return SignIn2(
+                        email:email,
+                        lastName:lastName,
+                        firstName:firstName,
+                        username:username,
+                        password:password,
+                        phone:phone
+                        ,);} ));
+                     }
                 },
                 padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
                 child: Text("مواصلة",style:TextStyle(fontSize: 15,fontFamily: 'Cairo'),),

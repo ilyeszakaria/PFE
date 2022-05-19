@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
 
     return Scaffold(
        appBar:   AppBar(
-        title: Text("                              تسجيل الدخول  ",style: TextStyle(fontFamily: 'Cairo'),),
+        title: Container(alignment: Alignment.center,width: double.infinity,child: Text("تسجيل الدخول",style: TextStyle(fontFamily: 'Cairo'),),),
              
         elevation: 10,
         backgroundColor: Color.fromARGB(255, 107, 75, 64)

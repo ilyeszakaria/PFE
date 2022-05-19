@@ -235,8 +235,8 @@ class Souar{
 
 class user{
   final String Username;
-  final bool Teacher;
-  final bool Student;
+  final String Teacher;
+  final String Student;
 
   const user({
     required this.Username,
@@ -271,6 +271,28 @@ class sorah{
     revelation_place: json['revelation_place'],
     name_complex: json['name_complex'],
     name_arabic: json['name_arabic']
+    );
+  
+}
+
+class post{
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
+
+  const post({
+    required this.userId,
+    required this.id,
+    required this.title,
+    required this.body
+  });
+
+  static post fromJson(json)=>post(
+    userId: json['userId'],
+    id: json['id'],
+    title: json['title'],
+    body: json['body']
     );
   
 }
