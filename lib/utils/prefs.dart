@@ -5,12 +5,3 @@ void updateSharedPreferences(String token, {id}) async {
   _prefs.setString('token', token);
   // _prefs.setInt('id', id);
 }
-
-Future getToken() async {
-  var prefs = await SharedPreferences.getInstance();
-  try {
-    return prefs.getString('token');
-  } catch (e) {
-    return null;
-  }
-}

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'prefs.dart';
+
 import 'package:http/http.dart' as http;
 
 class Client {
@@ -8,9 +8,7 @@ class Client {
   final String baseUrl;
 
   Future<dynamic> get(String endpoint) async {
-    var token = await getToken();
-    Map<String, String> headers = token ? {'Authorization': token} : {};
-    var res = await http.get(Uri.parse('$baseUrl$endpoint'), headers: headers);
+    var res = await http.get(Uri.parse('$baseUrl$endpoint'));
     if (res.statusCode == 200) {
       var decodedRes = utf8.decode(res.bodyBytes);
       return jsonDecode(decodedRes);
@@ -20,21 +18,31 @@ class Client {
   }
 
   Future<dynamic> post(String endpoint, {body}) async {
-    var token = await getToken();
-    Map<String, String> headers = {
-      'Content-Type': 'application/json',
-    };
-    if (token != null) {
-      headers['Authorization'] = token;
-    }
     var res = await http.post(
       Uri.parse('$baseUrl$endpoint'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: jsonEncode(body),
-      headers: headers,
     );
     var decodedRes = utf8.decode(res.bodyBytes);
     return jsonDecode(decodedRes);
   }
 }
 
-var client = Client('https://1a92-105-107-4-71.ngrok.io');
+void main() async {
+  var c = Client('http://ec2-13-38-118-129.eu-west-3.compute.amazonaws.com');
+  // var c = Client('http://localhost:8000');
+
+  var res = await c.post('/users/', body: {
+    "firstName": "Ilyes1",
+    "lastName": "Zakaria",
+    "email": "usdfer1234@example.com",
+    "isStudent": true,
+    "isTeacher": true,
+    "riwayaId": 1,
+    "password": "1234"
+  });
+}
+
+var client = Client('https://fbc4-105-107-174-15.ngrok.io');
