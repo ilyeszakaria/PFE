@@ -276,9 +276,9 @@ class _StudentpageState extends State<Studentpage> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
                                       return Revision(
-                                          idtilawa: "",
-                                          AyaDebut: "",
-                                          AyaFin: "",
+                                          idtilawa: 0,
+                                          AyaDebut: 0,
+                                          AyaFin: 0,
                                           SouraDebut: "",
                                           SouraFin: "",
                                           username: "");

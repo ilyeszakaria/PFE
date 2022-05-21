@@ -191,8 +191,8 @@ class _ProfilElveState extends State<ProfilElve> {
               final tilawa=tilawas![index];
              return GestureDetector(
                onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context){return Revision(idtilawa: "",
-                 AyaDebut:tilawa.AyaDebut,AyaFin:tilawa.AyaFin,SouraDebut:tilawa.SouraDebut,SouraFin:tilawa.SouraFin,username:widget.username);} ));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){return Revision(idtilawa: 0,
+                 AyaDebut:0,AyaFin:0,SouraDebut:tilawa.SouraDebut,SouraFin:tilawa.SouraFin,username:widget.username);} ));
                },
                child:  Container(
                

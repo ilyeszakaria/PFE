@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -8,9 +9,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 class Revision extends StatefulWidget {
-  final String idtilawa;
-  final String AyaDebut;
-  final String AyaFin;
+  final int idtilawa;
+  final int AyaDebut;
+  final int AyaFin;
   final String SouraDebut;
   final String SouraFin;
   final String username;
@@ -77,8 +78,10 @@ class _RevisionState extends State<Revision> {
      );
   }
 
+  StreamSink<Food>? stream;
+
   Future record() async{
-    await recorder.startRecorder(toFile: 'audio');
+    await recorder.startRecorder(toStream: stream);
   }
 
   Future stop() async{
@@ -110,16 +113,18 @@ class _RevisionState extends State<Revision> {
         title: Row(
           children: [
              VerticalDivider(width: 45,),
-             Text(widget.AyaFin,style: TextStyle(fontFamily: 'Cairo'),),
+             Text(widget.AyaFin.toString(),style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
              VerticalDivider(),
-              Text(widget.SouraFin,style: TextStyle(fontFamily: 'Cairo'),),
+              Text(widget.SouraFin,style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
               VerticalDivider(width: 30,),
-               Text("الى",style: TextStyle(fontFamily: 'Cairo'),),
+               Text("الى",style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
                VerticalDivider(width: 25,),
-               Text(widget.AyaDebut,style: TextStyle(fontFamily: 'Cairo'),),
+               Text(widget.AyaDebut.toString(),style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
                VerticalDivider(),
-                Text(widget.SouraDebut,style: TextStyle(fontFamily: 'Cairo'),),
-                Text("من",style: TextStyle(fontFamily: 'Cairo'),),
+                Text(widget.SouraDebut,style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
+                VerticalDivider(),
+                Text("من",style: TextStyle(fontFamily: 'Cairo',fontSize: 15),),
+                
           ],
         ),
              

@@ -154,7 +154,7 @@ class _startRevisionState extends State<startRevision> {
                                   ),
                                   child: DropdownButton<int>(
                                     value: startSora,
-                                    icon: const Icon(Icons.arrow_downward),
+                                    icon: const Icon(Icons.arrow_downward,size: 15,),
                                     elevation: 16,
                                     underline: Container(
                                       height: 2,
@@ -172,6 +172,7 @@ class _startRevisionState extends State<startRevision> {
                                               value['name'],
                                               style: TextStyle(
                                                 fontFamily: 'Cairo',
+                                                fontSize: 14
                                               ),
                                             ),
                                           ),
@@ -245,7 +246,7 @@ class _startRevisionState extends State<startRevision> {
                                           width: 3, color: Colors.brown)),
                                   child: DropdownButton<int>(
                                     value: endSora,
-                                    icon: const Icon(Icons.arrow_downward),
+                                    icon: const Icon(Icons.arrow_downward,size: 15,),
                                     elevation: 16,
                                     underline: Container(
                                       height: 2,
@@ -260,8 +261,10 @@ class _startRevisionState extends State<startRevision> {
                                           (Map value) => DropdownMenuItem<int>(
                                             value: value['id'],
                                             child: Text(
+                                              
                                               value['name'],
                                               style: TextStyle(
+                                                fontSize: 14,
                                                 fontFamily: 'Cairo',
                                               ),
                                             ),
@@ -296,11 +299,16 @@ class _startRevisionState extends State<startRevision> {
                             child: RaisedButton(
                               onPressed: () async{
 
-                                await createTilawa();
+                                var data=await createTilawa();
                                 Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (context) {
-                                  return ListeRevision(
+                                  return Revision(
                                     username: "",
+                                     AyaDebut: data['start']['aya'],
+                                      AyaFin: data['end']['aya'],
+                                       idtilawa: data['id'],
+                                        SouraDebut: data['start']['sora'],
+                                         SouraFin: data['end']['sora'],
                                   );
                                 }));
                               },
