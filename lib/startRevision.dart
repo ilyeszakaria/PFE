@@ -16,8 +16,8 @@ class startRevision extends StatefulWidget {
 class _startRevisionState extends State<startRevision> {
   int startSora = 1;
   int endSora = 1;
-  int _startAya = 1;
-  int _endAya = 1;
+  int startAya = 1;
+  int endAya = 1;
   List<Map<String, dynamic>> sorat = [];
 
   Future<dynamic> getSourat() async {
@@ -26,13 +26,30 @@ class _startRevisionState extends State<startRevision> {
     return _sorat;
   }
 
+  Future<dynamic> createTilawa() async {
+  var res = await client.post('/tilawa', body: {
+    "start": {
+      "sora": startSora,
+      "aya": startAya
+    }, 
+    "end": {
+      "sora": endSora,
+      "aya": endAya
+    },
+  });
+  return res;
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: Container(alignment: Alignment.center,
+          width: double.infinity,
+          child: Text(
             "تلاوة",
             style: TextStyle(fontFamily: 'Cairo'),
+          ),
           ),
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -88,6 +105,13 @@ class _startRevisionState extends State<startRevision> {
                                   height: 45,
                                   width: 50,
                                   child: TextFormField(
+                                    onChanged: (value) {
+                                    if(value == '') {
+                                      startAya = 1;
+                                    } else {
+                                      startAya = int.parse(value);
+                                    }
+                                  },
                                     textAlign: TextAlign.end,
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(
@@ -179,6 +203,13 @@ class _startRevisionState extends State<startRevision> {
                                 Container(
                                   height: 45,
                                   child: TextFormField(
+                                    onChanged: (value) {
+                                    if(value == '') {
+                                      endAya = 1;
+                                    } else {
+                                      endAya = int.parse(value);
+                                    }
+                                  },
                                     textAlign: TextAlign.end,
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(
@@ -263,7 +294,9 @@ class _startRevisionState extends State<startRevision> {
                             margin: EdgeInsets.symmetric(horizontal: 5),
                             alignment: Alignment.center,
                             child: RaisedButton(
-                              onPressed: () {
+                              onPressed: () async{
+
+                                await createTilawa();
                                 Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (context) {
                                   return ListeRevision(
