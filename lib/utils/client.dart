@@ -19,18 +19,19 @@ class Client {
     }
   }
 
-  Future<dynamic> post(String endpoint, {body}) async {
+
+
+  Future<dynamic> post(String endpoint, {body ,headers= const {'Content-type':'application/json'}}) async {
     var token = await getToken();
-    Map<String, String> headers = {
-      'Content-Type': 'application/json',
-    };
+    var _headers=headers; 
+
     if (token != null) {
-      headers['Authorization'] = token;
+      _headers['Authorization'] = token;
     }
     var res = await http.post(
       Uri.parse('$baseUrl$endpoint'),
       body: jsonEncode(body),
-      headers: headers,
+      headers: _headers,
     );
     var decodedRes = utf8.decode(res.bodyBytes);
     return jsonDecode(decodedRes);

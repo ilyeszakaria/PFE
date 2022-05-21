@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:application3/models/messageTilawaModel1.dart';
+import 'package:application3/utils/client.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -216,6 +217,7 @@ class _RevisionState extends State<Revision> {
                       }else{
                         await record();
                       }
+                      await client.post('/chat/test',headers:{'Content-type':'multipart/form-data'},body: {'audio': stream});
                       setState(() {
                         
                       });
