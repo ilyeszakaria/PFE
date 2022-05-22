@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/utils/client.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -77,14 +78,19 @@ class _RevisionState extends State<Revision> {
     recorder.setSubscriptionDuration(const Duration(milliseconds: 500));
   }
 
-  StreamSink<Food>? stream;
-
-  Future record() async {
-    await recorder.startRecorder(toStream: stream);
+  playMusic(String path) {
+    print(path);
+    player.play(path);
   }
 
-  Future stop() async {
-    await recorder.stopRecorder();
+  stopMusic() {
+    player.pause();
+  }
+
+  String? _path;
+  final filePath = 'audio.aac';
+  Future record() async {
+    await recorder.startRecorder(toFile: filePath);
   }
 
   static Future<List<MessageTilawa>> getmessageTilawa(
@@ -195,7 +201,10 @@ class _RevisionState extends State<Revision> {
                                         isPlaying = true;
                                       });
                                       playMusic(
-                                          'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3');
+                                          // _path!,
+                                          'http://192.168.1.108:8000/sound.mp3'
+                                          //'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
+                                          );
                                     }
 
                                     setState(() {});
@@ -230,13 +239,17 @@ class _RevisionState extends State<Revision> {
                     style: ElevatedButton.styleFrom(primary: Colors.brown),
                     onPressed: () async {
                       if (recorder.isRecording) {
-                        await stop();
+                        String? audioPath = await recorder.stopRecorder();
+                        _path = audioPath;
+
+                        File audio = File(audioPath!);
+                        await client.audioPost(
+                          '/chat/test',
+                          file: await audio.readAsBytes(),
+                        );
                       } else {
                         await record();
                       }
-                      await client.post('/chat/test',
-                          headers: {'Content-type': 'multipart/form-data'},
-                          body: {'audio': stream});
                       setState(() {});
                     },
                     child: Icon(recorder.isRecording ? Icons.stop : Icons.mic),
@@ -280,13 +293,5 @@ class _RevisionState extends State<Revision> {
         ],
       ),
     );
-  }
-
-  playMusic(String val) {
-    player.play(val);
-  }
-
-  stopMusic() {
-    player.pause();
   }
 }
