@@ -1,17 +1,16 @@
-import 'package:application3/Studentpage.dart';
-import 'package:application3/TeacherPage.dart';
+import 'pages/student_page.dart';
+import 'pages/teacher_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class home extends StatefulWidget {
+class Home extends StatefulWidget {
   final String username;
-  const home({Key? key, required this.username}) : super(key: key);
+  const Home({Key? key, required this.username}) : super(key: key);
 
   @override
-  State<home> createState() => _homeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _homeState extends State<home> {
+class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     bool isActivateStudebt = true;
     bool isActivateTeacher = true;
@@ -82,7 +81,7 @@ class _homeState extends State<home> {
                                 }));
                               }
                             : null,
-                        color: Color.fromARGB(255, 144, 108, 94),
+                        color: const Color.fromARGB(255, 144, 108, 94),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         child: Container(

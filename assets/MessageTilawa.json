@@ -1,110 +1,26 @@
 [
-    {
-      "sender":"ilyeszakaria",
-      "date": "20/11/1999",
-      "audio": "audio",
-      "text":"كتابة",
-      "name":"Cheb_Fayçal_-_Rouhi_ya_wehej_mela_-_Moucharabia.mp3"
-      
-    },
-    {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Fayçal_-_Tellement_cheba_nedirek_malek_-_Moucharabia.mp3"
-        
-        
-      },
-      {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Faysal_-_Win_Rah_l'Galb_Li_Yansak_+_5M_vues.mp3"
-        
-        
-      },
-      {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Fayçal_-_Tellement_cheba_nedirek_malek_-_Moucharabia.mp3"
-        
-        
-      },
-      {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Fayçal_-_Rouhi_ya_wehej_mela_-_Moucharabia.mp3"
-        
-        
-      },
-      {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Fayçal_-_Tellement_cheba_nedirek_malek_-_Moucharabia.mp3"
-        
-        
-      },
-      {
-        "sender":"ilyeszakaria",
-        "date": "20/11/1999",
-        "audio": "audio",
-        "text":"كتابة",
-        "name":"Cheb_Faysal_-_Win_Rah_l'Galb_Li_Yansak_+_5M_vues.mp3"
-        
-        
-      },
-      {
-          "sender":"ilyeszakaria",
-          "date": "20/11/1999",
-          "audio": "audio",
-          "text":"كتابة",
-          "name":"Cheb_Fayçal_-_Rouhi_ya_wehej_mela_-_Moucharabia.mp3"
-          
-          
-        },
-        {
-          "sender":"ilyeszakaria",
-          "date": "20/11/1999",
-          "audio": "audio",
-          "text":"كتابة",
-          "name":"Cheb_Fayçal_-_Tellement_cheba_nedirek_malek_-_Moucharabia.mp3"
-          
-          
-        },
-        {
-          "sender":"ilyeszakaria",
-          "date": "20/11/1999",
-          "audio": "audio",
-          "text":"كتابة",
-          "name":"Cheb_Faysal_-_Win_Rah_l'Galb_Li_Yansak_+_5M_vues.mp3"
-          
-          
-        },
-        {
-          "sender":"ilyeszakaria",
-          "date": "20/11/1999",
-          "audio": "audio",
-          "text":"كتابة",
-          "name":"Cheb_Fayçal_-_Rouhi_ya_wehej_mela_-_Moucharabia.mp3"
-          
-          
-        },
-        {
-          "sender":"ilyeszakaria",
-          "date": "20/11/1999",
-          "audio": "audio",
-          "text":"كتابة",
-          "name":"Cheb_Fayçal_-_Tellement_cheba_nedirek_malek_-_Moucharabia.mp3"
-          
-          
-        }
-    
-  ]
+  {
+    "sender": "ilyeszakaria",
+    "date": "20/11/1999",
+    "audio": "http://192.168.1.108:8000/sound.mp3",
+    "text": "كتابة",
+    "senderId": 1,
+    "seen": true
+  },
+  {
+    "sender": "ilyeszakaria",
+    "date": "20/11/1999",
+    "audio": "http://192.168.1.108:8000/sound.mp3",
+    "text": "كتابة",
+    "senderId": 1,
+    "seen": true
+  },
+  {
+    "sender": "ilyeszakaria",
+    "date": "20/11/1999",
+    "audio": "http://192.168.1.108:8000/sound.mp3",
+    "text": "كتابة",
+    "senderId": 1,
+    "seen": true
+  }
+]

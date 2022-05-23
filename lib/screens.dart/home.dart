@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:application3/screens.dart/reading_page.dart';
@@ -47,34 +46,33 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       stickyFrontLayer: true,
-      subHeader:  Container(
-      height: 150,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Center(
-        child: Column(
-          children: [
-            Text(
-              
-              items[selectedIndex]["name_arabic"],
-              style: TextStyle(
-                fontFamily: 'Aldhabi',
-                fontWeight: FontWeight.bold,
-                fontSize: 38,
+      subHeader: Container(
+        height: 150,
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: Center(
+          child: Column(
+            children: [
+              Text(
+                items[selectedIndex]["name_arabic"],
+                style: TextStyle(
+                  fontFamily: 'Aldhabi',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 38,
+                ),
               ),
-            ),
-            Text(
-              quran.basmala,
-              style: TextStyle(
-                fontFamily: 'Aldhabi',
-                fontWeight: FontWeight.bold,
-                fontSize: 36,
+              Text(
+                quran.basmala,
+                style: TextStyle(
+                  fontFamily: 'Aldhabi',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
       frontLayer: _pages[selectedIndex],
       backLayer: BackdropNavigationBackLayer(
         items: List.generate(
@@ -97,6 +95,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  
 }
