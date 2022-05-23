@@ -11,15 +11,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
     bool isActivateStudebt = true;
     bool isActivateTeacher = true;
+    const String pageTitle = 'الصفحة الرئيسية';
     return Scaffold(
         appBar: AppBar(
           title: Container(
             alignment: Alignment.center,
             child: Text(
-              "الصفحة الرئيسية",
+              pageTitle,
               style: TextStyle(fontFamily: 'Cairo'),
             ),
           ),
@@ -34,10 +36,11 @@ class _HomeState extends State<Home> {
                 child: Text(
                   "ilyes مرحبا ",
                   style: TextStyle(
-                      fontFamily: 'Cairo',
-                      fontSize: 30,
-                      color: Color.fromARGB(255, 101, 74, 64),
-                      fontWeight: FontWeight.bold),
+                    fontFamily: 'Cairo',
+                    fontSize: 30,
+                    color: Color.fromARGB(255, 101, 74, 64),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 alignment: Alignment.center,
               ),
@@ -87,10 +90,10 @@ class _HomeState extends State<Home> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Text(
-                            " تلميذ",
+                            "تلميذ",
                             style: TextStyle(
                                 fontFamily: 'Cairo',
-                                fontSize: 50,
+                                fontSize: 30,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -122,7 +125,7 @@ class _HomeState extends State<Home> {
                           "معلم",
                           style: TextStyle(
                               fontFamily: 'Cairo',
-                              fontSize: 50,
+                              fontSize: 30,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),

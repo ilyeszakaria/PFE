@@ -4,15 +4,15 @@ import 'package:application3/pages/messages.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:flutter/material.dart';
 
-class Conversaation extends StatefulWidget {
+class Conversation extends StatefulWidget {
   final String username;
-  const Conversaation({Key? key, required this.username}) : super(key: key);
+  const Conversation({Key? key, required this.username}) : super(key: key);
 
   @override
-  State<Conversaation> createState() => _ConversaationState();
+  State<Conversation> createState() => _ConversationState();
 }
 
-class _ConversaationState extends State<Conversaation> {
+class _ConversationState extends State<Conversation> {
   static Future<List<conversation>> getconvesation(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/conversation.json');

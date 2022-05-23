@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:application3/models/messages.dart';
 import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
-// import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class Messages extends StatefulWidget {
   final String username;
@@ -21,20 +21,18 @@ class _MessagesState extends State<Messages> {
     return body.map<Message>(Message.fromJson).toList();
   }
 
-  // final channel = WebSocketChannel.connect(
-  //   Uri.parse('wss://echo.websocket.events'),
-  // );
   @override
   Widget build(BuildContext context) {
+    final channel = WebSocketChannel.connect(
+      Uri.parse('ws://192.168.1.108:8000/chat/ws/1'),
+    );
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -163,6 +161,17 @@ class _MessagesState extends State<Messages> {
                 ],
               ),
             ),
+          ),
+          StreamBuilder(
+            stream: channel.stream,
+            builder: (context, snapshot) {
+              // send message with channel
+              // channel.sink.add(json.encode({
+              //   'username': widget.username,
+              //   'message': 'hello',
+              // }));
+              return Text(snapshot.hasData ? '${snapshot.data}' : '');
+            },
           ),
         ],
       ),

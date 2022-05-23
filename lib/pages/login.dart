@@ -25,12 +25,9 @@ class _LoginState extends State<Login> {
       'password': password,
     });
     try {
-      print(data);
-      updateSharedPreferences(data['token']);
-      print("false");
+      updateSharedPreferences(data['token'], data['id']);
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
   }

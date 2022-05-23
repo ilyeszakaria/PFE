@@ -1,10 +1,6 @@
 import 'dart:convert';
-import 'package:application3/pages/ListeMessageTilawa.dart';
-import 'package:application3/pages/liste_test_teacher.dart';
-import 'package:application3/pages/message_test.dart';
 import 'package:application3/pages/message_test_teacher.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/parametre.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,15 +1,8 @@
 import 'dart:convert';
-import 'package:application3/pages/conversations.dart';
-import 'package:application3/pages/ListeMessageTilawa.dart';
-import 'package:application3/pages/liste_revision.dart';
-import 'package:application3/pages/ListeTestStudent.dart';
 import 'package:application3/pages/messages.dart';
 import 'package:application3/pages/revision.dart';
-import 'package:application3/doaah.dart';
-import 'package:application3/file2.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/parametre.dart';
-import 'package:application3/screens.dart/home.dart';
+import 'package:application3/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,6 +20,17 @@ class _StudentpageState extends State<Studentpage> {
     super.initState();
   }
 
+  var doaahIcon = Container(
+    width: 25,
+    height: 25,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.asset(
+        "img/istockphoto-1206960091-1024x1024 (2).jpg",
+        fit: BoxFit.fill,
+      ),
+    ),
+  );
   static Future<List<MessageTilawa1>> getmessage(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/MessageTilawa1.json');
@@ -61,121 +65,7 @@ class _StudentpageState extends State<Studentpage> {
           ),
           elevation: 10,
           backgroundColor: Colors.brown[400]),
-      endDrawer: Drawer(
-        child: Column(children: [
-          UserAccountsDrawerHeader(
-            accountName: Text("بغدالي الياس زكريا",
-                style: TextStyle(fontFamily: 'Cairo')),
-            accountEmail: Text("baghdaliilyeszakaria@gmail.com",
-                style: TextStyle(fontFamily: 'Cairo')),
-            currentAccountPicture: CircleAvatar(
-              child: Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
-              backgroundColor: Colors.grey,
-            ),
-            decoration: BoxDecoration(color: Colors.brown[400]),
-          ),
-          ListTile(
-            title: Text(
-              "                              اعدادات الحساب   ",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return parametre(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.settings),
-          ),
-          ListTile(
-            title: Text(
-              "                              سجل المراجعات",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return ListeRevision(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.list),
-          ),
-          ListTile(
-              title: Text(
-                "                                         اختبارات",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-              ),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return ListeTestStudent(username: widget.username);
-                }));
-              },
-              leading: Icon(Icons.list)),
-          ListTile(
-            title: Text(
-              "                                          محادثات",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return Conversaation(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.sms),
-          ),
-          ListTile(
-            title: Text(
-              "                                         المصحف",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return file2();
-              }));
-            },
-            leading: Icon(Icons.menu_book),
-          ),
-          ListTile(
-            title: Text(
-              "                              دعاء ختم القران",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return Doaah();
-              }));
-            },
-            leading: Container(
-              width: 25,
-              height: 25,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "img/istockphoto-1206960091-1024x1024 (2).jpg",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "                                تسجيل الخروج",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {},
-            leading: Icon(Icons.logout),
-          ),
-        ]),
-      ),
+      endDrawer: StudentDrawer(),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Stack(
@@ -194,16 +84,20 @@ class _StudentpageState extends State<Studentpage> {
                           child: Column(
                             children: [
                               Text(
-                                "التلميذ  ",
+                                "التلميذ",
                                 style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Cairo',
+                                ),
                               ),
-                              Text(widget.username,
-                                  style: TextStyle(
-                                      fontFamily: 'Cairo',
-                                      fontWeight: FontWeight.bold))
+                              Text(
+                                widget.username,
+                                style: TextStyle(
+                                  fontFamily: 'Cairo',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                           height: 105,
@@ -298,9 +192,12 @@ class _StudentpageState extends State<Studentpage> {
                                                   VerticalDivider(
                                                     color: Colors.grey,
                                                   ),
-                                                  Text(message.time,
-                                                      style: TextStyle(
-                                                          fontFamily: 'Cairo')),
+                                                  Text(
+                                                    message.time,
+                                                    style: TextStyle(
+                                                      fontFamily: 'Cairo',
+                                                    ),
+                                                  ),
                                                   VerticalDivider(
                                                     width: 100,
                                                     color: Colors.grey,

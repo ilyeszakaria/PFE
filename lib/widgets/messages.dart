@@ -1,4 +1,5 @@
 import 'package:application3/models/messages.dart';
+import 'package:application3/utils/prefs.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -6,10 +7,10 @@ class MessageWidget extends Container {
   MessageWidget({
     Key? key,
     required this.message,
-  });
+  }) : super(key: key);
   Message message;
   Widget? _child;
-  isSelfMessage() => true;
+  isSelfMessage() => Globals.userId == message.senderId;
   @override
   Widget build(BuildContext context) {
     return Container(

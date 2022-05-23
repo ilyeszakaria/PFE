@@ -14,14 +14,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getToken(),
-        builder: (context, snapshot) {
+        future: showLoginPage(),
+        builder: (context, AsyncSnapshot<bool> snapshot) {
           return snapshot.hasData
               ? MaterialApp(
                   theme: ThemeData(
                     primaryColor: Colors.brown,
                   ),
-                  home: snapshot.data != null
+                  home: snapshot.data!
                       ? Home(username: 'username')
                       : const Login(),
                 )

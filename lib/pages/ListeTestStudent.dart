@@ -4,7 +4,7 @@ import 'package:application3/pages/liste_revision.dart';
 import 'package:application3/pages/message_test.dart';
 import 'package:application3/test.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/parametre.dart';
+import 'package:application3/pages/settings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

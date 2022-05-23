@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:application3/pages/conversations.dart';
 import 'package:application3/pages/liste_eleve.dart';
 import 'package:application3/pages/liste_test_teacher.dart';
-import 'package:application3/file2.dart';
+import 'package:application3/moshaf.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/parametre.dart';
+import 'package:application3/pages/settings.dart';
+import 'package:application3/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -54,98 +55,7 @@ class _TeacherPageState extends State<TeacherPage> {
           ),
           elevation: 10,
           backgroundColor: Colors.brown[400]),
-      endDrawer: Drawer(
-        child: Column(children: [
-          UserAccountsDrawerHeader(
-            accountName: Text("بغدالي الياس زكريا",
-                style: TextStyle(fontFamily: 'Cairo')),
-            accountEmail: Text("baghdaliilyeszakaria@gmail.com",
-                style: TextStyle(fontFamily: 'Cairo')),
-            currentAccountPicture: CircleAvatar(
-              child: Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
-              backgroundColor: Colors.grey,
-            ),
-            decoration: BoxDecoration(color: Colors.brown[400]),
-          ),
-          ListTile(
-            title: Text(
-              "                              اعدادات الحساب   ",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return parametre(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.settings),
-          ),
-          ListTile(
-            title: Text(
-              "                                           تلاميذي",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return ListeEleve(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.list),
-          ),
-          ListTile(
-              title: Text(
-                "                                           اختبارات",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-              ),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return ListeTestTeacher(username: widget.username);
-                }));
-              },
-              leading: Icon(Icons.my_library_books_sharp)),
-          ListTile(
-            title: Text(
-              "                                          محادثات",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return Conversaation(username: widget.username);
-              }));
-            },
-            leading: Icon(Icons.sms),
-          ),
-          ListTile(
-            title: Text(
-              "                                         المصحف",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return file2();
-              }));
-            },
-            leading: Icon(Icons.menu_book),
-          ),
-          ListTile(
-            title: Text(
-              "                                تسجيل الخروج",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
-            ),
-            onTap: () {},
-            leading: Icon(Icons.logout),
-          ),
-        ]),
-      ),
+      endDrawer: TeacherDrawer(),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Stack(
