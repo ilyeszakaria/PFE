@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:application3/pages/conversations.dart';
 import 'package:application3/pages/liste_eleve.dart';
 import 'package:application3/pages/liste_test_teacher.dart';
-import 'package:application3/moshaf.dart';
+import 'package:application3/pages/moshaf.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/pages/settings.dart';
 import 'package:application3/widgets/drawers.dart';

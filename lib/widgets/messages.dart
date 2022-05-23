@@ -71,6 +71,7 @@ class TextMessageWidget extends MessageWidget {
   TextMessageWidget(message, {Key? key}) : super(message: message, key: key) {
     _child = Text(
       message.text,
+      textAlign: TextAlign.right,
       style: TextStyle(
         fontSize: 15,
         fontFamily: 'Cairo',

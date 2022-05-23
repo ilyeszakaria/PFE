@@ -1,5 +1,5 @@
-import 'pages/student_page.dart';
-import 'pages/teacher_page.dart';
+import 'student_page.dart';
+import 'teacher_page.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

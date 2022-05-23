@@ -1,7 +1,7 @@
 import 'package:application3/pages/liste_eleve.dart';
 import 'package:flutter/material.dart';
-import '../doaah.dart';
-import '../moshaf.dart';
+import '../pages/doaah.dart';
+import '../pages/moshaf.dart';
 import '../pages/ListeTestStudent.dart';
 import '../pages/conversations.dart';
 import '../pages/liste_revision.dart';

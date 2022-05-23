@@ -1,4 +1,4 @@
-import 'package:application3/home.dart';
+import 'package:application3/pages/home.dart';
 import 'utils/prefs.dart';
 import 'pages/login.dart';
 import 'package:flutter/material.dart';

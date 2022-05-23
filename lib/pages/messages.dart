@@ -21,11 +21,38 @@ class _MessagesState extends State<Messages> {
     return body.map<Message>(Message.fromJson).toList();
   }
 
+  bool firstLoad = true;
+  final messageController = TextEditingController();
+  var _messages = [];
+
+  @override
+  void dispose() {
+    messageController.dispose();
+    super.dispose();
+  }
+
+  final channel = WebSocketChannel.connect(
+    Uri.parse('ws://192.168.1.108:8000/chat/ws/1'),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    getMessages(context).then((messages) {
+      setState(() {
+        _messages = messages;
+      });
+    });
+    channel.stream.listen((data) {
+      Message message = Message.fromJson(jsonDecode(data));
+      setState(() {
+        _messages.add(message);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final channel = WebSocketChannel.connect(
-      Uri.parse('ws://192.168.1.108:8000/chat/ws/1'),
-    );
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -90,22 +117,23 @@ class _MessagesState extends State<Messages> {
       ),
       body: Stack(
         children: <Widget>[
-          FutureBuilder(
-              future: getMessages(context),
-              builder: (context, AsyncSnapshot<List<Message>> snapchot) {
-                final messages = snapchot.data;
-                return ListView.builder(
-                  itemCount: messages?.length ?? 0,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  itemBuilder: (context, index) {
-                    var message = messages![index];
-                    return message.audio == ''
-                        ? TextMessageWidget(message)
-                        : AudioMessageWidget(message);
-                  },
-                );
-              }),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 60),
+              child: ListView.builder(
+                itemCount: _messages.length,
+                shrinkWrap: false,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                itemBuilder: (context, index) {
+                  var message = _messages[index];
+                  return message.audio == ''
+                      ? TextMessageWidget(message)
+                      : AudioMessageWidget(message);
+                },
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -119,8 +147,11 @@ class _MessagesState extends State<Messages> {
               color: Colors.white,
               child: Row(
                 children: <Widget>[
+                  // Recorder
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      print('hi');
+                    },
                     child: Container(
                       height: 30,
                       width: 30,
@@ -135,43 +166,40 @@ class _MessagesState extends State<Messages> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Expanded(
+                  // const SizedBox(
+                  //   width: 15,
+                  // ),
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Colors.black54),
-                          border: InputBorder.none),
+                      textAlign: TextAlign.right,
+                      controller: messageController,
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: const InputDecoration(
+                        hintStyle: TextStyle(color: Colors.black54),
+                        border: InputBorder.none,
+                        hintText: 'اكتب رسالة',
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
+                  // const SizedBox(
+                  //   width: 15,
+                  // ),
                   FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      channel.sink.add(messageController.text);
+                      messageController.clear();
+                    },
                     child: const Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,
                     ),
                     backgroundColor: Colors.brown,
-                    elevation: 0,
+                    elevation: 5,
                   ),
                 ],
               ),
             ),
-          ),
-          StreamBuilder(
-            stream: channel.stream,
-            builder: (context, snapshot) {
-              // send message with channel
-              // channel.sink.add(json.encode({
-              //   'username': widget.username,
-              //   'message': 'hello',
-              // }));
-              return Text(snapshot.hasData ? '${snapshot.data}' : '');
-            },
           ),
         ],
       ),

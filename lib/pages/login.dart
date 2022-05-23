@@ -1,5 +1,5 @@
 import 'sign_up.dart';
-import 'package:application3/home.dart';
+import 'package:application3/pages/home.dart';
 import 'package:application3/utils/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
