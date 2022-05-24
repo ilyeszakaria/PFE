@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'package:application3/pages/conversations.dart';
+import 'package:application3/pages/conversations_list.dart';
 import 'package:application3/pages/liste_eleve.dart';
 import 'package:application3/pages/liste_test_teacher.dart';
 import 'package:application3/pages/moshaf.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/pages/settings.dart';
 import 'package:application3/widgets/drawers.dart';
+import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -39,22 +40,9 @@ class _TeacherPageState extends State<TeacherPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            "                        الصفحة الرئيسية  ",
-            style: TextStyle(fontFamily: 'Cairo'),
-          ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    const pageTitle = "الصفحة الرئيسية";
+    return ScaffoldWidget(
+      pageTitle: pageTitle,
       endDrawer: TeacherDrawer(),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

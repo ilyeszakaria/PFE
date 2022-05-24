@@ -1,45 +1,16 @@
 [
-    {
-      
-      "id": "1",
-      "username": "ilyeszakariaaa",
-      "date":"20/11/199"
-      
-    },
-    {
-      
-        "id": "1",
-        "username": "ilyeszakariaadd",
-        "date":"20/11/199"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "date":"20/11/199"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszddddakaria",
-        "date":"20/11/199"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszddddakaria",
-        "date":"20/11/199"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "date":"20/11/199"
-        
-      }
-    
-  ]
+  {
+    "id": 1,
+    "receiver": {
+      "id": 1,
+      "username": "ilyes"
+    }
+  },
+  {
+    "id": 2,
+    "receiver": {
+      "id": 1,
+      "username": "ilyes zakaria"
+    }
+  }
+]

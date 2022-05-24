@@ -2,8 +2,8 @@ import 'package:application3/pages/liste_eleve.dart';
 import 'package:flutter/material.dart';
 import '../pages/doaah.dart';
 import '../pages/moshaf.dart';
-import '../pages/ListeTestStudent.dart';
-import '../pages/conversations.dart';
+import '../pages/liste_test_student.dart';
+import '../pages/conversations_list.dart';
 import '../pages/liste_revision.dart';
 import '../pages/settings.dart';
 
@@ -18,7 +18,7 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.chat,
       'title': 'المحادثات',
-      'next': const Conversation(username: ''),
+      'next': const ConversationsList(username: ''),
     },
     {
       'icon': Icons.assignment,

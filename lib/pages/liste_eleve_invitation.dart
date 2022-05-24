@@ -1,11 +1,7 @@
 import 'dart:convert';
 
-import 'package:application3/pages/ListeMessageTilawa.dart';
-import 'package:application3/pages/liste_test_teacher.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ListeEleveInvitation extends StatefulWidget {
   ListeEleveInvitation({Key? key}) : super(key: key);
@@ -29,7 +25,7 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            "                          طلبات  ",
+            "طلبات",
             style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
@@ -63,57 +59,65 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
                   return GestureDetector(
                     onTap: () {},
                     child: Container(
-                      child: Row(children: [
-                        Container(
-                          alignment: Alignment.center,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                print("accept");
-                              });
-                            },
-                            child: Text(
-                              accept,
-                              style: TextStyle(
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.brown),
+                      child: Row(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  print("accept");
+                                });
+                              },
+                              child: Text(
+                                accept,
+                                style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.brown),
+                              ),
                             ),
+                            width: 120,
+                            height: 55,
                           ),
-                          width: 120,
-                          height: 55,
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          height: 55,
-                          width: 150,
-                          child: Text(
-                            student.username,
-                            style: TextStyle(
+                          Container(
+                            alignment: Alignment.center,
+                            height: 55,
+                            width: 150,
+                            child: Text(
+                              student.username,
+                              style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
-                                fontFamily: 'Cairo'),
-                          ),
-                        ),
-                        Container(
-                          width: 80,
-                          height: 55,
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.black,
+                                fontFamily: 'Cairo',
+                              ),
                             ),
-                            backgroundColor: Color.fromARGB(255, 219, 219, 219),
                           ),
-                        ),
-                      ], mainAxisAlignment: MainAxisAlignment.end),
+                          Container(
+                            width: 80,
+                            height: 55,
+                            child: CircleAvatar(
+                              child: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
+                              backgroundColor:
+                                  Color.fromARGB(255, 219, 219, 219),
+                            ),
+                          ),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.end,
+                      ),
                       height: 70,
                       decoration: BoxDecoration(
                           color: Colors.grey,
                           boxShadow: [BoxShadow(blurRadius: 1)],
                           borderRadius: BorderRadius.circular(3)),
                       width: double.infinity,
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 2,
+                      ),
                     ),
                   );
                 },

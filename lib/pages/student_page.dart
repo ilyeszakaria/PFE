@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:application3/pages/messages.dart';
+import 'package:application3/pages/conversation.dart';
 import 'package:application3/pages/revision.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/widgets/drawers.dart';
+import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -47,24 +48,9 @@ class _StudentpageState extends State<Studentpage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Container(
-            width: double.infinity,
-            alignment: Alignment.center,
-            child: Text(
-              "الصفحة الرئيسية",
-              style: TextStyle(fontFamily: 'Cairo'),
-            ),
-          ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    const pageTitle = 'الصفحة الرئيسية';
+    return ScaffoldWidget(
+      pageTitle: pageTitle,
       endDrawer: StudentDrawer(),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -322,12 +308,12 @@ class _StudentpageState extends State<Studentpage> {
                                 final message = messages![index];
                                 return GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) {
-                                      return Messages(
-                                        username: widget.username,
-                                      );
-                                    }));
+                                    // Navigator.of(context).push(
+                                    //     MaterialPageRoute(builder: (context) {
+                                    //   return Conversation(
+                                    //     conversation: ,
+                                    //   );
+                                    // }));
                                   },
                                   child: Container(
                                     child: Row(

@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:application3/pages/ListeEleveInvitation.dart';
-import 'package:application3/pages/ListeMessageTilawa.dart';
+import 'package:application3/pages/liste_eleve_invitation.dart';
+import 'package:application3/pages/liste_message_tilawa.dart';
 import 'package:application3/pages/liste_test_teacher.dart';
 import 'package:application3/pages/profil_eleve.dart';
 import 'package:application3/models/messageTilawaModel1.dart';

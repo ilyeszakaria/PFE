@@ -1,46 +1,42 @@
 import 'dart:convert';
 
-import 'package:application3/pages/messages.dart';
-import 'package:application3/models/messageTilawaModel1.dart';
+import 'package:application3/models/messages.dart';
+import 'package:application3/pages/conversation.dart';
+import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
-class Conversation extends StatefulWidget {
+class ConversationsList extends StatefulWidget {
   final String username;
-  const Conversation({Key? key, required this.username}) : super(key: key);
+  const ConversationsList({Key? key, required this.username}) : super(key: key);
 
   @override
-  State<Conversation> createState() => _ConversationState();
+  State<ConversationsList> createState() => _ConversationsListState();
 }
 
-class _ConversationState extends State<Conversation> {
-  static Future<List<conversation>> getconvesation(BuildContext context) async {
+class _ConversationsListState extends State<ConversationsList> {
+  static Future<List<ConversationModel>> getConvesationsList(
+      BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/conversation.json');
     final body = json.decode(data);
-    return body.map<conversation>(conversation.fromJson).toList();
+    return body.map<ConversationModel>(ConversationModel.fromJson).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            "                      المحادثات  ",
-            style: TextStyle(fontFamily: 'Cairo'),
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    return ScaffoldWidget(
+      pageTitle: 'المحادثات',
       body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           height: double.infinity,
           width: double.infinity,
-          child: FutureBuilder<List<conversation>>(
-            future: getconvesation(context),
+          child: FutureBuilder<List<ConversationModel>>(
+            future: getConvesationsList(context),
             builder: (context, snapchot) {
               final conversations = snapchot.data;
               return ListView.separated(
                 separatorBuilder: (context, index) {
-                  return Divider(
+                  return const Divider(
                     color: Colors.white,
                     height: 2,
                   );
@@ -52,7 +48,7 @@ class _ConversationState extends State<Conversation> {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return Messages(username: widget.username);
+                        return Conversation(conversation: conversation);
                       }));
                     },
                     child: Container(
@@ -62,17 +58,18 @@ class _ConversationState extends State<Conversation> {
                           height: 55,
                           width: 150,
                           child: Text(
-                            conversation.username,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                fontFamily: 'Cairo'),
+                            conversation.receiver.id.toString(),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              fontFamily: 'Cairo',
+                            ),
                           ),
                         ),
                         Container(
                           width: 80,
                           height: 55,
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             child: Icon(
                               Icons.person,
                               color: Colors.black,
@@ -84,10 +81,11 @@ class _ConversationState extends State<Conversation> {
                       height: 70,
                       decoration: BoxDecoration(
                           color: Colors.grey,
-                          boxShadow: [BoxShadow(blurRadius: 1)],
+                          boxShadow: [const BoxShadow(blurRadius: 1)],
                           borderRadius: BorderRadius.circular(3)),
                       width: double.infinity,
-                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 2),
                     ),
                   );
                 },

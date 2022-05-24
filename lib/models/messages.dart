@@ -1,3 +1,5 @@
+import 'users.dart';
+
 class Message {
   bool seen;
   String text;
@@ -16,5 +18,17 @@ class Message {
         text: json['text'],
         audio: json['audio'],
         senderId: json['senderId'],
+      );
+}
+
+class ConversationModel {
+  int id;
+  User receiver;
+
+  ConversationModel({required this.id, required this.receiver});
+
+  static ConversationModel fromJson(json) => ConversationModel(
+        id: json['id'],
+        receiver: User.fromJson(json['receiver']),
       );
 }

@@ -11,6 +11,7 @@ class MessageWidget extends Container {
   Message message;
   Widget? _child;
   isSelfMessage() => Globals.userId == message.senderId;
+
   @override
   Widget build(BuildContext context) {
     return Container(

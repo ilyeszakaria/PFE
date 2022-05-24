@@ -5,15 +5,15 @@ import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-class Messages extends StatefulWidget {
-  final String username;
-  const Messages({Key? key, required this.username}) : super(key: key);
+class Conversation extends StatefulWidget {
+  final ConversationModel conversation;
+  const Conversation({Key? key, required this.conversation}) : super(key: key);
 
   @override
-  State<Messages> createState() => _MessagesState();
+  State<Conversation> createState() => _ConversationState();
 }
 
-class _MessagesState extends State<Messages> {
+class _ConversationState extends State<Conversation> {
   static Future<List<Message>> getMessages(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/message.json');
@@ -49,6 +49,13 @@ class _MessagesState extends State<Messages> {
         _messages.add(message);
       });
     });
+  }
+
+  sendMessage(String text) {
+    channel.sink.add(jsonEncode({
+      'message': text,
+      'receiverId': widget.conversation.receiver.id,
+    }));
   }
 
   @override
@@ -90,11 +97,12 @@ class _MessagesState extends State<Messages> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        widget.username,
+                        widget.conversation.receiver.id.toString(),
                         style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Cairo'),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Cairo',
+                        ),
                       ),
                       const SizedBox(
                         height: 6,
@@ -149,9 +157,7 @@ class _MessagesState extends State<Messages> {
                 children: <Widget>[
                   // Recorder
                   GestureDetector(
-                    onTap: () {
-                      print('hi');
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 30,
                       width: 30,
@@ -186,7 +192,10 @@ class _MessagesState extends State<Messages> {
                   // ),
                   FloatingActionButton(
                     onPressed: () {
-                      channel.sink.add(messageController.text);
+                      if (messageController.text.isEmpty) {
+                        return;
+                      }
+                      sendMessage(messageController.text);
                       messageController.clear();
                     },
                     child: const Icon(
