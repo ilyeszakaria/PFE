@@ -22,7 +22,6 @@ Future<bool> showLoginPage() async {
   try {
     String? token = prefs.getString('token');
     Globals.token = token;
-    print('logged in');
     Globals.userId = prefs.getInt('id');
     return true;
   } catch (e) {

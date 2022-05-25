@@ -8,15 +8,14 @@ class Message {
   int senderId;
 
   Message({
-    required this.seen,
+    this.seen = false,
+    this.audio = '',
     required this.text,
-    required this.audio,
     required this.senderId,
   });
   static Message fromJson(json) => Message(
-        seen: json['seen'],
         text: json['text'],
-        audio: json['audio'],
+        audio: json['audio'] ?? '',
         senderId: json['senderId'],
       );
 }

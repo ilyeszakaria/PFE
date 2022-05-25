@@ -5,6 +5,8 @@ import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../utils/prefs.dart';
+
 class Conversation extends StatefulWidget {
   final ConversationModel conversation;
   const Conversation({Key? key, required this.conversation}) : super(key: key);
@@ -32,7 +34,7 @@ class _ConversationState extends State<Conversation> {
   }
 
   final channel = WebSocketChannel.connect(
-    Uri.parse('ws://192.168.1.108:8000/chat/ws/1'),
+    Uri.parse('ws://192.168.1.108:8000/chat/ws/${Globals.userId}'),
   );
 
   @override
@@ -53,8 +55,10 @@ class _ConversationState extends State<Conversation> {
 
   sendMessage(String text) {
     channel.sink.add(jsonEncode({
-      'message': text,
+      'text': text,
+      'senderId': Globals.userId,
       'receiverId': widget.conversation.receiver.id,
+      'conversationId': widget.conversation.id,
     }));
   }
 

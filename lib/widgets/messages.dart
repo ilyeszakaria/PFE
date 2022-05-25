@@ -4,13 +4,15 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class MessageWidget extends Container {
+  bool? isSelfMessage;
   MessageWidget({
     Key? key,
     required this.message,
-  }) : super(key: key);
+  }) : super(key: key) {
+    isSelfMessage = message.senderId == Globals.userId;
+  }
   Message message;
   Widget? _child;
-  isSelfMessage() => Globals.userId == message.senderId;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,12 @@ class MessageWidget extends Container {
         bottom: 10,
       ),
       child: Align(
-        alignment: (isSelfMessage() ? Alignment.topLeft : Alignment.topRight),
+        alignment: (isSelfMessage! ? Alignment.topLeft : Alignment.topRight),
         child: Container(
           width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: (isSelfMessage() ? Colors.grey.shade200 : Colors.brown[200]),
+            color: (isSelfMessage! ? Colors.grey.shade200 : Colors.brown[200]),
           ),
           padding: const EdgeInsets.all(16),
           child: _child,
