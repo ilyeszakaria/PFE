@@ -1,6 +1,16 @@
 class User {
   int id;
-  User({required this.id});
+  String firstName;
+  String lastName;
+  User({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+  });
 
-  static fromJson(json) => User(id: json['id']);
+  static fromJson(json) => User(
+        id: json['id'],
+        firstName: json['firstName'],
+        lastName: json['lastName'],
+      );
 }

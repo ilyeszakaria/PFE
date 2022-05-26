@@ -5,6 +5,7 @@ import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../utils/client.dart';
 import '../utils/prefs.dart';
 
 class Conversation extends StatefulWidget {
@@ -16,14 +17,18 @@ class Conversation extends StatefulWidget {
 }
 
 class _ConversationState extends State<Conversation> {
-  static Future<List<Message>> getMessages(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/message.json');
-    final body = json.decode(data);
-    return body.map<Message>(Message.fromJson).toList();
+  Future<List<Message>> getMessages() async {
+    List data = await client.get(
+      '/messages/${widget.conversation.id}',
+    );
+    List<Message> messages = data
+        .map(
+          (e) => Message.fromJson(e),
+        )
+        .toList();
+    return messages;
   }
 
-  bool firstLoad = true;
   final messageController = TextEditingController();
   var _messages = [];
 
@@ -40,7 +45,7 @@ class _ConversationState extends State<Conversation> {
   @override
   void initState() {
     super.initState();
-    getMessages(context).then((messages) {
+    getMessages().then((messages) {
       setState(() {
         _messages = messages;
       });
@@ -55,10 +60,11 @@ class _ConversationState extends State<Conversation> {
 
   sendMessage(String text) {
     channel.sink.add(jsonEncode({
+      'type': 'message',
       'text': text,
       'senderId': Globals.userId,
-      'receiverId': widget.conversation.receiver.id,
-      'conversationId': widget.conversation.id,
+      'receiverId': widget.conversation.other.id,
+      'chatId': widget.conversation.id,
     }));
   }
 
@@ -101,7 +107,7 @@ class _ConversationState extends State<Conversation> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        widget.conversation.receiver.id.toString(),
+                        widget.conversation.name,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,

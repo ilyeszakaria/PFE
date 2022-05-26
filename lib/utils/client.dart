@@ -8,10 +8,15 @@ class Client {
 
   final String baseUrl;
 
-  Future<dynamic> get(String endpoint) async {
+  Future<dynamic> get(String endpoint, {Map? queryParams}) async {
     var token = await getToken();
     Map<String, String> headers = token != null ? {'Authorization': token} : {};
-    var res = await http.get(Uri.parse('$baseUrl$endpoint'), headers: headers);
+    var res = await http.get(
+      Uri.parse(
+        '$baseUrl$endpoint',
+      ),
+      headers: headers,
+    );
     if (res.statusCode == 200) {
       var decodedRes = utf8.decode(res.bodyBytes);
       return jsonDecode(decodedRes);

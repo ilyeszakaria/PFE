@@ -22,12 +22,27 @@ class Message {
 
 class ConversationModel {
   int id;
-  User receiver;
+  int studentId;
+  int teacherId;
+  User other;
 
-  ConversationModel({required this.id, required this.receiver});
+  ConversationModel({
+    required this.id,
+    required this.other,
+    required this.studentId,
+    required this.teacherId,
+  });
 
   static ConversationModel fromJson(json) => ConversationModel(
         id: json['id'],
-        receiver: User.fromJson(json['receiver']),
+        studentId: json['studentId'],
+        teacherId: json['teacherId'],
+        other: User.fromJson({
+          'id': json['otherId'],
+          'firstName': json['firstName'],
+          'lastName': json['lastName'],
+        }),
       );
+
+  get name => other.firstName + ' ' + other.lastName;
 }

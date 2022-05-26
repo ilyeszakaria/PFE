@@ -32,7 +32,7 @@ Future<bool> showLoginPage() async {
 class Globals {
   static String? token;
   static int? userId;
-
+  static String role = 'student';
   static setValues(String token, int userId) {
     Globals.token = token;
     Globals.userId = userId;

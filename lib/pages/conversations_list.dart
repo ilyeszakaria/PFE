@@ -1,7 +1,7 @@
-import 'dart:convert';
-
 import 'package:application3/models/messages.dart';
 import 'package:application3/pages/conversation.dart';
+import 'package:application3/utils/client.dart';
+import 'package:application3/utils/prefs.dart';
 import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +14,16 @@ class ConversationsList extends StatefulWidget {
 }
 
 class _ConversationsListState extends State<ConversationsList> {
-  static Future<List<ConversationModel>> getConvesationsList(
-      BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/conversation.json');
-    final body = json.decode(data);
-    return body.map<ConversationModel>(ConversationModel.fromJson).toList();
+  Future<List<ConversationModel>> getConvesationsList() async {
+    List data = await client.get(
+      '/conversations/${Globals.userId}?role=${Globals.role}',
+    );
+    List<ConversationModel> conversations = data
+        .map(
+          (e) => ConversationModel.fromJson(e),
+        )
+        .toList();
+    return conversations;
   }
 
   @override
@@ -31,7 +35,7 @@ class _ConversationsListState extends State<ConversationsList> {
           height: double.infinity,
           width: double.infinity,
           child: FutureBuilder<List<ConversationModel>>(
-            future: getConvesationsList(context),
+            future: getConvesationsList(),
             builder: (context, snapchot) {
               final conversations = snapchot.data;
               return ListView.separated(
@@ -58,7 +62,7 @@ class _ConversationsListState extends State<ConversationsList> {
                           height: 55,
                           width: 150,
                           child: Text(
-                            conversation.receiver.id.toString(),
+                            conversation.name,
                             style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
