@@ -1,4 +1,4 @@
-import 'package:application3/pages/home.dart';
+import 'pages/home.dart';
 import 'utils/prefs.dart';
 import 'pages/login.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +21,11 @@ class App extends StatelessWidget {
                   theme: ThemeData(
                     primaryColor: Colors.brown,
                   ),
-                  home: snapshot.data!
-                      ? Home(username: 'username')
-                      : const Login(),
+                  home: snapshot.data! ? const Home() : const Login(),
                 )
               : Container(
                   color: Colors.brown,
-                  child: Center(
+                  child: const Center(
                     child: CircularProgressIndicator(),
                   ),
                 );

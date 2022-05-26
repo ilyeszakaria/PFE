@@ -1,19 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-void updateSharedPreferences(String token, int userId) async {
+Future<void> updateSharedPreferences(String token, int userId) async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   _prefs.setString('token', token);
   _prefs.setInt('id', userId);
   Globals.setValues(token, userId);
 }
 
-Future getToken() async {
+Future<void> clearPrefs() async {
   var prefs = await SharedPreferences.getInstance();
-  try {
-    return prefs.getString('token');
-  } catch (e) {
-    return null;
-  }
+  prefs.clear();
 }
 
 Future<bool> showLoginPage() async {
@@ -23,7 +19,7 @@ Future<bool> showLoginPage() async {
     String? token = prefs.getString('token');
     Globals.token = token;
     Globals.userId = prefs.getInt('id');
-    return true;
+    return token != null;
   } catch (e) {
     return false;
   }

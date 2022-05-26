@@ -1,18 +1,16 @@
 import 'dart:convert';
-import 'package:application3/pages/conversations_list.dart';
-import 'package:application3/pages/liste_eleve.dart';
-import 'package:application3/pages/liste_test_teacher.dart';
-import 'package:application3/pages/moshaf.dart';
-import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/settings.dart';
-import 'package:application3/widgets/drawers.dart';
-import 'package:application3/widgets/scaffold.dart';
+import '../models/users.dart';
+import '../models/messageTilawaModel1.dart';
+import '../widgets/drawers.dart';
+import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/messages.dart';
+
 class TeacherPage extends StatefulWidget {
-  final String username;
-  const TeacherPage({Key? key, required this.username}) : super(key: key);
+  final User user;
+  const TeacherPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<TeacherPage> createState() => _TeacherPageState();
@@ -24,18 +22,11 @@ class _TeacherPageState extends State<TeacherPage> {
     super.initState();
   }
 
-  static Future<List<MessageTilawa1>> getmessage(BuildContext context) async {
+  Future<List<MessageTilawa1>> getmessage(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/MessageTilawa1.json');
     final body = json.decode(data);
     return body.map<MessageTilawa1>(MessageTilawa1.fromJson).toList();
-  }
-
-  static Future<List<Message>> getmessage2(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/message.json');
-    final body = json.decode(data);
-    return body.map<Message>(Message.fromJson).toList();
   }
 
   @override
@@ -43,7 +34,7 @@ class _TeacherPageState extends State<TeacherPage> {
     const pageTitle = "الصفحة الرئيسية";
     return ScaffoldWidget(
       pageTitle: pageTitle,
-      endDrawer: TeacherDrawer(),
+      endDrawer: TeacherDrawer(user: widget.user),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Stack(
@@ -76,7 +67,7 @@ class _TeacherPageState extends State<TeacherPage> {
                                     ),
                                   ),
                                   Text(
-                                    widget.username,
+                                    widget.user.name,
                                     style: TextStyle(
                                         fontFamily: 'Cairo',
                                         fontWeight: FontWeight.bold),
@@ -419,6 +410,5 @@ class _TeacherPageState extends State<TeacherPage> {
         ),
       ),
     );
-    ;
   }
 }

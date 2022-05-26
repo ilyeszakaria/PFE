@@ -10,25 +10,6 @@ class MessageTilawa1 {
       username: json['username'], date: json['date'], time: json['time']);
 }
 
-class Message {
-  final String date;
-  final String text;
-  final String sender;
-  final String audio;
-
-  const Message(
-      {required this.date,
-      required this.text,
-      required this.sender,
-      required this.audio});
-
-  static Message fromJson(json) => Message(
-      sender: json['sender'],
-      date: json['date'],
-      text: json['text'],
-      audio: json['audio']);
-}
-
 class Tilawa {
   final String id;
   final String date;

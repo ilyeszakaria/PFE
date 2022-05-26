@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
       'password': password,
     });
     try {
-      updateSharedPreferences(data['token'], data['id']);
+      await updateSharedPreferences(data['token'], data['userId']);
       return true;
     } catch (e) {
       return false;
@@ -168,7 +168,7 @@ class _LoginState extends State<Login> {
                                 GestureDetector(
                                   child: Container(
                                     child: Text(
-                                      "هل نسيت كلمة السر ",
+                                      "هل نسيت كلمة السر",
                                       style: TextStyle(fontFamily: 'Cairo'),
                                     ),
                                     margin: EdgeInsets.only(right: 230),
@@ -209,11 +209,11 @@ class _LoginState extends State<Login> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackbar);
                                 } else {
-                                  if (await _login()) {
+                                  var valid = await _login();
+                                  if (valid) {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            Home(username: username),
+                                        builder: (context) => Home(),
                                       ),
                                     );
                                   } else {

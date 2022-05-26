@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:application3/models/messages.dart';
-import 'package:application3/widgets/messages.dart';
+import '../models/messages.dart';
+import '../widgets/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 

@@ -1,5 +1,9 @@
-import 'package:application3/pages/liste_eleve.dart';
+import 'package:application3/models/users.dart';
 import 'package:flutter/material.dart';
+import '../pages/liste_eleve.dart';
+import '../pages/login.dart';
+import '../utils/client.dart';
+import '../utils/prefs.dart';
 import '../pages/doaah.dart';
 import '../pages/moshaf.dart';
 import '../pages/liste_test_student.dart';
@@ -8,7 +12,8 @@ import '../pages/liste_revision.dart';
 import '../pages/settings.dart';
 
 class StudentDrawer extends Drawer {
-  StudentDrawer({Key? key}) : super(key: key);
+  User user;
+  StudentDrawer({Key? key, required this.user}) : super(key: key);
   var drawerItems = [
     {
       'icon': Icons.assignment,
@@ -47,15 +52,58 @@ class StudentDrawer extends Drawer {
     },
   ];
 
+  Widget _getDrawerItemTitle(titleText) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: Text(
+          titleText,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Cairo',
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var items = drawerItems.map((Map item) {
+      return ListTile(
+        title: _getDrawerItemTitle(item['title']),
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => item['next']));
+        },
+        leading: Icon(item['icon']),
+      );
+    }).toList();
+    items[items.length - 1] = ListTile(
+      title: _getDrawerItemTitle('تسجيل الخروج'),
+      onTap: () async {
+        await client.post('/logout');
+        await clearPrefs();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const Login(),
+          ),
+        );
+      },
+      leading: const Icon(Icons.exit_to_app),
+    );
     return Drawer(
       child: Column(children: [
         UserAccountsDrawerHeader(
-          accountName: const Text("بغدالي الياس زكريا",
-              style: const TextStyle(fontFamily: 'Cairo')),
-          accountEmail: const Text("baghdaliilyeszakaria@gmail.com",
-              style: TextStyle(fontFamily: 'Cairo')),
+          accountName: Text(
+            user.name,
+            style: TextStyle(fontFamily: 'Cairo'),
+          ),
+          accountEmail: Text(
+            user.email!,
+            style: TextStyle(fontFamily: 'Cairo'),
+          ),
           currentAccountPicture: const CircleAvatar(
             child: Icon(
               Icons.person,
@@ -67,28 +115,7 @@ class StudentDrawer extends Drawer {
         ),
         Expanded(
           child: ListView(
-            children: drawerItems.map((Map item) {
-              return ListTile(
-                title: Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text(
-                      item['title'],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cairo',
-                      ),
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => item['next']));
-                },
-                leading: Icon(item['icon']),
-              );
-            }).toList(),
+            children: items,
           ),
         ),
       ]),
@@ -97,7 +124,7 @@ class StudentDrawer extends Drawer {
 }
 
 class TeacherDrawer extends StudentDrawer {
-  TeacherDrawer({Key? key}) : super(key: key) {
+  TeacherDrawer({Key? key, required user}) : super(key: key, user: user) {
     drawerItems[0] = {
       'icon': Icons.list,
       'title': 'تلاميذي',
