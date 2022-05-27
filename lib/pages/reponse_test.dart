@@ -42,7 +42,6 @@ class _ReponceTestState extends State<ReponceTest> {
       appBar: AppBar(
           title: Text(
             "                          اختبار   ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -94,9 +93,9 @@ class _ReponceTestState extends State<ReponceTest> {
                               child: Text(
                                 "   :الاختبار",
                                 style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               height: 45,
                             )
@@ -112,21 +111,19 @@ class _ReponceTestState extends State<ReponceTest> {
                         children: [
                           Text(
                             widget.AyaDebut,
-                            style: TextStyle(fontFamily: 'Cairo'),
                           ),
                           Text(
                             "  : الاية رقم   ",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Cairo'),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           VerticalDivider(
                             color: Colors.white,
                           ),
                           Text(
                             widget.SouraDebut,
-                            style: TextStyle(fontFamily: 'Cairo'),
                           ),
                           VerticalDivider(
                             color: Colors.white,
@@ -134,9 +131,9 @@ class _ReponceTestState extends State<ReponceTest> {
                           Text(
                             "من سورة    ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
@@ -151,21 +148,19 @@ class _ReponceTestState extends State<ReponceTest> {
                         children: [
                           Text(
                             widget.AyaFin,
-                            style: TextStyle(fontFamily: 'Cairo'),
                           ),
                           Text(
                             " : الاية رقم   ",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Cairo'),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           VerticalDivider(
                             color: Colors.white,
                           ),
                           Text(
                             widget.SouraFin,
-                            style: TextStyle(fontFamily: 'Cairo'),
                           ),
                           VerticalDivider(
                             color: Colors.white,
@@ -173,9 +168,9 @@ class _ReponceTestState extends State<ReponceTest> {
                           Text(
                             "الى سورة   ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           )
                         ],
                       ),
@@ -191,7 +186,6 @@ class _ReponceTestState extends State<ReponceTest> {
                           Icon(Icons.calendar_month, color: Colors.brown),
                           Text(
                             "   ${widget.datetest}",
-                            style: TextStyle(fontFamily: 'Cairo'),
                           ),
                           VerticalDivider(
                             color: Colors.white,
@@ -199,9 +193,9 @@ class _ReponceTestState extends State<ReponceTest> {
                           Text(
                             "  :اخر اجل يوم     ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           )
                         ],
                       ),
@@ -226,7 +220,6 @@ class _ReponceTestState extends State<ReponceTest> {
                               ),
                               Text(
                                 "15:30",
-                                style: TextStyle(fontFamily: 'Cairo'),
                               ),
                               VerticalDivider(
                                 color: Colors.white,
@@ -234,9 +227,9 @@ class _ReponceTestState extends State<ReponceTest> {
                               Text(
                                 ":على الساعة    ",
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           )
@@ -273,9 +266,9 @@ class _ReponceTestState extends State<ReponceTest> {
                           child: Text(
                             ":الاجابات  ",
                             style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo'),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           height: 45,
                         )

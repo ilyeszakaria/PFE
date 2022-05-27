@@ -18,7 +18,7 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.assignment,
       'title': 'المراجعات',
-      'next': const ListeRevision(username: ''),
+      'next': const ListeRevision(),
     },
     {
       'icon': Icons.chat,
@@ -61,7 +61,6 @@ class StudentDrawer extends Drawer {
           titleText,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontFamily: 'Cairo',
           ),
         ),
       ),
@@ -98,11 +97,9 @@ class StudentDrawer extends Drawer {
         UserAccountsDrawerHeader(
           accountName: Text(
             user.name,
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           accountEmail: Text(
             user.email!,
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           currentAccountPicture: const CircleAvatar(
             child: Icon(

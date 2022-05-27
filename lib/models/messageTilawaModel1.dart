@@ -10,32 +10,6 @@ class MessageTilawa1 {
       username: json['username'], date: json['date'], time: json['time']);
 }
 
-class Tilawa {
-  final String id;
-  final String date;
-  final String AyaDebut;
-  final String AyaFin;
-  final String SouraDebut;
-  final String SouraFin;
-
-  const Tilawa({
-    required this.id,
-    required this.date,
-    required this.AyaDebut,
-    required this.AyaFin,
-    required this.SouraDebut,
-    required this.SouraFin,
-  });
-
-  static Tilawa fromJson(json) => Tilawa(
-      id: json['id'],
-      date: json['date'],
-      AyaDebut: json['AyaDebut'],
-      AyaFin: json['AyaFin'],
-      SouraDebut: json['SouraDebut'],
-      SouraFin: json['SouraFin']);
-}
-
 class TestStudent {
   final String test;
   final String student;

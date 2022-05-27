@@ -20,6 +20,7 @@ class App extends StatelessWidget {
               ? MaterialApp(
                   theme: ThemeData(
                     primaryColor: Colors.brown,
+                    fontFamily: 'Cairo',
                   ),
                   home: snapshot.data! ? const Home() : const Login(),
                 )

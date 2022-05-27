@@ -1,16 +1,15 @@
 [
   {
     "id": 1,
+    "studentId": 1,
+    "teacherId": 1,
     "receiver": {
       "id": 2,
-      "username": "ilyes"
-    }
-  },
-  {
-    "id": 2,
-    "receiver": {
-      "id": 1,
-      "username": "ilyes zakaria"
+      "username": "ilyes",
+      "firstName": "ilyes",
+      "lastName": "benhaddou",
+      "isStudent": true,
+      "isTeacher": false
     }
   }
 ]

@@ -20,7 +20,7 @@ class _file1State extends State<file1> {
             alignment: Alignment.center,
             child: Text(
               quran.getSurahNameArabic(widget.id),
-              style: TextStyle(fontFamily: 'Cairo', fontSize: 28),
+              style: TextStyle(fontSize: 28),
             ),
           )),
       body: AnnotatedRegion<SystemUiOverlayStyle>(

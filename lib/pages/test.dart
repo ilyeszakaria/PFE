@@ -40,7 +40,6 @@ class _TestState extends State<Test> {
       appBar: AppBar(
           title: Text(
             "                         اختبار  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -71,9 +70,9 @@ class _TestState extends State<Test> {
                           child: Text(
                             ": بدا اختبار  ",
                             style: TextStyle(
-                                fontSize: 27,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo'),
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         )
                       ],
@@ -95,9 +94,9 @@ class _TestState extends State<Test> {
                               textAlign: TextAlign.end,
                               keyboardType: TextInputType.number,
                               style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Cairo'),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                               cursorColor: Colors.brown,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -111,9 +110,9 @@ class _TestState extends State<Test> {
                           Text(
                             "  : الاية رقم   ",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Cairo'),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           VerticalDivider(
                             color: Colors.white,
@@ -145,7 +144,6 @@ class _TestState extends State<Test> {
                                     value: value,
                                     child: Text(
                                       value,
-                                      style: TextStyle(fontFamily: 'Cairo'),
                                     ),
                                   );
                                 }).toList(),
@@ -156,9 +154,9 @@ class _TestState extends State<Test> {
                           Text(
                             "من سورة    ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ],
                       ),
@@ -177,9 +175,9 @@ class _TestState extends State<Test> {
                               textAlign: TextAlign.end,
                               keyboardType: TextInputType.number,
                               style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Cairo'),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                               cursorColor: Colors.brown,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -193,9 +191,9 @@ class _TestState extends State<Test> {
                           Text(
                             " : الاية رقم   ",
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Cairo'),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           VerticalDivider(
                             color: Colors.white,
@@ -227,7 +225,6 @@ class _TestState extends State<Test> {
                                     value: value,
                                     child: Text(
                                       value,
-                                      style: TextStyle(fontFamily: 'Cairo'),
                                     ),
                                   );
                                 }).toList(),
@@ -238,9 +235,9 @@ class _TestState extends State<Test> {
                           Text(
                             "الى سورة   ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           )
                         ],
                       ),
@@ -277,7 +274,6 @@ class _TestState extends State<Test> {
                             width: 80,
                             child: Text(
                               '${time.year}/${time.month}/${time.day}',
-                              style: TextStyle(fontFamily: 'Cairo'),
                             ),
                             decoration: BoxDecoration(
                                 border:
@@ -289,9 +285,9 @@ class _TestState extends State<Test> {
                           Text(
                             ":اخر اجل يوم     ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           )
                         ],
                       ),
@@ -332,7 +328,6 @@ class _TestState extends State<Test> {
                                 width: 80,
                                 child: Text(
                                   "${time2.hour}:${time2.minute}",
-                                  style: TextStyle(fontFamily: 'Cairo'),
                                 ),
                                 decoration: BoxDecoration(
                                     border: Border.all(
@@ -344,9 +339,9 @@ class _TestState extends State<Test> {
                               Text(
                                 ":على الساعة    ",
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           )
@@ -366,9 +361,9 @@ class _TestState extends State<Test> {
                       child: Text(
                         ": قائمة التلاميذ   ",
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Cairo'),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       height: 33,
                       width: double.infinity,
@@ -405,10 +400,10 @@ class _TestState extends State<Test> {
                                                     child: Text(
                                                       student.username,
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 16,
-                                                          fontFamily: 'Cairo'),
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 16,
+                                                      ),
                                                     ),
                                                   ),
                                                   Divider(

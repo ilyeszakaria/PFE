@@ -1,13 +1,8 @@
 import 'dart:convert';
 import 'package:application3/pages/liste_eleve_invitation.dart';
-import 'package:application3/pages/liste_message_tilawa.dart';
-import 'package:application3/pages/liste_test_teacher.dart';
 import 'package:application3/pages/profil_eleve.dart';
-import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/pages/settings.dart';
-
+import '../models/messageTilawaModel1.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ListeEleve extends StatefulWidget {
   final String username;
@@ -31,7 +26,6 @@ class _ListeEleveState extends State<ListeEleve> {
       appBar: AppBar(
           title: Text(
             "               قائمة التلاميذ  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           actions: [
             IconButton(
@@ -90,9 +84,9 @@ class _ListeEleveState extends State<ListeEleve> {
                           child: Text(
                             student.username,
                             style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                fontFamily: 'Cairo'),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                         Container(

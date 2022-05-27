@@ -28,7 +28,6 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
       appBar: AppBar(
           title: Text(
             "                      الاختبارات  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -79,9 +78,9 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
                               child: Text(
                                 " : سجل الختبارات      ",
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               height: 35,
                             )
@@ -123,8 +122,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
                                                 width: 100,
                                                 child: Text(
                                                   test.date,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Cairo'),
+                                                  style: TextStyle(),
                                                 ),
                                                 alignment: Alignment.center,
                                               ),
@@ -264,7 +262,9 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
         label: Text(
           "بدء اختبار",
           style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         icon: Icon(
           Icons.add,

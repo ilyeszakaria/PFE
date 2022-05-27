@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:application3/models/users.dart';
+
 import 'login.dart';
 import 'sign_up2.dart';
 import 'package:application3/models/messageTilawaModel1.dart';
@@ -14,11 +16,11 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  static Future<List<user>> getUser(BuildContext context) async {
+  static Future<List<User>> getUser(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/user.json');
     final body = json.decode(data);
-    return body.map<user>(user.fromJson).toList();
+    return body.map<User>(User.fromJson).toList();
   }
 
   DateTime time = DateTime.now();
@@ -35,7 +37,6 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
           title: Text(
             "                   انشاء حساب  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -71,7 +72,8 @@ class _SignInState extends State<SignIn> {
                                     child: Text(
                                       "اسم العائلة",
                                       style: TextStyle(
-                                          fontSize: 15, fontFamily: 'Cairo'),
+                                        fontSize: 15,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -89,9 +91,9 @@ class _SignInState extends State<SignIn> {
                                             lastName = text;
                                           },
                                           style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Cairo'),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                           cursorColor: Colors.brown,
                                           decoration: InputDecoration(
                                             border: InputBorder.none,
@@ -113,7 +115,8 @@ class _SignInState extends State<SignIn> {
                                     child: Text(
                                       " الاسم الاول  ",
                                       style: TextStyle(
-                                          fontSize: 15, fontFamily: 'Cairo'),
+                                        fontSize: 15,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -130,9 +133,9 @@ class _SignInState extends State<SignIn> {
                                         firstName = text;
                                       },
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                       cursorColor: Colors.brown,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -158,7 +161,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "تاريخ الميلاد",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -199,7 +203,6 @@ class _SignInState extends State<SignIn> {
                                       width: 80,
                                       child: Text(
                                         '${time.year}/${time.month}/${time.day}',
-                                        style: TextStyle(fontFamily: 'Cairo'),
                                       ),
                                     ),
                                   ],
@@ -220,7 +223,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "اسم المستخدم",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -236,9 +240,9 @@ class _SignInState extends State<SignIn> {
                                     username = text;
                                   },
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -263,7 +267,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "البريد الالكتروني",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -279,9 +284,9 @@ class _SignInState extends State<SignIn> {
                                     email = text;
                                   },
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -306,7 +311,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "كلمة السر ",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -350,7 +356,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "اعادة كلمة السر",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -394,7 +401,8 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "رقم الهاتف",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -411,9 +419,9 @@ class _SignInState extends State<SignIn> {
                                     phone = text;
                                   },
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -455,9 +463,7 @@ class _SignInState extends State<SignIn> {
                                           width: double.infinity,
                                           child: Text(
                                             text,
-                                            style: TextStyle(
-                                                fontFamily: 'Cairo',
-                                                fontSize: 12),
+                                            style: TextStyle(fontSize: 12),
                                           ),
                                         ));
                                         ScaffoldMessenger.of(context)
@@ -482,7 +488,8 @@ class _SignInState extends State<SignIn> {
                                     child: Text(
                                       "مواصلة",
                                       style: TextStyle(
-                                          fontSize: 15, fontFamily: 'Cairo'),
+                                        fontSize: 15,
+                                      ),
                                     ),
                                     color: Color.fromARGB(255, 149, 109, 94),
                                   )),
@@ -499,7 +506,8 @@ class _SignInState extends State<SignIn> {
                                   child: Text(
                                     "الغاء",
                                     style: TextStyle(
-                                        fontSize: 15, fontFamily: 'Cairo'),
+                                      fontSize: 15,
+                                    ),
                                   ),
                                   color: Color.fromARGB(255, 149, 109, 94),
                                 ),

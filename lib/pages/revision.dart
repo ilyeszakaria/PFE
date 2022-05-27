@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:application3/models/messages.dart';
+import '../models/messages.dart';
 import 'package:application3/utils/client.dart';
 import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
@@ -9,20 +9,10 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Revision extends StatefulWidget {
-  final int tilawaId;
-  final int ayaDebut;
-  final int ayaFin;
-  final String souraDebut;
-  final String souraFin;
-  final String username;
-  const Revision({
+  Tilawa tilawa;
+  Revision({
     Key? key,
-    required this.tilawaId,
-    required this.ayaDebut,
-    required this.ayaFin,
-    required this.souraDebut,
-    required this.souraFin,
-    required this.username,
+    required this.tilawa,
   }) : super(key: key);
 
   @override
@@ -86,38 +76,37 @@ class _RevisionState extends State<Revision> {
               width: 45,
             ),
             Text(
-              widget.ayaFin.toString(),
-              style: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
+              widget.tilawa.endAya.toString(),
+              style: const TextStyle(fontSize: 15),
             ),
             const VerticalDivider(),
             Text(
-              widget.souraFin,
-              style: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
+              widget.tilawa.endSora,
+              style: const TextStyle(fontSize: 15),
             ),
             const VerticalDivider(
               width: 30,
             ),
             const Text(
               "الى",
-              style: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
+              style: const TextStyle(fontSize: 15),
             ),
             const VerticalDivider(
               width: 25,
             ),
             Text(
-              widget.ayaDebut.toString(),
-              style: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
+              widget.tilawa.startAya.toString(),
+              style: const TextStyle(fontSize: 15),
             ),
             const VerticalDivider(),
             Text(
-              widget.souraDebut,
-              style: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
+              widget.tilawa.startSora,
+              style: const TextStyle(fontSize: 15),
             ),
             const VerticalDivider(),
             const Text(
               "من",
               style: const TextStyle(
-                fontFamily: 'Cairo',
                 fontSize: 15,
               ),
             ),
@@ -216,7 +205,6 @@ class _RevisionState extends State<Revision> {
                           '$minutes:$seconds',
                           style: const TextStyle(
                             fontSize: 30,
-                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.w600,
                           ),
                         );

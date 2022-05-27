@@ -61,16 +61,15 @@ class _TeacherPageState extends State<TeacherPage> {
                                     child: Text(
                                       "المعلم  ",
                                       style: TextStyle(
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   Text(
                                     widget.user.name,
-                                    style: TextStyle(
-                                        fontFamily: 'Cairo',
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -117,9 +116,9 @@ class _TeacherPageState extends State<TeacherPage> {
                               child: Text(
                                 " : التلاوات الواردة     ",
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               height: 33,
                             )
@@ -288,9 +287,9 @@ class _TeacherPageState extends State<TeacherPage> {
                               child: Text(
                                 " : الرسائل الواردة  ",
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               height: 33,
                             )
@@ -319,8 +318,7 @@ class _TeacherPageState extends State<TeacherPage> {
                                                   Icon(Icons.play_arrow),
                                                   Text(
                                                     "0:45",
-                                                    style: TextStyle(
-                                                        fontFamily: 'Cairo'),
+                                                    style: TextStyle(),
                                                   ),
                                                   VerticalDivider(
                                                     width: 12,
@@ -328,8 +326,7 @@ class _TeacherPageState extends State<TeacherPage> {
                                                   ),
                                                   Text(
                                                     "...سلام",
-                                                    style: TextStyle(
-                                                        fontFamily: 'Cairo'),
+                                                    style: TextStyle(),
                                                   ),
                                                   VerticalDivider(
                                                     width: 60,

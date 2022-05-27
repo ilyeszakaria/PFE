@@ -77,7 +77,6 @@ class TextMessageWidget extends MessageWidget {
       textAlign: TextAlign.right,
       style: TextStyle(
         fontSize: 15,
-        fontFamily: 'Cairo',
       ),
     );
   }

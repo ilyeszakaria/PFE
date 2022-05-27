@@ -111,7 +111,6 @@ class _ConversationState extends State<Conversation> {
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          fontFamily: 'Cairo',
                         ),
                       ),
                       const SizedBox(

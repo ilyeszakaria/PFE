@@ -16,7 +16,7 @@ class ScaffoldWidget extends Scaffold {
                   alignment: Alignment.center,
                   child: Text(
                     pageTitle,
-                    style: const TextStyle(fontFamily: 'Cairo'),
+                    style: const TextStyle(),
                   ),
                 ),
                 elevation: 10,

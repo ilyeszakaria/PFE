@@ -26,7 +26,6 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
       appBar: AppBar(
           title: Text(
             "طلبات",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -72,7 +71,6 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
                               child: Text(
                                 accept,
                                 style: TextStyle(
-                                    fontFamily: 'Cairo',
                                     fontWeight: FontWeight.bold,
                                     color: Colors.brown),
                               ),
@@ -89,7 +87,6 @@ class _ListeEleveInvitationState extends State<ListeEleveInvitation> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
-                                fontFamily: 'Cairo',
                               ),
                             ),
                           ),

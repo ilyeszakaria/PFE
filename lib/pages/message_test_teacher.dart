@@ -82,35 +82,29 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
               ),
               Text(
                 "18",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
               VerticalDivider(),
               Text(
                 "النساء",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
               VerticalDivider(
                 width: 25,
               ),
               Text(
                 "الى",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
               VerticalDivider(
                 width: 20,
               ),
               Text(
                 "20",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
               VerticalDivider(),
               Text(
                 "البقرة",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
               Text(
                 "من",
-                style: TextStyle(fontFamily: 'Cairo'),
               ),
             ],
           ),
@@ -212,19 +206,14 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                   ),
                   Text(
                     "00:00",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                   ),
                   Divider(
                     color: Colors.white,
                   ),
                   Text(
                     "العلامة",
-                    style: TextStyle(
-                      fontFamily: 'Cairo',
-                    ),
+                    style: TextStyle(),
                   ),
                   Container(
                     margin: EdgeInsets.only(right: 20, left: 20),

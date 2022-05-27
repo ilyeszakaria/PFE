@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import '../models/messageTilawaModel1.dart';
 import 'message_test.dart';
 import 'revision.dart';
-import 'package:application3/models/messageTilawaModel1.dart';
+import 'package:application3/models/messages.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +40,6 @@ class _ProfilEleveState extends State<ProfilEleve> {
       appBar: AppBar(
           title: Text(
             "                  حساب التلميذ ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -71,9 +71,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                             center: Text(
                               "35%",
                               style: TextStyle(
-                                  fontFamily: 'Cairo',
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600),
+                                  fontSize: 22, fontWeight: FontWeight.w600),
                             ),
                             lineWidth: 10,
                             progressColor: Color.fromARGB(255, 148, 127, 119),
@@ -94,7 +92,6 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                     child: Text("Abdeljalil",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: 'Cairo',
                                         )),
                                   ),
                                   Container(
@@ -103,8 +100,8 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                     width: 80,
                                     child: Text("Harzoat",
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Cairo')),
+                                          fontWeight: FontWeight.bold,
+                                        )),
                                   ),
                                 ],
                               )),
@@ -164,9 +161,9 @@ class _ProfilEleveState extends State<ProfilEleve> {
                           child: Text(
                             "   : قائمة المراجعات  ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           height: 37,
                         )
@@ -188,13 +185,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return Revision(
-                                          tilawaId: 0,
-                                          ayaDebut: 0,
-                                          ayaFin: 0,
-                                          souraDebut: tilawa.SouraDebut,
-                                          souraFin: tilawa.SouraFin,
-                                          username: widget.username);
+                                      return Revision(tilawa: tilawa);
                                     }));
                                   },
                                   child: Container(
@@ -208,11 +199,6 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                                 Divider(
                                                   height: 10,
                                                   color: Colors.grey,
-                                                ),
-                                                Text(
-                                                  tilawa.date,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Cairo'),
                                                 ),
                                               ],
                                             ),
@@ -238,7 +224,8 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                                                     .end,
                                                             children: [
                                                               Text(
-                                                                tilawa.AyaDebut,
+                                                                tilawa.startAya
+                                                                    .toString(),
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo'),
@@ -255,7 +242,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                                                           'Cairo')),
                                                               Text(
                                                                 tilawa
-                                                                    .SouraDebut,
+                                                                    .startSora,
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo'),
@@ -283,7 +270,8 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                                                     .end,
                                                             children: [
                                                               Text(
-                                                                tilawa.AyaFin,
+                                                                tilawa.endAya
+                                                                    .toString(),
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo'),
@@ -299,7 +287,8 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                                                       fontFamily:
                                                                           'Cairo')),
                                                               Text(
-                                                                tilawa.SouraFin,
+                                                                tilawa
+                                                                    .startSora,
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         'Cairo'),
@@ -370,9 +359,9 @@ class _ProfilEleveState extends State<ProfilEleve> {
                           child: Text(
                             " :قائمة الاختبارات  ",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cairo'),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           height: 37,
                         )
@@ -408,8 +397,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                             width: 100,
                                             child: Text(
                                               test.date,
-                                              style: TextStyle(
-                                                  fontFamily: 'Cairo'),
+                                              style: TextStyle(),
                                             ),
                                             alignment: Alignment.center,
                                           ),

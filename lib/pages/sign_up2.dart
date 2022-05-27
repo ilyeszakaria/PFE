@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:application3/models/users.dart';
 import 'package:application3/pages/login.dart';
 import 'package:application3/pages/sign_up.dart';
-import 'package:application3/models/messageTilawaModel1.dart';
 import 'package:application3/utils/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,11 +29,11 @@ class SignIn2 extends StatefulWidget {
 }
 
 class _SignIn2State extends State<SignIn2> {
-  static Future<List<user>> getUser(BuildContext context) async {
+  Future<List<User>> getUser(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/user.json');
     final body = json.decode(data);
-    return body.map<user>(user.fromJson).toList();
+    return body.map<User>(User.fromJson).toList();
   }
 
   var _sex;
@@ -68,7 +68,6 @@ class _SignIn2State extends State<SignIn2> {
       appBar: AppBar(
           title: Text(
             "                    انشاء حساب  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -105,7 +104,6 @@ class _SignIn2State extends State<SignIn2> {
                                   "الصنف",
                                   style: TextStyle(
                                       fontSize: 23,
-                                      fontFamily: 'Cairo',
                                       fontWeight: FontWeight.bold),
                                 ),
                                 margin: EdgeInsets.only(right: 30),
@@ -118,9 +116,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       "الذكر",
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     Radio(
                                       value: 1,
@@ -145,9 +143,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       "أنثى",
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     VerticalDivider(),
                                     Radio(
@@ -179,7 +177,6 @@ class _SignIn2State extends State<SignIn2> {
                                   "  نوع المستخدم",
                                   style: TextStyle(
                                       fontSize: 23,
-                                      fontFamily: 'Cairo',
                                       fontWeight: FontWeight.bold),
                                 ),
                                 margin: EdgeInsets.only(right: 14),
@@ -194,9 +191,9 @@ class _SignIn2State extends State<SignIn2> {
                                         children: [
                                           Text("معلم",
                                               style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Cairo')),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                              )),
                                           Checkbox(
                                             value: isTeacher,
                                             onChanged: (val) {
@@ -215,9 +212,9 @@ class _SignIn2State extends State<SignIn2> {
                                         children: [
                                           Text(" تلميذ",
                                               style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Cairo')),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                              )),
                                           Checkbox(
                                             value: isStudent,
                                             onChanged: (val) {
@@ -247,9 +244,9 @@ class _SignIn2State extends State<SignIn2> {
                                 child: Text(
                                   "كم تحفظ من القران الكريم  ",
                                   style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 margin: EdgeInsets.only(right: 12),
                               ),
@@ -268,9 +265,9 @@ class _SignIn2State extends State<SignIn2> {
                                         },
                                         keyboardType: TextInputType.number,
                                         style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Cairo'),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                         cursorColor: Colors.brown,
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
@@ -284,9 +281,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       "  : الاية رقم   ",
                                       style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                     VerticalDivider(
                                       color: Colors.white,
@@ -323,8 +320,7 @@ class _SignIn2State extends State<SignIn2> {
                                               value: value,
                                               child: Text(
                                                 value,
-                                                style: TextStyle(
-                                                    fontFamily: 'Cairo'),
+                                                style: TextStyle(),
                                               ),
                                             );
                                           }).toList(),
@@ -335,9 +331,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       "من سورة    ",
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -357,9 +353,9 @@ class _SignIn2State extends State<SignIn2> {
                                         },
                                         keyboardType: TextInputType.number,
                                         style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Cairo'),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                         cursorColor: Colors.brown,
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
@@ -373,9 +369,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       " : الاية رقم   ",
                                       style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                     VerticalDivider(
                                       color: Colors.white,
@@ -412,8 +408,7 @@ class _SignIn2State extends State<SignIn2> {
                                               value: value,
                                               child: Text(
                                                 value,
-                                                style: TextStyle(
-                                                    fontFamily: 'Cairo'),
+                                                style: TextStyle(),
                                               ),
                                             );
                                           }).toList(),
@@ -424,9 +419,9 @@ class _SignIn2State extends State<SignIn2> {
                                     Text(
                                       "الى سورة   ",
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -450,9 +445,7 @@ class _SignIn2State extends State<SignIn2> {
                                         width: double.infinity,
                                         child: Text(
                                           text,
-                                          style: TextStyle(
-                                              fontFamily: 'Cairo',
-                                              fontSize: 12),
+                                          style: TextStyle(fontSize: 12),
                                         ),
                                       ));
                                       ScaffoldMessenger.of(context)
@@ -469,9 +462,7 @@ class _SignIn2State extends State<SignIn2> {
                                           width: double.infinity,
                                           child: Text(
                                             text,
-                                            style: TextStyle(
-                                                fontFamily: 'Cairo',
-                                                fontSize: 12),
+                                            style: TextStyle(fontSize: 12),
                                           ),
                                         ));
                                         ScaffoldMessenger.of(context)
@@ -490,7 +481,8 @@ class _SignIn2State extends State<SignIn2> {
                                   child: Text(
                                     "مواصلة",
                                     style: TextStyle(
-                                        fontSize: 15, fontFamily: 'Cairo'),
+                                      fontSize: 15,
+                                    ),
                                   ),
                                   color: Color.fromARGB(255, 149, 109, 94),
                                 )),
@@ -507,7 +499,8 @@ class _SignIn2State extends State<SignIn2> {
                                 child: Text(
                                   "عودة",
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Cairo'),
+                                    fontSize: 15,
+                                  ),
                                 ),
                                 color: Color.fromARGB(255, 149, 109, 94),
                               ),

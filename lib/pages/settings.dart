@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:application3/widgets/scaffold.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,22 +36,9 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            "                 اعدادات الحساب   ",
-            style: TextStyle(fontFamily: 'Cairo'),
-          ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    const pageTitle = 'إعدادت الحساب';
+    return ScaffoldWidget(
+      pageTitle: pageTitle,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Stack(
@@ -74,8 +62,7 @@ class _SettingsState extends State<Settings> {
                                       return AlertDialog(
                                           title: Text(
                                             "تغيير صورة الحساب الشخصي",
-                                            style:
-                                                TextStyle(fontFamily: 'Cairo'),
+                                            style: TextStyle(),
                                           ),
                                           content: Container(
                                             width: double.infinity,
@@ -97,10 +84,8 @@ class _SettingsState extends State<Settings> {
                                                         child: Row(
                                                           children: [
                                                             Text(
-                                                                "    اختيار صورة",
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Cairo')),
+                                                              "    اختيار صورة",
+                                                            ),
                                                             Icon(Icons
                                                                 .photo_album)
                                                           ],
@@ -117,10 +102,7 @@ class _SettingsState extends State<Settings> {
                                                           child: Row(
                                                             children: [
                                                               Text(
-                                                                  "التقاط صورة",
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'Cairo')),
+                                                                  "التقاط صورة"),
                                                               Icon(Icons
                                                                   .photo_camera)
                                                             ],
@@ -176,10 +158,6 @@ class _SettingsState extends State<Settings> {
                                         height: 5,
                                         width: 5,
                                       ),
-                                      Divider(
-                                        thickness: 1,
-                                        color: Colors.black,
-                                      ),
                                       Container(
                                         height: 5,
                                         width: 5,
@@ -190,13 +168,12 @@ class _SettingsState extends State<Settings> {
                                     margin: EdgeInsets.only(right: 20),
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "  : معلومات الحساب      ",
+                                      "معلومات الحساب",
                                       style: TextStyle(
-                                          fontSize: 21,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    height: 37,
                                   )
                                 ],
                               ),
@@ -206,7 +183,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   " الاسم الاول  ",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -220,9 +198,9 @@ class _SettingsState extends State<Settings> {
                                   initialValue: "baghdal",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -235,7 +213,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   "اسم العائلة ",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -249,9 +228,9 @@ class _SettingsState extends State<Settings> {
                                   initialValue: "baghdali",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -270,7 +249,8 @@ class _SettingsState extends State<Settings> {
                                       child: Text(
                                         "تاريخ الميلاد",
                                         style: TextStyle(
-                                            fontSize: 18, fontFamily: 'Cairo'),
+                                          fontSize: 18,
+                                        ),
                                       ),
                                     ),
                                     Container(
@@ -312,7 +292,6 @@ class _SettingsState extends State<Settings> {
                                             child: Text(
                                               '${time.year}/${time.month}/${time.day}    ',
                                               style: TextStyle(
-                                                  fontFamily: 'Cairo',
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -329,13 +308,13 @@ class _SettingsState extends State<Settings> {
                                 margin: EdgeInsets.only(right: 30, top: 5),
                                 alignment: Alignment.centerRight,
                                 child: Container(
-                                  height: 34,
                                   width: 200,
                                   alignment: Alignment.topRight,
                                   child: Text(
                                     "اسم المستخدم",
                                     style: TextStyle(
-                                        fontSize: 18, fontFamily: 'Cairo'),
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -350,9 +329,9 @@ class _SettingsState extends State<Settings> {
                                   initialValue: widget.username,
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -379,10 +358,6 @@ class _SettingsState extends State<Settings> {
                                         height: 5,
                                         width: 5,
                                       ),
-                                      Divider(
-                                        thickness: 1,
-                                        color: Colors.black,
-                                      ),
                                       Container(
                                         height: 5,
                                         width: 5,
@@ -393,13 +368,12 @@ class _SettingsState extends State<Settings> {
                                     margin: EdgeInsets.only(right: 10),
                                     alignment: Alignment.center,
                                     child: Text(
-                                      " : الامان      ",
+                                      " : الامان",
                                       style: TextStyle(
-                                          fontSize: 21,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Cairo'),
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    height: 37,
                                   )
                                 ],
                               ),
@@ -409,7 +383,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   "البريد الالكتروني  ",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -424,9 +399,9 @@ class _SettingsState extends State<Settings> {
                                       "baghdaliilyeszakaria@gmail.com",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -439,7 +414,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   "رقم الهاتف   ",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -453,9 +429,9 @@ class _SettingsState extends State<Settings> {
                                   initialValue: "0657900538",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   cursorColor: Colors.brown,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
@@ -468,7 +444,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   "كلمة السر ",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -496,7 +473,8 @@ class _SettingsState extends State<Settings> {
                                 child: Text(
                                   "اعادة كلمة السر",
                                   style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Cairo'),
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -540,7 +518,8 @@ class _SettingsState extends State<Settings> {
                                     child: Text(
                                       "حفظ",
                                       style: TextStyle(
-                                          fontSize: 15, fontFamily: 'Cairo'),
+                                        fontSize: 15,
+                                      ),
                                     ),
                                     color: Color.fromARGB(255, 149, 109, 94),
                                   )),
@@ -554,7 +533,8 @@ class _SettingsState extends State<Settings> {
                                   child: Text(
                                     "الغاء",
                                     style: TextStyle(
-                                        fontSize: 15, fontFamily: 'Cairo'),
+                                      fontSize: 15,
+                                    ),
                                   ),
                                   color: Color.fromARGB(255, 149, 109, 94),
                                 ),

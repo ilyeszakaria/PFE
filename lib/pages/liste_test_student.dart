@@ -28,7 +28,6 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
       appBar: AppBar(
           title: Text(
             "                      اختبارات  ",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           leading: IconButton(
             icon: Icon(
@@ -79,9 +78,9 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
                               child: Text(
                                 " : سجل الاختبارات      ",
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               height: 35,
                             )
@@ -123,7 +122,6 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
                                                     child: Text(
                                                       test.date,
                                                       style: TextStyle(
-                                                          fontFamily: 'Cairo',
                                                           fontSize: 10),
                                                     ),
                                                     alignment: Alignment.center,
@@ -136,7 +134,6 @@ class _ListeTestStudentState extends State<ListeTestStudent> {
                                                       "7.5",
                                                       style: TextStyle(
                                                           fontSize: 25,
-                                                          fontFamily: 'Cairo',
                                                           fontWeight:
                                                               FontWeight.w600),
                                                     ),

@@ -39,7 +39,6 @@ class _HomeState extends State<Home> {
             child: Text(
               text,
               style: const TextStyle(
-                  fontFamily: 'Cairo',
                   fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
@@ -75,7 +74,6 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 child: const Text(
                   pageTitle,
-                  style: TextStyle(fontFamily: 'Cairo'),
                 ),
               ),
               backgroundColor: Colors.brown,
@@ -88,7 +86,6 @@ class _HomeState extends State<Home> {
                   child: Text(
                     'مرحبا ${user.name}',
                     style: const TextStyle(
-                      fontFamily: 'Cairo',
                       fontSize: 30,
                       color: Color.fromARGB(255, 101, 74, 64),
                       fontWeight: FontWeight.bold,

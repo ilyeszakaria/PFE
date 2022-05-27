@@ -41,8 +41,35 @@ class ConversationModel {
           'id': json['otherId'],
           'firstName': json['firstName'],
           'lastName': json['lastName'],
+          'isStudent': json['isStudent'],
+          'isTeacher': json['isTeacher'],
         }),
       );
 
   get name => other.firstName + ' ' + other.lastName;
+}
+
+class Tilawa {
+  int id;
+  int startAya;
+  String startSora;
+  int endAya;
+  String endSora;
+
+  Tilawa({
+    required this.id,
+    required this.startAya,
+    required this.startSora,
+    required this.endAya,
+    required this.endSora,
+  });
+
+  // create fromJson method
+  static Tilawa fromJson(json) => Tilawa(
+        id: json['id'],
+        startAya: json['startAya'],
+        startSora: json['startSora'],
+        endAya: json['endAya'],
+        endSora: json['endSora'],
+      );
 }

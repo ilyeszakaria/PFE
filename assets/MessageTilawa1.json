@@ -1,39 +1,9 @@
 [
-    {
-      "username": "ilyes",
-      "date": "20/11/1999",
-      "time": "3:33"
-      
-    },
-    {
-        "username": "ilyes",
-        "date": "20/11/1999",
-        "time": "3:33"
-        
-      },
-      {
-        "username": "ilyes",
-        "date": "20/11/1999",
-        "time": "3:33"
-        
-      },
-      {
-        "username": "ilyes",
-        "date": "20/11/1999",
-        "time": "3:33"
-        
-      },
-      {
-        "username": "ilyes",
-        "date": "20/11/1999",
-        "time": "3:33"
-        
-      },
-      {
-        "username": "ilyes",
-        "date": "20/11/1999",
-        "time": "3:33"
-        
-      }
-    
-  ]
+  {
+    "id": 1,
+    "startAya": 1,
+    "endAya": 7,
+    "startSora": "الفاتحة",
+    "endSora": "الفاتحة"
+  }
+]

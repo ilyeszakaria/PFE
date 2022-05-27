@@ -41,7 +41,6 @@ class _LoginState extends State<Login> {
             width: double.infinity,
             child: Text(
               "تسجيل الدخول",
-              style: TextStyle(fontFamily: 'Cairo'),
             ),
           ),
           elevation: 10,
@@ -82,9 +81,9 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "اسم المستخدم",
                                 style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Cairo'),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Container(
@@ -132,9 +131,9 @@ class _LoginState extends State<Login> {
                                   child: Text(
                                     "كلمة السر",
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Cairo'),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -169,7 +168,6 @@ class _LoginState extends State<Login> {
                                   child: Container(
                                     child: Text(
                                       "هل نسيت كلمة السر",
-                                      style: TextStyle(fontFamily: 'Cairo'),
                                     ),
                                     margin: EdgeInsets.only(right: 230),
                                   ),
@@ -200,7 +198,6 @@ class _LoginState extends State<Login> {
                                       child: Text(
                                         text,
                                         style: TextStyle(
-                                          fontFamily: 'Cairo',
                                           fontSize: 12,
                                         ),
                                       ),
@@ -226,7 +223,8 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "تسجيل الدخول",
                                 style: TextStyle(
-                                    fontSize: 15, fontFamily: 'Cairo'),
+                                  fontSize: 15,
+                                ),
                               ),
                               color: Color.fromARGB(255, 101, 74, 64),
                             )),
@@ -236,8 +234,8 @@ class _LoginState extends State<Login> {
                             child: Text(
                               "انشاء حساب",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Cairo'),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           onTap: () {

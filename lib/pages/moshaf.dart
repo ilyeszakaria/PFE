@@ -35,7 +35,6 @@ class _MoshafState extends State<Moshaf> {
           width: double.infinity,
           child: Text(
             "المصحف",
-            style: TextStyle(fontFamily: 'Cairo'),
           ),
           alignment: Alignment.center,
         ),
@@ -74,9 +73,7 @@ class _MoshafState extends State<Moshaf> {
                           children: [
                             Text("${quran.getVerseCount(index + 1)}",
                                 style: TextStyle(
-                                    fontFamily: 'Cairo',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600)),
+                                    fontSize: 20, fontWeight: FontWeight.w600)),
                             VerticalDivider(
                               color: Colors.white,
                             ),
