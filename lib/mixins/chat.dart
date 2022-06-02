@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../models/messages.dart';
 import '../utils/client.dart';
@@ -71,9 +77,59 @@ mixin TilawaHeadersMixin {
                       ),
                     ),
                   )
-            : const Center(
-                child: CircularProgressIndicator(),
-              );
+            : const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+}
+
+mixin MessagesMixin {
+  final recorder = FlutterSoundRecorder();
+  String? endpoint;
+  String? messageType;
+  int? chatId;
+  int? receiverId;
+  WebSocketChannel? channel;
+
+  String filePath = 'audio.aac';
+  Future initRecorder() async {
+    final status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted) {
+      throw 'Microphone permission not granted';
+    }
+
+    await recorder.openRecorder();
+    recorder.setSubscriptionDuration(const Duration(milliseconds: 1000));
+  }
+
+  Future<List<Message>> getMessages() async {
+    List data = await client.get(
+      '$endpoint/${Globals.userId}?role=${Globals.role}',
+    );
+    List<Message> messages = data.map((e) => Message.fromJson(e)).toList();
+    return messages;
+  }
+
+  void sendMessage(String text) async {
+    channel!.sink.add(jsonEncode({
+      'type': messageType,
+      'chatId': chatId,
+      'senderId': Globals.userId,
+      'receiverId': receiverId,
+      'text': text,
+    }));
+  }
+
+  Future<void> sendAudioMessage() async {
+    File audio = File(filePath);
+    await client.audioPost(
+      '/chat/audio',
+      file: await audio.readAsBytes(),
+      data: {
+        'type': messageType,
+        'senderId': Globals.userId,
+        'receiverId': receiverId,
+        'chatId': chatId,
       },
     );
   }

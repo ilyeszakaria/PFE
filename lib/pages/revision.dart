@@ -1,12 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
+import 'package:application3/mixins/chat.dart';
+
 import '../models/messages.dart';
-import 'package:application3/utils/client.dart';
 import 'package:application3/widgets/messages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sound/flutter_sound.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class Revision extends StatefulWidget {
   Tilawa tilawa;
@@ -19,9 +15,7 @@ class Revision extends StatefulWidget {
   State<Revision> createState() => _RevisionState();
 }
 
-class _RevisionState extends State<Revision> {
-  final recorder = FlutterSoundRecorder();
-
+class _RevisionState extends State<Revision> with MessagesMixin {
   @override
   void initState() {
     super.initState();
@@ -34,32 +28,19 @@ class _RevisionState extends State<Revision> {
     super.dispose();
   }
 
-  Future initRecorder() async {
-    final status = await Permission.microphone.request();
-    if (status != PermissionStatus.granted) {
-      throw 'Microphone permission not granted';
-    }
-
-    await recorder.openRecorder();
-    recorder.setSubscriptionDuration(const Duration(milliseconds: 500));
-  }
-
-  final filePath = 'audio.aac';
-  Future record() async {
-    await recorder.startRecorder(toFile: filePath);
-  }
-
-  static Future<List<Message>> getMessageTilawa(
-    BuildContext context,
-  ) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/MessageTilawa.json');
-    final body = json.decode(data);
-    return body.map<Message>(Message.fromJson).toList();
-  }
+  @override
+  int get chatId => widget.tilawa.id;
+  @override
+  int get receiverId => 2; //widget.tilawa.other.userId;
+  @override
+  String get messageType => 'messageTilawa';
+  @override
+  String get endpoint => '/messages/tilawa';
 
   @override
   Widget build(BuildContext context) {
+    final pageTitle =
+        'من ${widget.tilawa.startSora} ${widget.tilawa.startAya} إلى ${widget.tilawa.endSora} ${widget.tilawa.endAya}';
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -70,47 +51,12 @@ class _RevisionState extends State<Revision> {
             Navigator.of(context).pop();
           },
         ),
-        title: Row(
-          children: [
-            const VerticalDivider(
-              width: 45,
-            ),
-            Text(
-              widget.tilawa.endAya.toString(),
-              style: const TextStyle(fontSize: 15),
-            ),
-            const VerticalDivider(),
-            Text(
-              widget.tilawa.endSora,
-              style: const TextStyle(fontSize: 15),
-            ),
-            const VerticalDivider(
-              width: 30,
-            ),
-            const Text(
-              "الى",
-              style: const TextStyle(fontSize: 15),
-            ),
-            const VerticalDivider(
-              width: 25,
-            ),
-            Text(
-              widget.tilawa.startAya.toString(),
-              style: const TextStyle(fontSize: 15),
-            ),
-            const VerticalDivider(),
-            Text(
-              widget.tilawa.startSora,
-              style: const TextStyle(fontSize: 15),
-            ),
-            const VerticalDivider(),
-            const Text(
-              "من",
-              style: const TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ],
+        title: Center(
+          child: Text(
+            pageTitle,
+            style: const TextStyle(fontSize: 13),
+            textWidthBasis: TextWidthBasis.longestLine,
+          ),
         ),
         elevation: 10,
         backgroundColor: Colors.brown[400],
@@ -121,7 +67,7 @@ class _RevisionState extends State<Revision> {
             width: double.infinity,
             height: 600,
             child: FutureBuilder<List<Message>>(
-              future: getMessageTilawa(context),
+              future: getMessages(),
               builder: (context, snapchot) {
                 final messages = snapchot.data;
                 return ListView.builder(
@@ -138,80 +84,29 @@ class _RevisionState extends State<Revision> {
               },
             ),
           ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-              height: 250,
-              width: double.infinity,
-              color: Colors.white,
-              child: Column(
+          SizedBox(
+            child: StatefulBuilder(builder: (context, _setState) {
+              return Column(
                 children: <Widget>[
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.brown),
                     onPressed: () async {
                       if (recorder.isRecording) {
-                        String? audioPath = await recorder.stopRecorder();
-
-                        File audio = File(audioPath!);
-                        await client.audioPost(
-                          '/chat/test',
-                          file: await audio.readAsBytes(),
-                        );
+                        filePath = (await recorder.stopRecorder())!;
+                        await sendAudioMessage();
                       } else {
-                        await record();
+                        await recorder.startRecorder(toFile: filePath);
                       }
-                      setState(() {});
+                      _setState(() {});
                     },
                     child: Icon(
                       recorder.isRecording ? Icons.stop : Icons.mic,
                     ),
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      const Expanded(
-                        child: TextField(
-                          textAlign: TextAlign.end,
-                          decoration: InputDecoration(
-                              hintText: "ملاحظة",
-                              hintStyle: TextStyle(color: Colors.black54),
-                              border: InputBorder.none),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      FloatingActionButton(
-                        onPressed: () {},
-                        child: const Icon(Icons.send),
-                        backgroundColor: Colors.brown,
-                        elevation: 0,
-                      ),
-                    ],
-                  ),
-                  StreamBuilder<RecordingDisposition>(
-                      stream: recorder.onProgress,
-                      builder: (context, snapshot) {
-                        final duration = snapshot.hasData
-                            ? snapshot.data!.duration
-                            : Duration.zero;
-                        String twoDigits(int n) => n.toString().padLeft(2, '0');
-                        String minutes = twoDigits(duration.inMinutes);
-                        String seconds = twoDigits(duration.inSeconds % 60);
-                        return Text(
-                          '$minutes:$seconds',
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        );
-                      })
+                  Timer(recorder: recorder)
                 ],
-              ),
-            ),
+              );
+            }),
           ),
         ],
       ),

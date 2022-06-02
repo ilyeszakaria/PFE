@@ -2,6 +2,7 @@ import 'package:application3/models/messages.dart';
 import 'package:application3/utils/prefs.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 
 class MessageWidget extends Container {
   bool? isSelfMessage;
@@ -56,8 +57,7 @@ class AudioMessageWidget extends MessageWidget {
           child: StreamBuilder<PlayerState>(
               stream: player.onPlayerStateChanged,
               builder: (context, snapshot) {
-                bool showStop = player.state == PlayerState.PLAYING ||
-                    player.state == PlayerState.COMPLETED;
+                bool showStop = player.state == PlayerState.PLAYING;
                 return Icon(showStop ? Icons.stop : Icons.play_arrow);
               }),
         ),
@@ -79,5 +79,34 @@ class TextMessageWidget extends MessageWidget {
         fontSize: 15,
       ),
     );
+  }
+}
+
+class Timer extends StatelessWidget {
+  const Timer({
+    Key? key,
+    required this.recorder,
+  }) : super(key: key);
+
+  final FlutterSoundRecorder recorder;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<RecordingDisposition>(
+        stream: recorder.onProgress,
+        builder: (context, snapshot) {
+          final duration =
+              snapshot.hasData ? snapshot.data!.duration : Duration.zero;
+          String twoDigits(int n) => n.toString().padLeft(2, '0');
+          String minutes = twoDigits(duration.inMinutes);
+          String seconds = twoDigits(duration.inSeconds % 60);
+          return Text(
+            '$minutes:$seconds',
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          );
+        });
   }
 }

@@ -18,12 +18,12 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.assignment,
       'title': 'المراجعات',
-      'next': const ListeRevision(),
+      'next': ListeRevision(),
     },
     {
       'icon': Icons.chat,
       'title': 'المحادثات',
-      'next': const ConversationsList(username: ''),
+      'next': const ConversationsList(),
     },
     {
       'icon': Icons.assignment,

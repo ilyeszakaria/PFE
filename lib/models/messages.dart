@@ -7,14 +7,15 @@ class Message {
   DateTime date = DateTime.now();
   int senderId;
 
+  bool get isAudio => audio != '';
   Message({
     this.seen = false,
     this.audio = '',
-    required this.text,
+    this.text = '',
     required this.senderId,
   });
   static Message fromJson(json) => Message(
-        text: json['text'],
+        text: json['text'] ?? '',
         audio: json['audio'] ?? '',
         senderId: json['senderId'],
       );

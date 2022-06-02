@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import '../models/messages.dart';
-import '../widgets/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../utils/client.dart';
+import '../mixins/chat.dart';
+import '../models/messages.dart';
+import '../widgets/messages.dart';
 import '../utils/prefs.dart';
 
 class Conversation extends StatefulWidget {
@@ -16,21 +17,10 @@ class Conversation extends StatefulWidget {
   State<Conversation> createState() => _ConversationState();
 }
 
-class _ConversationState extends State<Conversation> {
-  Future<List<Message>> getMessages() async {
-    List data = await client.get(
-      '/messages/${widget.conversation.id}',
-    );
-    List<Message> messages = data
-        .map(
-          (e) => Message.fromJson(e),
-        )
-        .toList();
-    return messages;
-  }
-
+class _ConversationState extends State<Conversation> with MessagesMixin {
   final messageController = TextEditingController();
-  var _messages = [];
+  var messages = [];
+  bool recording = false;
 
   @override
   void dispose() {
@@ -38,34 +28,35 @@ class _ConversationState extends State<Conversation> {
     super.dispose();
   }
 
-  final channel = WebSocketChannel.connect(
+  final _channel = WebSocketChannel.connect(
     Uri.parse('ws://192.168.1.108:8000/chat/ws/${Globals.userId}'),
   );
 
   @override
+  int get receiverId => widget.conversation.other.id;
+  @override
+  String get endpoint => '/messages';
+  @override
+  String get messageType => 'message';
+  @override
+  int get chatId => widget.conversation.id;
+  @override
+  get channel => _channel;
+  @override
   void initState() {
     super.initState();
-    getMessages().then((messages) {
+    getMessages().then((_messages) {
       setState(() {
-        _messages = messages;
+        messages = _messages;
       });
     });
-    channel.stream.listen((data) {
+
+    _channel.stream.listen((data) {
       Message message = Message.fromJson(jsonDecode(data));
       setState(() {
-        _messages.add(message);
+        messages.add(message);
       });
     });
-  }
-
-  sendMessage(String text) {
-    channel.sink.add(jsonEncode({
-      'type': 'message',
-      'text': text,
-      'senderId': Globals.userId,
-      'receiverId': widget.conversation.other.id,
-      'chatId': widget.conversation.id,
-    }));
   }
 
   @override
@@ -139,14 +130,14 @@ class _ConversationState extends State<Conversation> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                itemCount: _messages.length,
+                itemCount: messages.length,
                 shrinkWrap: false,
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 itemBuilder: (context, index) {
-                  var message = _messages[index];
-                  return message.audio == ''
-                      ? TextMessageWidget(message)
-                      : AudioMessageWidget(message);
+                  var message = messages[index];
+                  return message.isAudio
+                      ? AudioMessageWidget(message)
+                      : TextMessageWidget(message);
                 },
               ),
             ),
@@ -162,61 +153,72 @@ class _ConversationState extends State<Conversation> {
               height: 60,
               width: double.infinity,
               color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  // Recorder
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(30),
+              child: StatefulBuilder(builder: (context, _setState) {
+                var _show = true;
+                return Row(
+                  children: <Widget>[
+                    // Recorder
+                    GestureDetector(
+                      onTap: () {
+                        _setState(() => recording = true);
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.brown,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: const Icon(
+                          Icons.mic,
+                          color: Colors.white,
+                          size: 20,
+                        ),
                       ),
+                    ),
+                    StreamBuilder<RecordingDisposition>(
+                        stream: recorder.onProgress,
+                        builder: (context, snapshot) {
+                          return Expanded(
+                            child: TextField(
+                              textAlign: TextAlign.right,
+                              controller: messageController,
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                hintStyle: TextStyle(
+                                  color: _show
+                                      ? Colors.black54
+                                      : Colors.transparent,
+                                ),
+                                border: InputBorder.none,
+                                hintText: recording
+                                    ? 'يتم تسجيل صوتية'
+                                    : 'اكتب رسالة',
+                              ),
+                            ),
+                          );
+                        }),
+                    FloatingActionButton(
+                      onPressed: () {
+                        if (messageController.text.isEmpty) {
+                          return;
+                        }
+                        sendMessage(
+                          messageController.text,
+                        );
+                        messageController.clear();
+                      },
                       child: const Icon(
-                        Icons.mic,
+                        Icons.send,
                         color: Colors.white,
-                        size: 20,
+                        size: 18,
                       ),
+                      backgroundColor: Colors.brown,
+                      elevation: 5,
                     ),
-                  ),
-                  // const SizedBox(
-                  //   width: 15,
-                  // ),
-                  Expanded(
-                    child: TextField(
-                      textAlign: TextAlign.right,
-                      controller: messageController,
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: const InputDecoration(
-                        hintStyle: TextStyle(color: Colors.black54),
-                        border: InputBorder.none,
-                        hintText: 'اكتب رسالة',
-                      ),
-                    ),
-                  ),
-                  // const SizedBox(
-                  //   width: 15,
-                  // ),
-                  FloatingActionButton(
-                    onPressed: () {
-                      if (messageController.text.isEmpty) {
-                        return;
-                      }
-                      sendMessage(messageController.text);
-                      messageController.clear();
-                    },
-                    child: const Icon(
-                      Icons.send,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    backgroundColor: Colors.brown,
-                    elevation: 5,
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
             ),
           ),
         ],

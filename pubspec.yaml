@@ -54,6 +54,7 @@ dependencies:
   percent_indicator: ^4.2.1
   shared_preferences: ^2.0.15
   web_socket_channel: ^2.2.0
+  audio_waveforms: ^0.1.1
 
 dev_dependencies:
   flutter_test:

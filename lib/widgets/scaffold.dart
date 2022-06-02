@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ScaffoldWidget extends Scaffold {
-  String pageTitle;
-  ScaffoldWidget({required this.pageTitle, body, Key? key, endDrawer})
-      : super(
+  ScaffoldWidget({
+    required pageTitle,
+    body,
+    Key? key,
+    endDrawer,
+    floatingActionButton,
+    floatingActionButtonLocation,
+  }) : super(
           key: key,
-          body: body,
+          floatingActionButton: floatingActionButton,
+          floatingActionButtonLocation: floatingActionButtonLocation,
+          body: Padding(
+            child: body,
+            padding: const EdgeInsets.all(20),
+          ),
           endDrawer: endDrawer,
           appBar: PreferredSize(
             preferredSize: const Size(double.infinity, kToolbarHeight),
@@ -22,7 +32,7 @@ class ScaffoldWidget extends Scaffold {
                 elevation: 10,
                 backgroundColor: Colors.brown[400],
                 leading: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                   ),
                   onPressed: () {
@@ -33,12 +43,4 @@ class ScaffoldWidget extends Scaffold {
             }),
           ),
         );
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: appBar,
-  //     body: body,
-  //   );
-  // }
 }

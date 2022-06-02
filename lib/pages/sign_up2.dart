@@ -4,6 +4,8 @@ import 'package:application3/models/users.dart';
 import 'package:application3/pages/login.dart';
 import 'package:application3/pages/sign_up.dart';
 import 'package:application3/utils/client.dart';
+import 'package:application3/widgets/input.dart';
+import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,456 +63,321 @@ class _SignIn2State extends State<SignIn2> {
   var sex;
   bool isTeacher = false;
   bool isStudent = false;
-  String genre = "ذكر";
+  String gender = "ذكر";
+  String pageTitle = 'إنشاء حساب';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            "                    انشاء حساب  ",
-          ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    return ScaffoldWidget(
+      pageTitle: pageTitle,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
-        child: Stack(
-          children: <Widget>[
-            Container(
-                height: double.infinity,
-                width: double.infinity,
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 1, vertical: 3),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Text("الصنف"),
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Row(
+                        children: <Widget>[
+                          Text("ذكر"),
+                          Radio(
+                            value: 1,
+                            onChanged: (v) {
+                              setState(() {
+                                this._sex = v;
+                                this.sex = "male";
+                              });
+                            },
+                            groupValue: this._sex, // قيمة زر الراديو
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Row(
+                        children: [
+                          Text("أنثى"),
+                          Radio(
+                            value: 2,
+                            onChanged: (v) {
+                              setState(() {
+                                this._sex = v;
+                                this.sex = "female";
+                              });
+                            },
+                            groupValue: this._sex,
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Text("نوع المستخدم"),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 20),
-                          height: 170,
-                          width: double.infinity,
-                          child: Column(
+                          child: Row(
                             children: [
-                              Container(
-                                width: double.infinity,
-                                height: 50,
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "الصنف",
-                                  style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                margin: EdgeInsets.only(right: 30),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 270),
-                                alignment: Alignment.centerRight,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      "الذكر",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Radio(
-                                      value: 1,
-                                      onChanged: (v) {
-                                        // احصل على قيمة زر الاختيار من خلال حدث التغيير
-                                        setState(() {
-                                          this._sex = v;
-                                          this.sex = "male";
-                                        });
-                                      },
-                                      groupValue: this._sex, // قيمة زر الراديو
-                                    ),
-                                    SizedBox(width: 20),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 272),
-                                alignment: Alignment.centerRight,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "أنثى",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    VerticalDivider(),
-                                    Radio(
-                                      value: 2,
-                                      onChanged: (v) {
-                                        setState(() {
-                                          this._sex = v;
-                                          this.sex = "female";
-                                        });
-                                      },
-                                      groupValue: this._sex,
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 160,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 50,
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "  نوع المستخدم",
-                                  style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                margin: EdgeInsets.only(right: 14),
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(left: 300),
-                                      child: Row(
-                                        children: [
-                                          Text("معلم",
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
-                                              )),
-                                          Checkbox(
-                                            value: isTeacher,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                isTeacher = val!;
-                                              });
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    VerticalDivider(),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 290),
-                                      child: Row(
-                                        children: [
-                                          Text(" تلميذ",
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600,
-                                              )),
-                                          Checkbox(
-                                            value: isStudent,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                isStudent = val!;
-                                              });
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: 280,
-                          child: Column(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 40,
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "كم تحفظ من القران الكريم  ",
-                                  style: TextStyle(
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                margin: EdgeInsets.only(right: 12),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 120,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      height: 40,
-                                      child: TextFormField(
-                                        textAlign: TextAlign.end,
-                                        onChanged: (text) {
-                                          debut = text;
-                                        },
-                                        keyboardType: TextInputType.number,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        cursorColor: Colors.brown,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 5, color: Colors.brown)),
-                                    ),
-                                    Text(
-                                      "  : الاية رقم   ",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    VerticalDivider(
-                                      color: Colors.white,
-                                    ),
-                                    Container(
-                                        alignment: Alignment.center,
-                                        height: 40,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 5, color: Colors.brown)),
-                                        child: DropdownButton<String>(
-                                          value: dropdownValue1,
-                                          icon:
-                                              const Icon(Icons.arrow_downward),
-                                          elevation: 16,
-                                          underline: Container(
-                                            height: 2,
-                                          ),
-                                          onChanged: (String? newValue) {
-                                            setState(() {
-                                              dropdownValue1 = newValue!;
-                                            });
-                                          },
-                                          items: <String>[
-                                            'مريم',
-                                            'النساء',
-                                            'ال عمران',
-                                            'البقرة',
-                                            'الفاتحة'
-                                          ].map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(
-                                                value,
-                                                style: TextStyle(),
-                                              ),
-                                            );
-                                          }).toList(),
-                                        )),
-                                    VerticalDivider(
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "من سورة    ",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 120,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      height: 40,
-                                      child: TextFormField(
-                                        textAlign: TextAlign.end,
-                                        onChanged: (text) {
-                                          fin = text;
-                                        },
-                                        keyboardType: TextInputType.number,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        cursorColor: Colors.brown,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 5, color: Colors.brown)),
-                                    ),
-                                    Text(
-                                      " : الاية رقم   ",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    VerticalDivider(
-                                      color: Colors.white,
-                                    ),
-                                    Container(
-                                        alignment: Alignment.center,
-                                        height: 40,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 5, color: Colors.brown)),
-                                        child: DropdownButton<String>(
-                                          value: dropdownValue2,
-                                          icon:
-                                              const Icon(Icons.arrow_downward),
-                                          elevation: 16,
-                                          underline: Container(
-                                            height: 2,
-                                          ),
-                                          onChanged: (String? newValue) {
-                                            setState(() {
-                                              dropdownValue2 = newValue!;
-                                            });
-                                          },
-                                          items: <String>[
-                                            'مريم',
-                                            'النساء',
-                                            'ال عمران',
-                                            'البقرة',
-                                            'الفاتحة'
-                                          ].map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(
-                                                value,
-                                                style: TextStyle(),
-                                              ),
-                                            );
-                                          }).toList(),
-                                        )),
-                                    VerticalDivider(
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "الى سورة   ",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )
-                                  ],
-                                ),
+                              Text("معلم"),
+                              Checkbox(
+                                value: isTeacher,
+                                onChanged: (val) {
+                                  setState(() {
+                                    isTeacher = val!;
+                                  });
+                                },
                               ),
                             ],
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: FlatButton(
-                                  onPressed: () async {
-                                    if (sex == null) {
-                                      final text = 'الرجاء اختيار الصنف';
-                                      final snackbar = SnackBar(
-                                          content: Container(
-                                        alignment: Alignment.center,
-                                        height: 50,
-                                        width: double.infinity,
-                                        child: Text(
-                                          text,
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      ));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackbar);
-                                    } else {
-                                      if (isTeacher == false &&
-                                          isStudent == false) {
-                                        final text =
-                                            'الرجاء ادخال نوع المستخدم';
-                                        final snackbar = SnackBar(
-                                            content: Container(
-                                          alignment: Alignment.center,
-                                          height: 50,
-                                          width: double.infinity,
-                                          child: Text(
-                                            text,
-                                            style: TextStyle(fontSize: 12),
-                                          ),
-                                        ));
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackbar);
-                                      } else {
-                                        await createUser();
-
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => Login()));
-                                      }
-                                    }
-                                  },
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 30),
-                                  child: Text(
-                                    "مواصلة",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  color: Color.fromARGB(255, 149, 109, 94),
-                                )),
-                            Container(
-                              child: FlatButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) {
-                                    return SignIn();
-                                  }));
-                                },
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 35),
-                                child: Text(
-                                  "عودة",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                ),
-                                color: Color.fromARGB(255, 149, 109, 94),
-                              ),
-                              margin: EdgeInsets.only(right: 10),
+                            Text(" تلميذ"),
+                            Checkbox(
+                              value: isStudent,
+                              onChanged: (val) {
+                                setState(() {
+                                  isStudent = val!;
+                                });
+                              },
                             ),
                           ],
                         ),
                       ],
-                    )))
-          ],
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 40,
+                    alignment: Alignment.centerRight,
+                    child: Text("كم تحفظ من القران الكريم "),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 120,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 40,
+                          child: TextFormField(
+                            textAlign: TextAlign.end,
+                            onChanged: (text) {
+                              debut = text;
+                            },
+                            keyboardType: TextInputType.number,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            cursorColor: Colors.brown,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
+                          width: 50,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 2, color: Colors.brown),
+                          ),
+                        ),
+                        Text("الاية رقم"),
+                        VerticalDivider(
+                          color: Colors.transparent,
+                        ),
+                        Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 90,
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 2, color: Colors.brown),
+                            ),
+                            child: DropdownButton<String>(
+                              value: dropdownValue1,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              underline: Container(
+                                height: 2,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue1 = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'مريم',
+                                'النساء',
+                                'ال عمران',
+                                'البقرة',
+                                'الفاتحة'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: TextStyle(),
+                                  ),
+                                );
+                              }).toList(),
+                            )),
+                        VerticalDivider(
+                          color: Colors.white,
+                        ),
+                        Text("من سورة"),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 120,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 40,
+                          child: TextFormField(
+                            textAlign: TextAlign.end,
+                            onChanged: (text) {
+                              fin = text;
+                            },
+                            keyboardType: TextInputType.number,
+                            cursorColor: Colors.brown,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
+                          width: 50,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 2, color: Colors.brown),
+                          ),
+                        ),
+                        Text("الاية رقم"),
+                        VerticalDivider(
+                          color: Colors.transparent,
+                        ),
+                        Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 90,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 2,
+                                color: Colors.brown,
+                              ),
+                            ),
+                            child: DropdownButton<String>(
+                              value: dropdownValue2,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              underline: Container(
+                                height: 2,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue2 = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'مريم',
+                                'النساء',
+                                'ال عمران',
+                                'البقرة',
+                                'الفاتحة'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            )),
+                        VerticalDivider(
+                          color: Colors.white,
+                        ),
+                        Text("الى سورة")
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ButtonWidget(
+                    onPressed: () async {
+                      if (sex == null) {
+                        final text = 'الرجاء اختيار الصنف';
+                        final snackbar = SnackBar(
+                            content: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: double.infinity,
+                          child: Text(
+                            text,
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      } else {
+                        if (isTeacher == false && isStudent == false) {
+                          final text = 'الرجاء ادخال نوع المستخدم';
+                          final snackbar = SnackBar(
+                              content: Container(
+                            alignment: Alignment.center,
+                            height: 50,
+                            width: double.infinity,
+                            child: Text(
+                              text,
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else {
+                          await createUser();
+
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Login()));
+                        }
+                      }
+                    },
+                    text: "مواصلة",
+                    expended: false,
+                  ),
+                  const SizedBox(width: 20),
+                  ButtonWidget(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const SignIn();
+                          },
+                        ),
+                      );
+                    },
+                    text: "عودة",
+                    expended: false,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

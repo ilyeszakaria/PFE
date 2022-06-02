@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
 import 'prefs.dart';
 import 'package:http/http.dart' as http;
 
@@ -46,7 +48,7 @@ class Client {
     return jsonDecode(decodedRes);
   }
 
-  Future audioPost(String endpoint, {file}) async {
+  Future audioPost(String endpoint, {file, Map<String, dynamic>? data}) async {
     var uri = Uri.parse('$baseUrl$endpoint');
     var request = http.MultipartRequest('POST', uri);
     request.files.add(
@@ -56,6 +58,9 @@ class Client {
         filename: 'audio.aac',
       ),
     );
+    data!.forEach((key, value) {
+      request.fields[key] = value.toString();
+    });
     var res = await request.send();
     if (res.statusCode == 200) print('Uploaded!');
   }
