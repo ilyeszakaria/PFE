@@ -1,24 +1,21 @@
 import 'dart:convert';
 
-import 'package:application3/models/messageTilawaModel1.dart';
+import '../widgets/scaffold.dart';
+
+import '../models/messageTilawaModel1.dart';
 import 'package:flutter/material.dart';
 
-class MessageTest extends StatefulWidget {
-  final String idtest;
-  final String idstudent;
-  final String username;
-  const MessageTest(
-      {Key? key,
-      required this.idstudent,
-      required this.idtest,
-      required this.username})
-      : super(key: key);
+class TestChat extends StatefulWidget {
+  final String username = '';
+  TestChat({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<MessageTest> createState() => _MessageTestState();
+  State<TestChat> createState() => _TestChatState();
 }
 
-class _MessageTestState extends State<MessageTest> {
+class _TestChatState extends State<TestChat> {
   static Future<List<MessageTilawa>> getmessageTilawa(
       BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
@@ -29,54 +26,11 @@ class _MessageTestState extends State<MessageTest> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          title: Row(
-            children: [
-              VerticalDivider(
-                width: 20,
-              ),
-              Text(
-                "18",
-              ),
-              VerticalDivider(),
-              Text(
-                "النساء",
-              ),
-              VerticalDivider(
-                width: 25,
-              ),
-              Text(
-                "الى",
-              ),
-              VerticalDivider(
-                width: 20,
-              ),
-              Text(
-                "20",
-              ),
-              VerticalDivider(),
-              Text(
-                "البقرة",
-              ),
-              Text(
-                "من",
-              ),
-            ],
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    return ScaffoldWidget(
+      pageTitle: 'الاختبار 1',
       body: Stack(
         children: <Widget>[
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 600,
             child: FutureBuilder<List<MessageTilawa>>(
@@ -91,7 +45,11 @@ class _MessageTestState extends State<MessageTest> {
                     final messageTilawa = messagesTilawa![index];
                     return Container(
                       padding: EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
+                        left: 14,
+                        right: 14,
+                        top: 10,
+                        bottom: 10,
+                      ),
                       child: Align(
                         alignment: (messageTilawa.sender != widget.username
                             ? Alignment.topLeft

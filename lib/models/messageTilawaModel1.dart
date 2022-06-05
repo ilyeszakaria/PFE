@@ -134,23 +134,16 @@ class MessageTilawa {
       required this.name});
 
   static MessageTilawa fromJson(json) => MessageTilawa(
-      sender: json['sender'],
-      date: json['date'],
-      audio: json['audio'],
-      text: json['text'],
-      name: json['name']);
+        sender: json['sender'],
+        date: json['date'],
+        audio: json['audio'],
+        text: json['text'],
+        name: json['name'],
+      );
 }
 
 class Souar {
-  List<String> listSouar = [
-    'الناس',
-    'الكهف',
-    'مريم',
-    'النساء',
-    'ال عمران',
-    'البقرة',
-    'الفاتحة'
-  ];
+  List<String> listSouar = ['النساء', 'ال عمران', 'البقرة', 'الفاتحة'];
 }
 
 class user {

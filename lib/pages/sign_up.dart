@@ -140,7 +140,6 @@ class _SignInState extends State<SignIn> {
                       }
                     },
                     text: "مواصلة",
-                    expended: false,
                   ),
                   const SizedBox(width: 20),
                   ButtonWidget(
@@ -151,7 +150,6 @@ class _SignInState extends State<SignIn> {
                       }));
                     },
                     text: "إلغاء",
-                    expended: false,
                   ),
                 ],
               ),

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import '../models/messageTilawaModel1.dart';
-import 'message_test.dart';
+import 'test_chat.dart';
 import 'revision.dart';
-import 'package:application3/models/messages.dart';
+import '../models/messages.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -382,11 +382,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return MessageTest(
-                                        username: widget.username,
-                                        idstudent: test.student,
-                                        idtest: test.test,
-                                      );
+                                      return TestChat();
                                     }));
                                   },
                                   child: Container(

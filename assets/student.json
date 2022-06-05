@@ -1,100 +1,14 @@
 [
-    {
-      
-      "id": "1",
-      "username": "ilyeszakaria",
-      "firstname":"ilyes",
-      "lastname":"zakaria"
-      
-    },
-    {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-      
-        "id": "1",
-        "username": "ilyeszakaria",
-        "firstname":"ilyes",
-        "lastname":"zakaria"
-        
-      },
-      {
-        
-          "id": "1",
-          "username": "ilyeszakaria",
-          "firstname":"ilyes",
-          "lastname":"zakaria"
-          
-        },
-        {
-        
-          "id": "1",
-          "username": "ilyeszakaria",
-          "firstname":"ilyes",
-          "lastname":"zakaria"
-          
-        },
-        {
-        
-          "id": "1",
-          "username": "ilyeszakaria",
-          "firstname":"ilyes",
-          "lastname":"zakaria"
-          
-        },
-        {
-        
-          "id": "1",
-          "username": "ilyeszakaria",
-          "firstname":"ilyes",
-          "lastname":"zakaria"
-          
-        },
-        {
-        
-          "id": "1",
-          "username": "ilyeszakaria",
-          "firstname":"ilyes",
-          "lastname":"zakaria"
-          
-        }
-      
-    
-  ]
+  {
+    "id": "1",
+    "username": "ilyeszakaria",
+    "firstname": "ilyes",
+    "lastname": "zakaria"
+  },
+  {
+    "id": "1",
+    "username": "ilyeszakaria",
+    "firstname": "ilyes",
+    "lastname": "zakaria"
+  }
+]

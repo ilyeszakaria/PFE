@@ -6,7 +6,8 @@
     "audio": "http://192.168.1.108:8000/sound.mp3",
     "text": "كتابة",
     "senderId": 2,
-    "seen": true
+    "seen": true,
+    "name": "name"
   },
   {
     "username": "djail",
@@ -15,15 +16,7 @@
     "audio": "http://192.168.1.108:8000/sound.mp3",
     "text": "كتابة",
     "senderId": 1,
-    "seen": true
-  },
-  {
-    "username": "djail",
-    "sender": "ilyeszakaria",
-    "date": "20/11/1999",
-    "audio": "http://192.168.1.108:8000/sound.mp3",
-    "text": "كتابة",
-    "senderId": 1,
-    "seen": true
+    "seen": true,
+    "name": "name"
   }
 ]

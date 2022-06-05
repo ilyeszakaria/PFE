@@ -1,8 +1,8 @@
-import 'package:application3/widgets/scaffold.dart';
+import 'package:flutter/material.dart';
 
+import '../widgets/scaffold.dart';
 import '../mixins/chat.dart';
 import '../pages/start_revision.dart';
-import 'package:flutter/material.dart';
 
 class ListeRevision extends StatelessWidget with TilawaHeadersMixin {
   ListeRevision({Key? key}) : super(key: key);
@@ -13,18 +13,22 @@ class ListeRevision extends StatelessWidget with TilawaHeadersMixin {
       pageTitle: 'المراجعات',
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const StartRevision();
-          }));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const StartRevision();
+              },
+            ),
+          );
         },
-        label: Text(
+        label: const Text(
           "بدء مراجعة",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.add,
           size: 30,
         ),

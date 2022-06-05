@@ -1,5 +1,5 @@
-import 'package:application3/models/users.dart';
 import 'package:flutter/material.dart';
+import '../models/users.dart';
 import '../pages/liste_eleve.dart';
 import '../pages/login.dart';
 import '../utils/client.dart';
@@ -28,22 +28,22 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.assignment,
       'title': 'الاختبارات',
-      'next': const ListeTestStudent(username: ''),
+      'next': ListeTestStudent(),
     },
     {
       'icon': Icons.menu_book,
       'title': 'المصحف',
       'next': Moshaf(),
     },
-    {
-      'icon': Icons.menu_book,
-      'title': 'دعاء الختم',
-      'next': Doaah(),
-    },
+    // {
+    //   'icon': Icons.menu_book,
+    //   'title': 'دعاء الختم',
+    //   'next': Doaah(),
+    // },
     {
       'icon': Icons.settings,
       'title': 'إعدادات الحساب',
-      'next': Settings(username: ''),
+      'next': Settings(),
     },
     {
       'icon': Icons.exit_to_app,
@@ -59,6 +59,7 @@ class StudentDrawer extends Drawer {
         padding: const EdgeInsets.only(right: 10),
         child: Text(
           titleText,
+          textAlign: TextAlign.right,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),

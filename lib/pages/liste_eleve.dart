@@ -25,7 +25,7 @@ class _ListeEleveState extends State<ListeEleve> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            "               قائمة التلاميذ  ",
+            "قائمة التلاميذ",
           ),
           actions: [
             IconButton(

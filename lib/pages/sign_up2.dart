@@ -358,7 +358,6 @@ class _SignIn2State extends State<SignIn2> {
                       }
                     },
                     text: "مواصلة",
-                    expended: false,
                   ),
                   const SizedBox(width: 20),
                   ButtonWidget(
@@ -372,7 +371,6 @@ class _SignIn2State extends State<SignIn2> {
                       );
                     },
                     text: "عودة",
-                    expended: false,
                   ),
                 ],
               ),

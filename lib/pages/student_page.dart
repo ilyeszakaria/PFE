@@ -11,6 +11,7 @@ class StudentPage extends StatelessWidget
   final User user;
   StudentPage({Key? key, required this.user}) : super(key: key);
 
+  Widget get drawer => StudentDrawer(user: user);
   final pageTitle = 'الصفحة الرئيسية';
   final role = 'طالب';
 
@@ -18,7 +19,7 @@ class StudentPage extends StatelessWidget
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       pageTitle: pageTitle,
-      endDrawer: StudentDrawer(user: user),
+      endDrawer: drawer,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(

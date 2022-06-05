@@ -43,10 +43,12 @@ class InputWidget extends StatelessWidget {
             cursorColor: borderColor,
             decoration: InputDecoration(
               border: InputBorder.none,
-              suffixIcon: Icon(
-                icon,
-                color: Colors.brown,
-              ),
+              suffixIcon: icon != null
+                  ? Icon(
+                      icon,
+                      color: Colors.brown,
+                    )
+                  : null,
             ),
           ),
         ),
@@ -63,7 +65,7 @@ class ButtonWidget extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPressed,
-    this.expended = true,
+    this.expended = false,
   }) : super(key: key);
 
   @override
