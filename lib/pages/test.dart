@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:application3/models/messageTilawaModel1.dart';
-import 'package:application3/widgets/scaffold.dart';
+import '../models/messageTilawaModel1.dart';
+import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Test extends StatefulWidget {
   Test({Key? key}) : super(key: key);

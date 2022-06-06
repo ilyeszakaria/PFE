@@ -1,4 +1,6 @@
-import 'package:application3/utils/client.dart';
+import '../widgets/input.dart';
+
+import '../utils/client.dart';
 
 import '../models/users.dart';
 import '../utils/prefs.dart';
@@ -19,109 +21,104 @@ class _HomeState extends State<Home> {
   }
 
   Widget _getButton(String text, String role, page) {
-    return Container(
-        margin: const EdgeInsets.only(top: 50),
-        height: 100,
-        width: 200,
-        alignment: Alignment.bottomCenter,
-        child: RaisedButton(
-          onPressed: () {
-            Globals.role = role;
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    return ButtonWidget(
+      onPressed: () {
+        Globals.role = role;
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
               return page;
-            }));
-          },
-          color: const Color.fromARGB(255, 144, 108, 94),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          child: Container(
-            alignment: Alignment.center,
-            child: Text(
-              text,
-              style: const TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
+            },
           ),
-        ));
+        );
+      },
+      text: text,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const String pageTitle = 'الصفحة الرئيسية';
     return FutureBuilder(
-        future: getUser(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+      future: getUser(),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
 
-          User user = snapshot.data;
-          if (user.isStudent && !user.isTeacher) {
-            Globals.role = 'student';
-            return StudentPage(user: user);
-          } else if (!user.isStudent && user.isTeacher) {
-            Globals.role = 'teacher';
-            return TeacherPage(user: user);
-          }
+        User user = snapshot.data;
+        if (user.isStudent && !user.isTeacher) {
+          Globals.role = 'student';
+          return StudentPage(user: user);
+        } else if (!user.isStudent && user.isTeacher) {
+          Globals.role = 'teacher';
+          return TeacherPage(user: user);
+        }
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  pageTitle,
-                ),
+        return Scaffold(
+          appBar: AppBar(
+            title: Container(
+              alignment: Alignment.center,
+              child: const Text(
+                pageTitle,
               ),
-              backgroundColor: Colors.brown,
             ),
-            body: Column(
+            backgroundColor: Colors.brown,
+          ),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  child: Text(
-                    'مرحبا ${user.name}',
-                    style: const TextStyle(
-                      fontSize: 30,
-                      color: Color.fromARGB(255, 101, 74, 64),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  alignment: Alignment.center,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <String>['مرحبا', user.name]
+                      .map<Text>(
+                        (text) => Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.brown,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                      .toList(),
                 ),
                 Container(
-                  width: double.infinity,
                   height: 250,
                   alignment: Alignment.center,
                   child: Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 300,
-                      child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [BoxShadow(blurRadius: 5)],
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 190,
-                          width: 190,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              "img/imageedit.jpg",
-                              fit: BoxFit.fill,
-                            ),
-                          ))),
+                    alignment: Alignment.center,
+                    height: 300,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: const [BoxShadow(blurRadius: 5)],
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 140,
+                      width: 140,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          "img/imageedit.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _getButton(
-                      'تلميذ',
+                      'طالب',
                       'student',
                       StudentPage(user: user),
                     ),
+                    const SizedBox(width: 30),
                     _getButton(
                       'معلم',
                       'teacher',
@@ -131,7 +128,9 @@ class _HomeState extends State<Home> {
                 )
               ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

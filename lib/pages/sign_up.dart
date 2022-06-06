@@ -17,13 +17,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  static Future<List<User>> getUser(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/user.json');
-    final body = json.decode(data);
-    return body.map<User>(User.fromJson).toList();
-  }
-
   DateTime time = DateTime.now();
   String firstName = 'a';
   String lastName = 'a';

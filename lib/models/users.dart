@@ -5,6 +5,7 @@ class User {
   bool isStudent;
   bool isTeacher;
   String? email;
+  String? phone;
   User({
     required this.id,
     required this.firstName,
@@ -12,6 +13,7 @@ class User {
     required this.isStudent,
     required this.isTeacher,
     this.email,
+    this.phone,
   });
 
   static fromJson(Map json) => User(
@@ -20,7 +22,8 @@ class User {
         lastName: json['lastName'],
         isStudent: json['isStudent'],
         isTeacher: json['isTeacher'],
-        email: json.containsKey('email') ? json['email'] : null,
+        email: json.containsKey('email') ? json['email'] : '',
+        phone: json.containsKey('phone') ? json['phone'] ?? '' : '',
       );
 
   String get name => '$firstName $lastName';

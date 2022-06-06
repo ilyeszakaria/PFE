@@ -7,7 +7,7 @@ import '../widgets/scaffold.dart';
 
 class ListeTestStudent extends StatelessWidget {
   ListeTestStudent({Key? key}) : super(key: key);
-  static Future<List<TestStudent>> getTestStudent(BuildContext context) async {
+  Future<List<TestStudent>> getTestStudent(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/TestStudent.json');
     final body = json.decode(data);

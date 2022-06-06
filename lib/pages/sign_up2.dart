@@ -1,13 +1,11 @@
-import 'dart:convert';
-
-import 'package:application3/models/users.dart';
-import 'package:application3/pages/login.dart';
-import 'package:application3/pages/sign_up.dart';
-import 'package:application3/utils/client.dart';
-import 'package:application3/widgets/input.dart';
-import 'package:application3/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../pages/login.dart';
+import '../pages/sign_up.dart';
+import '../utils/client.dart';
+import '../widgets/input.dart';
+import '../widgets/scaffold.dart';
 
 class SignIn2 extends StatefulWidget {
   final String email;
@@ -31,13 +29,6 @@ class SignIn2 extends StatefulWidget {
 }
 
 class _SignIn2State extends State<SignIn2> {
-  Future<List<User>> getUser(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/user.json');
-    final body = json.decode(data);
-    return body.map<User>(User.fromJson).toList();
-  }
-
   var _sex;
 
   Future createUser() async {
@@ -147,7 +138,7 @@ class _SignIn2State extends State<SignIn2> {
                         ),
                         Row(
                           children: [
-                            Text(" تلميذ"),
+                            Text(" طالب"),
                             Checkbox(
                               value: isStudent,
                               onChanged: (val) {

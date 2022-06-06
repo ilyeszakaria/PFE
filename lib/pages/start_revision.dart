@@ -1,10 +1,9 @@
-import 'package:application3/models/messages.dart';
-import 'package:application3/pages/revision.dart';
-import 'package:application3/utils/client.dart';
-import 'package:application3/widgets/scaffold.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../models/messages.dart';
+import '../pages/revision.dart';
 import '../utils/client.dart';
+import '../widgets/input.dart';
+import '../widgets/scaffold.dart';
+import 'package:flutter/material.dart';
 
 class StartRevision extends StatefulWidget {
   const StartRevision({Key? key}) : super(key: key);
@@ -44,208 +43,123 @@ class _StartRevisionState extends State<StartRevision> {
 
   @override
   Widget build(BuildContext context) {
-    const pageTitle = 'تلاوة';
+    List<DropdownMenuItem<int>> soratList = [
+      for (Map value in sorat)
+        DropdownMenuItem<int>(
+          alignment: Alignment.centerRight,
+          value: value['id'],
+          child: Text(
+            value['name'].padRight(10),
+            textAlign: TextAlign.right,
+            style: const TextStyle(fontSize: 14),
+          ),
+        ),
+    ];
+
+    List<DropdownMenuItem<int>>? numOfAyatStart, numOfAyatEnd;
+    if (sorat.isNotEmpty) {
+      numOfAyatStart = [
+        for (var i = 1; i <= sorat[startSora - 1]['numOfAyat']; i++)
+          numAyatItemBuilder(i)
+      ];
+      numOfAyatEnd = [
+        for (var i = 1; i <= sorat[endSora - 1]['numOfAyat']; i++)
+          numAyatItemBuilder(i)
+      ];
+    }
+    const pageTitle = 'بدء تلاوة';
     return ScaffoldWidget(
       pageTitle: pageTitle,
       body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            child: const Text(
-              "بدء تلاوة",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+        child: Column(
+          children: [
+            Row(
+              textDirection: TextDirection.rtl,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 45,
-                  width: 50,
-                  child: TextFormField(
-                    onChanged: (value) {
-                      if (value == '') {
-                        startAya = 1;
-                      } else {
-                        startAya = int.parse(value);
-                      }
-                    },
-                    textAlign: TextAlign.end,
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    cursorColor: Colors.brown,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
+                const Text("من سورة"),
+                DropdownButton<int>(
+                  value: startSora,
+                  underline: Container(
+                    height: 2,
+                    color: Colors.brown,
                   ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 3,
-                      color: Colors.brown,
-                    ),
-                  ),
+                  onChanged: (int? v) {
+                    setState(() {
+                      startSora = v!;
+                    });
+                  },
+                  items: soratList,
+                  alignment: AlignmentDirectional.centerEnd,
                 ),
-                Text("الاية رقم"),
-                VerticalDivider(
-                  color: Colors.white,
+                const Text("الآية"),
+                DropdownButton<int>(
+                  value: startAya,
+                  items: numOfAyatStart,
+                  onChanged: (v) => setState(() {
+                    startAya = v!;
+                  }),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 45,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 3,
-                      color: Colors.brown,
-                    ),
-                  ),
-                  child: DropdownButton<int>(
-                    value: startSora,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    underline: Container(
-                      height: 2,
-                    ),
-                    onChanged: (int? newValue) {
-                      setState(() {
-                        startSora = newValue!;
-                      });
-                    },
-                    items: sorat
-                        .map<DropdownMenuItem<int>>(
-                          (Map value) => DropdownMenuItem<int>(
-                            value: value['id'],
-                            child: Text(
-                              value['name'],
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-                VerticalDivider(
-                  color: Colors.white,
-                ),
-                Text("من سورة"),
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            Row(
+              textDirection: TextDirection.rtl,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 45,
-                  child: TextFormField(
-                    onChanged: (value) {
-                      if (value == '') {
-                        endAya = 1;
-                      } else {
-                        endAya = int.parse(value);
-                      }
-                    },
-                    textAlign: TextAlign.end,
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    cursorColor: Colors.brown,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
+                const Text("إلى سورة"),
+                DropdownButton<int>(
+                  value: endSora,
+                  underline: Container(
+                    height: 2,
+                    color: Colors.brown,
                   ),
-                  width: 50,
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 3, color: Colors.brown)),
+                  onChanged: (int? v) {
+                    setState(() {
+                      endSora = v!;
+                    });
+                  },
+                  alignment: AlignmentDirectional.centerEnd,
+                  items: soratList,
                 ),
-                Text("الاية رقم"),
-                VerticalDivider(
-                  color: Colors.white,
+                const Text("الآية"),
+                DropdownButton<int>(
+                  value: endAya,
+                  items: numOfAyatEnd,
+                  onChanged: (v) => setState(() {
+                    endAya = v!;
+                  }),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.brown),
-                  ),
-                  child: DropdownButton<int>(
-                    value: endSora,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    underline: Container(
-                      height: 2,
-                    ),
-                    onChanged: (int? newValue) {
-                      setState(() {
-                        endSora = newValue!;
-                      });
-                    },
-                    items: sorat
-                        .map<DropdownMenuItem<int>>(
-                          (Map value) => DropdownMenuItem<int>(
-                            value: value['id'],
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: Text(
-                              value['name'],
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-                VerticalDivider(
-                  color: Colors.white,
-                ),
-                Text("الى سورة")
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.center,
-            child: RaisedButton(
+            ButtonWidget(
               onPressed: () async {
                 var data = await createTilawa();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return Revision(
-                    tilawa: data,
-                  );
-                }));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Revision(
+                        tilawa: data,
+                      );
+                    },
+                  ),
+                );
               },
-              color: Colors.brown,
-              child: Text(
-                "بدء المراجعة",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
+              text: "بدء المراجعة",
             ),
-            height: 150,
-            width: double.infinity,
-          ),
-        ]),
+          ],
+        ),
+      ),
+    );
+  }
+
+  DropdownMenuItem<int> numAyatItemBuilder(int value) {
+    return DropdownMenuItem<int>(
+      alignment: Alignment.centerRight,
+      value: value,
+      child: Text(
+        value.toString().padLeft(3),
+        textAlign: TextAlign.right,
+        style: const TextStyle(fontSize: 14),
       ),
     );
   }

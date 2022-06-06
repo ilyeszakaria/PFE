@@ -13,8 +13,8 @@ class ScaffoldWidget extends Scaffold {
           floatingActionButton: floatingActionButton,
           floatingActionButtonLocation: floatingActionButtonLocation,
           body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: body,
-            padding: const EdgeInsets.all(20),
           ),
           endDrawer: endDrawer,
           appBar: PreferredSize(

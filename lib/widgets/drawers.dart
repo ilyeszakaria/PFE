@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import '../models/users.dart';
-import '../pages/liste_eleve.dart';
-import '../pages/login.dart';
 import '../utils/client.dart';
 import '../utils/prefs.dart';
-import '../pages/doaah.dart';
+import '../models/users.dart';
+import '../pages/students_list.dart';
+import '../pages/login.dart';
 import '../pages/moshaf.dart';
 import '../pages/liste_test_student.dart';
 import '../pages/conversations_list.dart';
-import '../pages/liste_revision.dart';
+import '../pages/revisions_list.dart';
 import '../pages/settings.dart';
 
 class StudentDrawer extends Drawer {
@@ -35,11 +34,6 @@ class StudentDrawer extends Drawer {
       'title': 'المصحف',
       'next': Moshaf(),
     },
-    // {
-    //   'icon': Icons.menu_book,
-    //   'title': 'دعاء الختم',
-    //   'next': Doaah(),
-    // },
     {
       'icon': Icons.settings,
       'title': 'إعدادات الحساب',

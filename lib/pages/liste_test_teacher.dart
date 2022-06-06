@@ -76,7 +76,7 @@ class _ListeTestTeacherState extends State<ListeTestTeacher> {
                               margin: EdgeInsets.symmetric(horizontal: 5),
                               alignment: Alignment.topRight,
                               child: Text(
-                                " : سجل الختبارات      ",
+                                "سجل الختبارات ",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

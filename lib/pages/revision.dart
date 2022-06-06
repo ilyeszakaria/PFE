@@ -1,7 +1,6 @@
-import 'package:application3/mixins/chat.dart';
-
+import '../mixins/chat.dart';
 import '../models/messages.dart';
-import 'package:application3/widgets/messages.dart';
+import '../widgets/messages.dart';
 import 'package:flutter/material.dart';
 
 class Revision extends StatefulWidget {
