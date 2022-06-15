@@ -40,7 +40,7 @@ class _TeacherTestsListState extends State<TeacherTestsList> {
                     MaterialPageRoute(
                       builder: (context) {
                         return ReponseTest(
-                          idtest: test.id,
+                          testId: test.id,
                           datetest: test.date,
                         );
                       },

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'prefs.dart';
 import 'package:http/http.dart' as http;
 
-const serverDomain = '192.168.43.8:8000';
+const serverDomain = '10.42.0.1:8000';
 
 class Client {
   Client(this.baseUrl);
@@ -66,5 +66,3 @@ class Client {
 }
 
 var client = Client('http://$serverDomain');
-
-// wave soft

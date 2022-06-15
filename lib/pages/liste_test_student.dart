@@ -51,10 +51,10 @@ class StudentTestsList extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(test.AyaDebut),
-                                    Text("الاية رقم"),
-                                    Text(test.SouraDebut),
-                                    Text("من سورة")
+                                    Text(test.ayaDebut),
+                                    const Text("الاية رقم"),
+                                    Text(test.souraDebut),
+                                    const Text("من سورة")
                                   ],
                                 ),
                               ),
@@ -64,10 +64,10 @@ class StudentTestsList extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(test.AyaFin),
-                                    Text("اللاية رقم"),
-                                    Text(test.SouraFin),
-                                    Text("الى سورة")
+                                    Text(test.ayaFin),
+                                    const Text("اللاية رقم"),
+                                    Text(test.souraFin),
+                                    const Text("الى سورة")
                                   ],
                                 ),
                               ),

@@ -5,12 +5,12 @@ import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ReponseTest extends StatelessWidget {
-  final String idtest;
+  final String testId;
   final String datetest;
 
   const ReponseTest({
     Key? key,
-    required this.idtest,
+    required this.testId,
     required this.datetest,
   }) : super(key: key);
 
@@ -52,9 +52,9 @@ class ReponseTest extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(Icons.calendar_month, color: Colors.brown),
+                  const Icon(Icons.calendar_month, color: Colors.brown),
                   Text(datetest),
-                  Text("اخر اجل يوم")
+                  const Text("اخر اجل يوم")
                 ],
               ),
               height: 65,
@@ -90,9 +90,9 @@ class ReponseTest extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 20),
+                  margin: const EdgeInsets.only(right: 20),
                   alignment: Alignment.centerRight,
-                  child: Text(
+                  child: const Text(
                     "الاجابات",
                     style: TextStyle(
                       fontSize: 18,
@@ -118,7 +118,7 @@ class ReponseTest extends StatelessWidget {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return MessageTestTeacher(
+                                return const MessageTestTeacher(
                                   idtest: "",
                                   idstudent: "",
                                 );
@@ -127,47 +127,47 @@ class ReponseTest extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          child: Row(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 15),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.centerRight,
-                                        width: 230,
-                                        child: Text(
-                                          reponce.username,
+                          child: Row(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 15),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.centerRight,
+                                          width: 230,
+                                          child: Text(reponce.username),
                                         ),
-                                      ),
-                                      Divider(
-                                        height: 8,
-                                      ),
-                                      Container(
-                                        alignment: Alignment.centerRight,
-                                        width: 130,
-                                      ),
-                                    ],
+                                        const Divider(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          alignment: Alignment.centerRight,
+                                          width: 130,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                CircleAvatar(
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.black,
-                                    size: 30,
+                                  const CircleAvatar(
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 240, 238, 238),
+                                    radius: 25,
                                   ),
-                                  backgroundColor:
-                                      Color.fromARGB(255, 240, 238, 238),
-                                  radius: 25,
-                                ),
-                              ],
-                            ),
-                          ], mainAxisAlignment: MainAxisAlignment.end),
+                                ],
+                              ),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.end,
+                          ),
                           height: 60,
                           color: Colors.grey,
-                          width: double.infinity,
                         ),
                       );
                     },

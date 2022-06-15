@@ -78,12 +78,12 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                 return ListView.builder(
                   itemCount: messagesTilawa?.length ?? 0,
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   itemBuilder: (context, index) {
                     final messageTilawa = messagesTilawa![index];
                     return Container(
-                      padding: EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 10),
                       child: Align(
                         alignment: (messageTilawa.sender != widget.username
                             ? Alignment.topLeft
@@ -95,10 +95,10 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                                 ? Colors.grey.shade200
                                 : Colors.brown[200]),
                           ),
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: Text(
                             messageTilawa.audio,
-                            style: TextStyle(fontSize: 15),
+                            style: const TextStyle(fontSize: 15),
                           ),
                         ),
                       ),
@@ -111,7 +111,7 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 310,
               width: double.infinity,
               color: Colors.white,
@@ -131,24 +131,21 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                   ),
                   Row(
                     children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
+                      const SizedBox(width: 15),
+                      const Expanded(
                         child: TextField(
                           textAlign: TextAlign.end,
                           decoration: InputDecoration(
-                              hintText: "ملاحظة",
-                              hintStyle: TextStyle(color: Colors.black54),
-                              border: InputBorder.none),
+                            hintText: "ملاحظة",
+                            hintStyle: TextStyle(color: Colors.black54),
+                            border: InputBorder.none,
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        width: 15,
-                      ),
+                      const SizedBox(width: 15),
                       FloatingActionButton(
                         onPressed: () {},
-                        child: Icon(
+                        child: const Icon(
                           Icons.send,
                           color: Colors.white,
                           size: 18,
@@ -158,22 +155,25 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                       ),
                     ],
                   ),
-                  Text(
+                  const Text(
                     "00:00",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.white,
                   ),
-                  Text(
-                    "العلامة",
-                    style: TextStyle(),
-                  ),
+                  const Text("العلامة"),
                   Container(
-                    margin: EdgeInsets.only(right: 20, left: 20),
+                    margin: const EdgeInsets.only(right: 20, left: 20),
                     decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Color.fromARGB(255, 101, 74, 64), width: 5)),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 101, 74, 64),
+                        width: 5,
+                      ),
+                    ),
                     height: 60,
                     width: 60,
                     child: TextFormField(
@@ -181,8 +181,8 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                       onChanged: (text) {
                         note = text;
                       },
-                      cursorColor: Color.fromARGB(255, 101, 74, 64),
-                      decoration: InputDecoration(
+                      cursorColor: const Color.fromARGB(255, 101, 74, 64),
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                       ),
                     ),

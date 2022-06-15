@@ -2,57 +2,57 @@ class TestStudent {
   final String test;
   final String student;
   final String date;
-  final String AyaDebut;
-  final String AyaFin;
-  final String SouraDebut;
-  final String SouraFin;
+  final String ayaDebut;
+  final String ayaFin;
+  final String souraDebut;
+  final String souraFin;
   final String mark;
 
   const TestStudent(
       {required this.test,
       required this.student,
       required this.date,
-      required this.AyaDebut,
-      required this.AyaFin,
-      required this.SouraDebut,
-      required this.SouraFin,
+      required this.ayaDebut,
+      required this.ayaFin,
+      required this.souraDebut,
+      required this.souraFin,
       required this.mark});
 
   static TestStudent fromJson(json) => TestStudent(
       test: json['test'],
       student: json['student'],
       date: json['date'],
-      AyaDebut: json['AyaDebut'],
-      AyaFin: json['AyaFin'],
-      SouraDebut: json['SouraDebut'],
-      SouraFin: json['SouraFin'],
+      ayaDebut: json['AyaDebut'],
+      ayaFin: json['AyaFin'],
+      souraDebut: json['SouraDebut'],
+      souraFin: json['SouraFin'],
       mark: json['mark']);
 }
 
 class TestTeacher {
   final String id;
   final String date;
-  final String AyaDebut;
-  final String AyaFin;
-  final String SouraDebut;
-  final String SouraFin;
+  final String ayaDebut;
+  final String ayaFin;
+  final String souraDebut;
+  final String souraFin;
 
   const TestTeacher({
     required this.id,
     required this.date,
-    required this.AyaDebut,
-    required this.AyaFin,
-    required this.SouraDebut,
-    required this.SouraFin,
+    required this.ayaDebut,
+    required this.ayaFin,
+    required this.souraDebut,
+    required this.souraFin,
   });
 
   static TestTeacher fromJson(json) => TestTeacher(
         id: json['id'],
         date: json['date'],
-        AyaDebut: json['AyaDebut'],
-        AyaFin: json['AyaFin'],
-        SouraDebut: json['SouraDebut'],
-        SouraFin: json['SouraFin'],
+        ayaDebut: json['AyaDebut'],
+        ayaFin: json['AyaFin'],
+        souraDebut: json['SouraDebut'],
+        souraFin: json['SouraFin'],
       );
 }
 

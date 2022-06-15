@@ -1,5 +1,5 @@
 import 'package:quran/quran.dart' as quran;
-import '../sora_text.dart';
+import 'sora_text.dart';
 import 'package:flutter/material.dart';
 
 class Moshaf extends StatelessWidget {

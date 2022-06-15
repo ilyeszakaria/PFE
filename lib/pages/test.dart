@@ -38,7 +38,7 @@ class _TestState extends State<Test> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -58,7 +58,7 @@ class _TestState extends State<Test> {
                         },
                       );
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.calendar_month,
                       color: Colors.brown,
                     ),
@@ -74,17 +74,17 @@ class _TestState extends State<Test> {
                       border: Border.all(color: Colors.brown, width: 3),
                     ),
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                   ),
-                  Text("اخر اجل يوم")
+                  const Text("اخر اجل يوم")
                 ],
               ),
               height: 65,
               width: double.infinity,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -103,11 +103,11 @@ class _TestState extends State<Test> {
                               });
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.watch_later,
                             color: Colors.brown,
                           )),
-                      VerticalDivider(
+                      const VerticalDivider(
                         color: Colors.white,
                       ),
                       Container(
@@ -120,10 +120,10 @@ class _TestState extends State<Test> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.brown, width: 3)),
                       ),
-                      VerticalDivider(
+                      const VerticalDivider(
                         color: Colors.white,
                       ),
-                      Text("على الساعة"),
+                      const Text("على الساعة"),
                     ],
                   )
                 ],
@@ -131,7 +131,7 @@ class _TestState extends State<Test> {
             ),
             Container(
               alignment: Alignment.topRight,
-              child: Text(
+              child: const Text(
                 "قائمة التلاميذ",
                 style: TextStyle(
                   fontSize: 20,
@@ -144,11 +144,11 @@ class _TestState extends State<Test> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: Text(
+        label: const Text(
           "ارسال",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.send,
           size: 30,
         ),
