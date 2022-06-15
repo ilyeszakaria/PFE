@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:application3/models/messageTilawaModel1.dart';
+import '../models/message_tilawa_model1.dart';
+import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,13 +9,12 @@ import 'package:permission_handler/permission_handler.dart';
 class MessageTestTeacher extends StatefulWidget {
   final String idtest;
   final String idstudent;
-  final String username;
-  const MessageTestTeacher(
-      {Key? key,
-      required this.idstudent,
-      required this.idtest,
-      required this.username})
-      : super(key: key);
+  final String username = '';
+  const MessageTestTeacher({
+    Key? key,
+    required this.idstudent,
+    required this.idtest,
+  }) : super(key: key);
 
   @override
   State<MessageTestTeacher> createState() => _MessageTestTeacherState();
@@ -53,8 +53,7 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
     await recorder.stopRecorder();
   }
 
-  static Future<List<MessageTilawa>> getmessageTilawa(
-      BuildContext context) async {
+  Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/MessageTilawa.json');
     final body = json.decode(data);
@@ -65,54 +64,11 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          title: Row(
-            children: [
-              VerticalDivider(
-                width: 20,
-              ),
-              Text(
-                "18",
-              ),
-              VerticalDivider(),
-              Text(
-                "النساء",
-              ),
-              VerticalDivider(
-                width: 25,
-              ),
-              Text(
-                "الى",
-              ),
-              VerticalDivider(
-                width: 20,
-              ),
-              Text(
-                "20",
-              ),
-              VerticalDivider(),
-              Text(
-                "البقرة",
-              ),
-              Text(
-                "من",
-              ),
-            ],
-          ),
-          elevation: 10,
-          backgroundColor: Colors.brown[400]),
+    return ScaffoldWidget(
+      pageTitle: 'اختبار',
       body: Stack(
         children: <Widget>[
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 600,
             child: FutureBuilder<List<MessageTilawa>>(
@@ -191,9 +147,7 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                         width: 15,
                       ),
                       FloatingActionButton(
-                        onPressed: () {
-                          print("envoyer");
-                        },
+                        onPressed: () {},
                         child: Icon(
                           Icons.send,
                           color: Colors.white,
@@ -227,10 +181,6 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
                       onChanged: (text) {
                         note = text;
                       },
-                      style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: ' Cairo'),
                       cursorColor: Color.fromARGB(255, 101, 74, 64),
                       decoration: InputDecoration(
                         border: InputBorder.none,

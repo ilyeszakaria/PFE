@@ -4,11 +4,11 @@ import 'pages/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
-  App({Key? key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -18,6 +18,7 @@ class App extends StatelessWidget {
         builder: (context, AsyncSnapshot<bool> snapshot) {
           return snapshot.hasData
               ? MaterialApp(
+                  debugShowCheckedModeBanner: false,
                   theme: ThemeData(
                     primaryColor: Colors.brown,
                     fontFamily: 'Cairo',

@@ -44,12 +44,12 @@ class _LoginState extends State<Login> {
           title: Container(
             alignment: Alignment.center,
             width: double.infinity,
-            child: Text(
+            child: const Text(
               "تسجيل الدخول",
             ),
           ),
           elevation: 10,
-          backgroundColor: Color.fromARGB(255, 107, 75, 64)),
+          backgroundColor: const Color.fromARGB(255, 107, 75, 64)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -94,9 +94,7 @@ class _LoginState extends State<Login> {
                         style: TextStyle(fontSize: 12),
                       ),
                     ),
-                    onTap: () {
-                      print("reset pw button");
-                    },
+                    onTap: () {},
                   )
                 ],
               ),
@@ -127,12 +125,10 @@ class _LoginState extends State<Login> {
                     if (valid) {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Home(),
+                          builder: (context) => const Home(),
                         ),
                       );
-                    } else {
-                      print("false");
-                    }
+                    } else {}
                   }
                 },
               ),
@@ -150,7 +146,7 @@ class _LoginState extends State<Login> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return const SignIn();
+                        return const SignUp();
                       },
                     ),
                   );

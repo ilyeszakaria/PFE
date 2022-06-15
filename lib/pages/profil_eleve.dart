@@ -3,15 +3,9 @@ import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-// المراجعات والاختبارات
-class ProfilEleve extends StatefulWidget {
-  ProfilEleve({Key? key}) : super(key: key);
+class ProfilEleve extends StatelessWidget {
+  const ProfilEleve({Key? key}) : super(key: key);
 
-  @override
-  State<ProfilEleve> createState() => _ProfilEleveState();
-}
-
-class _ProfilEleveState extends State<ProfilEleve> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
@@ -23,10 +17,10 @@ class _ProfilEleveState extends State<ProfilEleve> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  padding: EdgeInsets.only(right: 70),
+                  padding: const EdgeInsets.only(right: 70),
                   child: CircularPercentIndicator(
                     radius: 40,
-                    center: Text(
+                    center: const Text(
                       "35%",
                       style: TextStyle(
                         fontSize: 22,
@@ -34,7 +28,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                       ),
                     ),
                     lineWidth: 10,
-                    progressColor: Color.fromARGB(255, 148, 127, 119),
+                    progressColor: const Color.fromARGB(255, 148, 127, 119),
                     percent: 0.35,
                   ),
                 ),
@@ -43,7 +37,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                   child: Column(
                     children: [
                       Container(
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           child: Icon(
                             Icons.person,
                             size: 50,
@@ -53,7 +47,7 @@ class _ProfilEleveState extends State<ProfilEleve> {
                         ),
                         height: 85,
                         width: 110,
-                        margin: EdgeInsets.only(top: 15),
+                        margin: const EdgeInsets.only(top: 15),
                       ),
                     ],
                   ),

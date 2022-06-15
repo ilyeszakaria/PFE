@@ -3,7 +3,7 @@ import '../sora_text.dart';
 import 'package:flutter/material.dart';
 
 class Moshaf extends StatelessWidget {
-  Moshaf({Key? key}) : super(key: key);
+  const Moshaf({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +11,7 @@ class Moshaf extends StatelessWidget {
       appBar: AppBar(
         title: Container(
           width: double.infinity,
-          child: Text(
-            "المصحف",
-          ),
+          child: const Text("المصحف"),
           alignment: Alignment.center,
         ),
         backgroundColor: Colors.brown,

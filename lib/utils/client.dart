@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'prefs.dart';
 import 'package:http/http.dart' as http;
+
+const serverDomain = '192.168.43.8:8000';
 
 class Client {
   Client(this.baseUrl);
@@ -31,8 +32,7 @@ class Client {
     Map<String, dynamic>? body,
   }) async {
     var token = Globals.token;
-    Map<String, String> headers = Map();
-    headers['Content-Type'] = 'application/json';
+    Map<String, String> headers = {'Content-Type': 'application/json'};
 
     if (token != null) {
       headers['Authorization'] = token;
@@ -61,9 +61,10 @@ class Client {
     data!.forEach((key, value) {
       request.fields[key] = value.toString();
     });
-    var res = await request.send();
-    if (res.statusCode == 200) print('Uploaded!');
+    await request.send();
   }
 }
 
-var client = Client('http://192.168.1.108:8000');
+var client = Client('http://$serverDomain');
+
+// wave soft

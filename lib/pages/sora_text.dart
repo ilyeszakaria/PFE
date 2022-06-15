@@ -1,4 +1,4 @@
-import '../widgets/scaffold.dart';
+import '../../widgets/scaffold.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:flutter/material.dart';
 

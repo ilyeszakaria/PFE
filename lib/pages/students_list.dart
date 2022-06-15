@@ -1,32 +1,24 @@
-import 'dart:convert';
-import 'package:application3/pages/liste_eleve_invitation.dart';
-import 'package:application3/pages/profil_eleve.dart';
-import 'package:application3/widgets/scaffold.dart';
-import '../models/messageTilawaModel1.dart';
+import '../models/users.dart';
+import '../pages/profil_eleve.dart';
+import '../utils/client.dart';
+import '../utils/prefs.dart';
+import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
-class ListeEleve extends StatefulWidget {
-  final String username;
-  const ListeEleve({Key? key, required this.username}) : super(key: key);
+class StudentsList extends StatelessWidget {
+  const StudentsList({Key? key}) : super(key: key);
 
-  @override
-  State<ListeEleve> createState() => _ListeEleveState();
-}
-
-class _ListeEleveState extends State<ListeEleve> {
-  static Future<List<student>> getstudent(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/student.json');
-    final body = json.decode(data);
-    return body.map<student>(student.fromJson).toList();
+  Future<List<User>> getStudents() async {
+    List data = await client.get('/users/${Globals.userId}/students');
+    return data.map<User>((e) => User.fromJson(e)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       pageTitle: 'قائمة الطلاب',
-      body: FutureBuilder<List<student>>(
-        future: getstudent(context),
+      body: FutureBuilder<List<User>>(
+        future: getStudents(),
         builder: (context, snapchot) {
           final students = snapchot.data;
           return ListView.separated(
@@ -44,7 +36,7 @@ class _ListeEleveState extends State<ListeEleve> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return ProfilEleve();
+                        return const ProfilEleve();
                       },
                     ),
                   );
@@ -56,11 +48,9 @@ class _ListeEleveState extends State<ListeEleve> {
                         alignment: Alignment.center,
                         height: 55,
                         width: 150,
-                        child: Text(
-                          student.username,
-                        ),
+                        child: Text(student.name),
                       ),
-                      Container(
+                      const SizedBox(
                         width: 80,
                         height: 55,
                         child: CircleAvatar(
@@ -77,7 +67,7 @@ class _ListeEleveState extends State<ListeEleve> {
                   height: 70,
                   decoration: BoxDecoration(
                     color: Colors.grey,
-                    boxShadow: [BoxShadow(blurRadius: 1)],
+                    boxShadow: const [BoxShadow(blurRadius: 1)],
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),

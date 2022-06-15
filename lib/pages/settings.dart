@@ -7,7 +7,7 @@ import '../widgets/input.dart';
 import '../widgets/scaffold.dart';
 
 class Settings extends StatefulWidget {
-  Settings({Key? key}) : super(key: key);
+  const Settings({Key? key}) : super(key: key);
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -79,16 +79,12 @@ class _SettingsState extends State<Settings> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ButtonWidget(
-                      onPressed: () {
-                        print("object");
-                      },
+                      onPressed: () {},
                       text: "حفظ",
                     ),
                     const SizedBox(width: 30),
                     ButtonWidget(
-                      onPressed: () {
-                        print("object");
-                      },
+                      onPressed: () {},
                       text: "إلغاء",
                     ),
                   ],

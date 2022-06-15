@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class InputWidget extends StatelessWidget {
-  InputWidget({
+  const InputWidget({
     Key? key,
     required this.title,
     required this.controller,
     this.icon,
     this.obscureText = false,
   }) : super(key: key);
-  TextEditingController controller;
-  bool obscureText;
+  final TextEditingController controller;
+  final bool obscureText;
   final Color borderColor = const Color.fromARGB(255, 101, 74, 64);
   final IconData? icon;
   final String title;
@@ -58,10 +58,10 @@ class InputWidget extends StatelessWidget {
 }
 
 class ButtonWidget extends StatelessWidget {
-  void Function() onPressed;
-  bool expended;
-  String text;
-  ButtonWidget({
+  final void Function() onPressed;
+  final bool expended;
+  final String text;
+  const ButtonWidget({
     Key? key,
     required this.text,
     required this.onPressed,

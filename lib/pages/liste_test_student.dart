@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'test_chat.dart';
-import '../models/messageTilawaModel1.dart';
+import '../models/message_tilawa_model1.dart';
 import '../widgets/scaffold.dart';
 
-class ListeTestStudent extends StatelessWidget {
-  ListeTestStudent({Key? key}) : super(key: key);
+class StudentTestsList extends StatelessWidget {
+  const StudentTestsList({Key? key}) : super(key: key);
   Future<List<TestStudent>> getTestStudent(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/TestStudent.json');
@@ -14,7 +14,7 @@ class ListeTestStudent extends StatelessWidget {
     return body.map<TestStudent>(TestStudent.fromJson).toList();
   }
 
-  String pageTitle = 'الاختبارات';
+  final String pageTitle = 'الاختبارات';
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
@@ -32,7 +32,7 @@ class ListeTestStudent extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return TestChat();
+                        return const TestChat();
                       },
                     ),
                   );
@@ -40,73 +40,48 @@ class ListeTestStudent extends StatelessWidget {
                 child: Container(
                   child: Row(
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
-                            height: 30,
-                            width: 100,
-                            child: Text(
-                              test.date,
-                              style: TextStyle(fontSize: 10),
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: 50,
-                            width: 100,
-                            child: Text("7.5"),
+                          Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.centerRight,
+                                height: 40,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(test.AyaDebut),
+                                    Text("الاية رقم"),
+                                    Text(test.SouraDebut),
+                                    Text("من سورة")
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                height: 40,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(test.AyaFin),
+                                    Text("اللاية رقم"),
+                                    Text(test.SouraFin),
+                                    Text("الى سورة")
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Container(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            child: Column(
-                              children: [
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  height: 40,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(test.AyaDebut),
-                                      Text("الاية رقم"),
-                                      Text(test.SouraDebut),
-                                      Text("من سورة")
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  height: 40,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(test.AyaFin),
-                                      Text("اللاية رقم"),
-                                      Text(test.SouraFin),
-                                      Text("الى سورة")
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          VerticalDivider(
-                            color: Colors.grey,
-                          ),
-                        ],
-                      )),
                     ],
                     mainAxisAlignment: MainAxisAlignment.end,
                   ),
                   height: 80,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    boxShadow: [BoxShadow(blurRadius: 1)],
+                    boxShadow: const [BoxShadow(blurRadius: 1)],
                     color: Colors.grey,
                   ),
                   width: double.infinity,

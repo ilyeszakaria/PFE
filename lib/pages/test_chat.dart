@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import '../widgets/scaffold.dart';
 
-import '../models/messageTilawaModel1.dart';
+import '../models/message_tilawa_model1.dart';
 import 'package:flutter/material.dart';
 
 class TestChat extends StatefulWidget {
   final String username = '';
-  TestChat({
+  const TestChat({
     Key? key,
   }) : super(key: key);
 
@@ -16,8 +16,7 @@ class TestChat extends StatefulWidget {
 }
 
 class _TestChatState extends State<TestChat> {
-  static Future<List<MessageTilawa>> getmessageTilawa(
-      BuildContext context) async {
+  Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async {
     final assetBundel = DefaultAssetBundle.of(context);
     final data = await assetBundel.loadString('assets/MessageTilawa.json');
     final body = json.decode(data);
@@ -35,21 +34,16 @@ class _TestChatState extends State<TestChat> {
             height: 600,
             child: FutureBuilder<List<MessageTilawa>>(
               future: getmessageTilawa(context),
-              builder: (context, snapchot) {
-                final messagesTilawa = snapchot.data;
+              builder: (context, snapshot) {
+                final messagesTilawa = snapshot.data;
                 return ListView.builder(
                   itemCount: messagesTilawa?.length ?? 0,
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   itemBuilder: (context, index) {
                     final messageTilawa = messagesTilawa![index];
                     return Container(
-                      padding: EdgeInsets.only(
-                        left: 14,
-                        right: 14,
-                        top: 10,
-                        bottom: 10,
-                      ),
+                      padding: const EdgeInsets.all(10),
                       child: Align(
                         alignment: (messageTilawa.sender != widget.username
                             ? Alignment.topLeft
@@ -61,10 +55,10 @@ class _TestChatState extends State<TestChat> {
                                 ? Colors.grey.shade200
                                 : Colors.brown[200]),
                           ),
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: Text(
                             messageTilawa.audio,
-                            style: TextStyle(fontSize: 15),
+                            style: const TextStyle(fontSize: 15),
                           ),
                         ),
                       ),
@@ -75,81 +69,24 @@ class _TestChatState extends State<TestChat> {
             ),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-              height: 320,
-              width: double.infinity,
-              color: Colors.white,
-              child: Column(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      print("recorder");
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.mic,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ),
+              padding: const EdgeInsets.all(8),
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.brown,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: TextField(
-                          textAlign: TextAlign.end,
-                          decoration: InputDecoration(
-                              hintText: "ملاحظة",
-                              hintStyle: TextStyle(color: Colors.black54),
-                              border: InputBorder.none),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      FloatingActionButton(
-                        onPressed: () {
-                          print("envoyer");
-                        },
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        backgroundColor: Colors.brown,
-                        elevation: 0,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    "00:00",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
-                  ),
-                  Divider(
+                  child: const Icon(
+                    Icons.mic,
                     color: Colors.white,
+                    size: 25,
                   ),
-                  Container(
-                    child: Text(
-                      "العلامة",
-                      style: TextStyle(),
-                    ),
-                  ),
-                  Text(
-                    "7.5",
-                    style: TextStyle(fontSize: 35),
-                  )
-                ],
+                ),
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/liste_test_teacher.dart';
 import '../utils/client.dart';
 import '../utils/prefs.dart';
 import '../models/users.dart';
@@ -11,9 +12,9 @@ import '../pages/revisions_list.dart';
 import '../pages/settings.dart';
 
 class StudentDrawer extends Drawer {
-  User user;
+  final User user;
   StudentDrawer({Key? key, required this.user}) : super(key: key);
-  var drawerItems = [
+  final drawerItems = [
     {
       'icon': Icons.assignment,
       'title': 'المراجعات',
@@ -27,17 +28,17 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.assignment,
       'title': 'الاختبارات',
-      'next': ListeTestStudent(),
+      'next': const StudentTestsList(),
     },
     {
       'icon': Icons.menu_book,
       'title': 'المصحف',
-      'next': Moshaf(),
+      'next': const Moshaf(),
     },
     {
       'icon': Icons.settings,
       'title': 'إعدادات الحساب',
-      'next': Settings(),
+      'next': const Settings(),
     },
     {
       'icon': Icons.exit_to_app,
@@ -103,7 +104,7 @@ class StudentDrawer extends Drawer {
             ),
             backgroundColor: Colors.grey,
           ),
-          decoration: BoxDecoration(color: Colors.brown[400]),
+          decoration: const BoxDecoration(color: Colors.brown),
         ),
         Expanded(
           child: ListView(
@@ -120,7 +121,12 @@ class TeacherDrawer extends StudentDrawer {
     drawerItems[0] = {
       'icon': Icons.list,
       'title': 'تلاميذي',
-      'next': const ListeEleve(username: ''),
+      'next': const StudentsList(),
+    };
+    drawerItems[2] = {
+      'icon': Icons.assignment,
+      'title': 'الاختبارات',
+      'next': const TeacherTestsList(),
     };
   }
 }

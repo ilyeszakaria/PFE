@@ -1,21 +1,11 @@
 [
   {
     "username": "djail",
-    "sender": "ilyeszakaria",
+    "sender": "ilyes zakaria",
     "date": "20/11/1999",
-    "audio": "http://192.168.1.108:8000/sound.mp3",
+    "audio": "اقرأ من قوله تعالى: (قل إنما أنا منذر) من سورة ص إلى آخرها",
     "text": "كتابة",
     "senderId": 2,
-    "seen": true,
-    "name": "name"
-  },
-  {
-    "username": "djail",
-    "sender": "ilyeszakaria",
-    "date": "20/11/1999",
-    "audio": "http://192.168.1.108:8000/sound.mp3",
-    "text": "كتابة",
-    "senderId": 1,
     "seen": true,
     "name": "name"
   }

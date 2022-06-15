@@ -30,7 +30,7 @@ class ScaffoldWidget extends Scaffold {
                   ),
                 ),
                 elevation: 10,
-                backgroundColor: Colors.brown[400],
+                backgroundColor: Colors.brown,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.arrow_back,

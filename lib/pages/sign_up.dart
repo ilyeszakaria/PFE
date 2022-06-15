@@ -1,42 +1,32 @@
-import 'dart:convert';
-
-import 'package:application3/models/users.dart';
-import 'package:application3/widgets/input.dart';
-import 'package:application3/widgets/scaffold.dart';
+import '../widgets/input.dart';
+import '../widgets/scaffold.dart';
 
 import 'login.dart';
 import 'sign_up2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
-  DateTime time = DateTime.now();
-  String firstName = 'a';
-  String lastName = 'a';
-  String username = 'a';
-  String email = 'a';
-  String password = 'a';
-  String password2 = 'a';
-  String phone = 'a';
+class _SignUpState extends State<SignUp> {
+  String sex = 'male';
+  bool isTeacher = false;
+  bool isStudent = false;
 
   Map controllers = {
     'firstName': TextEditingController(),
     'lastName': TextEditingController(),
-    'username': TextEditingController(),
     'email': TextEditingController(),
     'password': TextEditingController(),
     'password2': TextEditingController(),
     'phone': TextEditingController(),
   };
 
-  @override
   @override
   void dispose() {
     controllers.forEach((key, value) {
@@ -54,6 +44,7 @@ class _SignInState extends State<SignIn> {
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               InputWidget(
                 title: 'الاسم',
@@ -63,12 +54,7 @@ class _SignInState extends State<SignIn> {
                 title: 'اللقب',
                 controller: controllers['lastName'],
               ),
-              // InputWidget(title: title, controller: controllers)
-              InputWidget(
-                title: 'اسم المستخدم',
-                controller: controllers['username'],
-                icon: Icons.person,
-              ),
+              // InputWidget(title: title, controller: controllers
               InputWidget(
                 title: 'البريد الإلكتروني',
                 controller: controllers['email'],
@@ -94,42 +80,128 @@ class _SignInState extends State<SignIn> {
               const Divider(
                 color: Colors.transparent,
               ),
+              const Text(
+                "الجنس",
+                textAlign: TextAlign.right,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  {'text': "أنثى", 'value': 'female'},
+                  {'text': "ذكر", 'value': 'male'},
+                ]
+                    .map(
+                      (Map<String, String> e) => Row(
+                        children: [
+                          Text(e['text']!),
+                          Radio<String>(
+                            value: e['value']!,
+                            onChanged: (String? v) {
+                              setState(() {
+                                sex = v!;
+                              });
+                            },
+                            fillColor: MaterialStateProperty.all(Colors.brown),
+                            autofocus: e['value'] == 'male',
+                            groupValue: sex,
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
+              const Text("نوع المستخدم"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      const Text("معلم"),
+                      Checkbox(
+                        value: isTeacher,
+                        onChanged: (v) {
+                          setState(() {
+                            isTeacher = v!;
+                          });
+                        },
+                        fillColor: MaterialStateProperty.all(Colors.brown),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text(" طالب"),
+                      Checkbox(
+                        value: isStudent,
+                        onChanged: (v) {
+                          setState(() {
+                            isStudent = v!;
+                          });
+                        },
+                        fillColor: MaterialStateProperty.all(Colors.brown),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              // const Text("كم تحفظ من القران الكريم؟"),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ButtonWidget(
                     onPressed: () async {
-                      if (email == "" ||
-                          lastName == "" ||
-                          firstName == "" ||
-                          username == "" ||
-                          password == "" ||
-                          password2 == "" ||
-                          phone == "") {
-                        final text = 'الرجاء ملء كل الحقول';
-                        final snackbar = SnackBar(
+                      bool notEmpty = true;
+                      controllers.forEach(
+                        (key, value) {
+                          notEmpty = notEmpty && value.text.isNotEmpty;
+                        },
+                      );
+                      if (!notEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
                             content: Container(
-                          alignment: Alignment.center,
-                          height: 50,
-                          width: double.infinity,
-                          child: Text(
-                            text,
-                            style: TextStyle(fontSize: 12),
+                              alignment: Alignment.center,
+                              height: 50,
+                              width: double.infinity,
+                              child: const Text(
+                                'الرجاء ملء كل الحقول',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
                           ),
-                        ));
-                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        );
+                      } else if (!isTeacher && !isStudent) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Container(
+                              alignment: Alignment.center,
+                              height: 50,
+                              width: double.infinity,
+                              child: const Text(
+                                'الرجاء ادخال نوع المستخدم',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        );
                       } else {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          return SignIn2(
-                            email: email,
-                            lastName: lastName,
-                            firstName: firstName,
-                            username: username,
-                            password: password,
-                            phone: phone,
-                          );
-                        }));
+                        Map<String, dynamic> data = {};
+                        controllers.forEach((key, value) {
+                          data[key] = value.text;
+                        });
+                        data.remove('password2');
+                        data['isTeacher'] = isTeacher;
+                        data['isStudent'] = isStudent;
+                        data['sex'] = sex;
+
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SignUp2(data: data);
+                            },
+                          ),
+                        );
                       }
                     },
                     text: "مواصلة",
@@ -137,10 +209,9 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(width: 20),
                   ButtonWidget(
                     onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return Login();
-                      }));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Login()),
+                      );
                     },
                     text: "إلغاء",
                   ),
