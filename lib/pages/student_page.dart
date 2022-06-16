@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../mixins/chat.dart';
 import '../models/users.dart';
@@ -20,64 +19,54 @@ class StudentPage extends StatelessWidget
     return ScaffoldWidget(
       pageTitle: pageTitle,
       endDrawer: drawer,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListTile(
-                title: Text(
-                  user.name,
-                  textAlign: TextAlign.right,
-                ),
-                subtitle: Text(
-                  role,
-                  textAlign: TextAlign.right,
-                  style: const TextStyle(fontSize: 10),
-                ),
-                trailing: const CircleAvatar(
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                  ),
-                  radius: 30,
-                  backgroundColor: Colors.grey,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ListTile(
+              title: Text(
+                user.name,
+                textAlign: TextAlign.right,
               ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'التلاوات',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+              subtitle: Text(
+                role,
+                textAlign: TextAlign.right,
+                style: const TextStyle(fontSize: 10),
+              ),
+              trailing: const CircleAvatar(
+                child: Icon(
+                  Icons.person,
+                  color: Colors.black,
                 ),
+                radius: 30,
+                backgroundColor: Colors.grey,
               ),
-              SizedBox(
-                height: 260,
-                width: double.infinity,
-                child: tilawatListBuilder(),
+            ),
+            const Text(
+              'التلاوات',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'المحادثات',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            ),
+            SizedBox(
+              height: 260,
+              child: tilawatListBuilder(),
+            ),
+            const Text(
+              'المحادثات',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(
-                height: 260,
-                width: double.infinity,
-                child: chatListBuilder(),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 260,
+              child: chatListBuilder(),
+            ),
+          ],
         ),
       ),
     );

@@ -23,7 +23,7 @@ class App extends StatelessWidget {
                     primaryColor: Colors.brown,
                     fontFamily: 'Cairo',
                   ),
-                  home: snapshot.data! ? const Home() : const Login(),
+                  home: snapshot.data! ? const Home() : Login(),
                 )
               : Container(
                   color: Colors.brown,

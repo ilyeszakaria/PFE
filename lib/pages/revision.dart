@@ -1,3 +1,5 @@
+import 'package:application3/utils/prefs.dart';
+
 import '../widgets/chat.dart';
 import '../models/messages.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,8 @@ class Revision extends StatelessWidget {
     required this.tilawa,
   }) : super(key: key);
 
-  int get receiverId => 2; //widget.tilawa.other.userId;
+  int get receiverId =>
+      tilawa.studentId == Globals.userId ? tilawa.teacherId : tilawa.studentId;
 
   @override
   Widget build(BuildContext context) {

@@ -65,16 +65,18 @@ class StudentDrawer extends Drawer {
 
   @override
   Widget build(BuildContext context) {
-    var items = drawerItems.map((Map item) {
-      return ListTile(
-        title: _getDrawerItemTitle(item['title']),
-        onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => item['next']));
-        },
-        leading: Icon(item['icon']),
-      );
-    }).toList();
+    var items = [
+      for (Map item in drawerItems)
+        ListTile(
+          title: _getDrawerItemTitle(item['title']),
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => item['next']));
+          },
+          leading: Icon(item['icon']),
+        )
+    ];
+
     items[items.length - 1] = ListTile(
       title: _getDrawerItemTitle('تسجيل الخروج'),
       onTap: () async {
@@ -82,7 +84,7 @@ class StudentDrawer extends Drawer {
         await clearPrefs();
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const Login(),
+            builder: (context) => Login(),
           ),
         );
       },

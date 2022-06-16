@@ -26,7 +26,7 @@ class _SignUp2State extends State<SignUp2> {
 
   Future<List<User>> getTeachers() async {
     List data = await client.get('/users/teachers');
-    return data.map<User>(((e) => User.fromJson(e))).toList();
+    return [for (Map e in data) User.fromJson(e)];
   }
 
   int teacherId = 0;
@@ -38,7 +38,7 @@ class _SignUp2State extends State<SignUp2> {
         future: createUser(),
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? const Login()
+              ? Login()
               : const Center(child: CircularProgressIndicator());
         },
       );
@@ -54,19 +54,17 @@ class _SignUp2State extends State<SignUp2> {
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
                   User user = snapshot.data![index];
-                  return ListTile(
+                  return RadioListTile(
+                    value: user.id,
+                    groupValue: teacherId,
                     title: Text(
                       user.name,
                       textAlign: TextAlign.right,
                     ),
-                    leading: Radio<int>(
-                      value: user.id,
-                      groupValue: teacherId,
-                      fillColor: MaterialStateProperty.all(Colors.brown),
-                      onChanged: (int? v) => setState(() {
-                        teacherId = v!;
-                      }),
-                    ),
+                    activeColor: Colors.brown,
+                    onChanged: (int? v) => setState(() {
+                      teacherId = v!;
+                    }),
                   );
                 },
               );
@@ -84,7 +82,7 @@ class _SignUp2State extends State<SignUp2> {
                     try {
                       await createUser();
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const Login()),
+                        MaterialPageRoute(builder: (context) => Login()),
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(

@@ -29,33 +29,6 @@ class TestStudent {
       mark: json['mark']);
 }
 
-class TestTeacher {
-  final String id;
-  final String date;
-  final String ayaDebut;
-  final String ayaFin;
-  final String souraDebut;
-  final String souraFin;
-
-  const TestTeacher({
-    required this.id,
-    required this.date,
-    required this.ayaDebut,
-    required this.ayaFin,
-    required this.souraDebut,
-    required this.souraFin,
-  });
-
-  static TestTeacher fromJson(json) => TestTeacher(
-        id: json['id'],
-        date: json['date'],
-        ayaDebut: json['AyaDebut'],
-        ayaFin: json['AyaFin'],
-        souraDebut: json['SouraDebut'],
-        souraFin: json['SouraFin'],
-      );
-}
-
 class Reponce {
   final String username;
   final String test;

@@ -73,19 +73,18 @@ class _HomeState extends State<Home> {
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <String>['مرحبا', user.name]
-                      .map<Text>(
-                        (text) => Text(
-                          text,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.brown,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  children: [
+                    for (String text in ['مرحبا', user.name])
+                      Text(
+                        text,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.brown,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                      )
-                      .toList(),
+                      ),
+                  ],
                 ),
                 Container(
                   height: 250,

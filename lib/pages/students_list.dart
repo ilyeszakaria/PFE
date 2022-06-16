@@ -1,17 +1,11 @@
 import '../models/users.dart';
 import '../pages/profil_eleve.dart';
-import '../utils/client.dart';
-import '../utils/prefs.dart';
+import '../utils/getters.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 class StudentsList extends StatelessWidget {
   const StudentsList({Key? key}) : super(key: key);
-
-  Future<List<User>> getStudents() async {
-    List data = await client.get('/users/${Globals.userId}/students');
-    return data.map<User>((e) => User.fromJson(e)).toList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +30,7 @@ class StudentsList extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return const ProfilEleve();
+                        return ProfilEleve(student: student);
                       },
                     ),
                   );

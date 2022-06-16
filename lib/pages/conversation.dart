@@ -34,10 +34,7 @@ class Conversation extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width: 2,
-              ),
-              const SizedBox(
-                width: 12,
+                width: 14,
               ),
               Expanded(
                 child: Column(

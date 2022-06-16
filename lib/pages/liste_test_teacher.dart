@@ -1,9 +1,11 @@
-import 'dart:convert';
+import '../models/tests.dart';
+import '../utils/client.dart';
+
+import '../utils/prefs.dart';
 import '../widgets/scaffold.dart';
 
 import 'reponse_test.dart';
 import 'test.dart';
-import '../models/message_tilawa_model1.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,39 +17,33 @@ class TeacherTestsList extends StatefulWidget {
 }
 
 class _TeacherTestsListState extends State<TeacherTestsList> {
-  Future<List<TestTeacher>> getTestTeacher(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/TestTeacher.json');
-    final body = json.decode(data);
-    return body.map<TestTeacher>(TestTeacher.fromJson).toList();
+  Future<List<TestModel>> getTeacherTests() async {
+    var data = await client.get('/tests/teacher/${Globals.userId}');
+    return [for (Map t in data) TestModel.fromJson(t)];
   }
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       pageTitle: 'الاختبارات',
-      body: FutureBuilder<List<TestTeacher>>(
-        future: getTestTeacher(context),
+      body: FutureBuilder<List<TestModel>>(
+        future: getTeacherTests(),
         builder: (context, snapshot) {
           final tests = snapshot.data;
           return ListView.builder(
             itemCount: tests?.length ?? 0,
             itemBuilder: (context, index) {
               final test = tests![index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ReponseTest(
-                          testId: test.id,
-                          datetest: test.date,
-                        );
-                      },
-                    ),
-                  );
-                },
-                child: Text(test.id),
+              return ListTile(
+                title: Text(
+                  test.question,
+                  textAlign: TextAlign.right,
+                ),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ReponseTest(test: test),
+                  ),
+                ),
               );
             },
           );
@@ -74,7 +70,7 @@ class _TeacherTestsListState extends State<TeacherTestsList> {
           Icons.add,
           size: 30,
         ),
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.brown,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

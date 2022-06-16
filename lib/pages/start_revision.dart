@@ -1,6 +1,7 @@
 import '../models/messages.dart';
 import '../pages/revision.dart';
 import '../utils/client.dart';
+import '../utils/prefs.dart';
 import '../widgets/input.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _StartRevisionState extends State<StartRevision> {
   }
 
   Future<Tilawa> createTilawa() async {
-    var res = await client.post('/tilawa', body: {
+    var res = await client.post('/tilawa/${Globals.userId}', body: {
       "startAya": startAya,
       "startSora": startSora,
       "endAya": endAya,

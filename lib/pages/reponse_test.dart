@@ -1,24 +1,20 @@
-import 'dart:convert';
+import '../models/tests.dart';
+
 import 'message_test_teacher.dart';
 import '../models/message_tilawa_model1.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ReponseTest extends StatelessWidget {
-  final String testId;
-  final String datetest;
+  final TestModel test;
 
   const ReponseTest({
     Key? key,
-    required this.testId,
-    required this.datetest,
+    required this.test,
   }) : super(key: key);
 
-  Future<List<Reponce>> getReponce(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/Reponce.json');
-    final body = json.decode(data);
-    return body.map<Reponce>(Reponce.formJson).toList();
+  Future<List<Reponce>> getTestResponses() async {
+    return [];
   }
 
   @override
@@ -27,88 +23,35 @@ class ReponseTest extends StatelessWidget {
       pageTitle: 'اختبار',
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: const Text(
-                        "الاختبار",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Icon(Icons.calendar_month, color: Colors.brown),
-                  Text(datetest),
-                  const Text("اخر اجل يوم")
-                ],
-              ),
-              height: 65,
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Icon(
-                        Icons.watch_later,
-                        color: Colors.brown,
-                      ),
-                      VerticalDivider(
-                        color: Colors.white,
-                      ),
-                      Text(
-                        "15:30",
-                      ),
-                      VerticalDivider(
-                        color: Colors.white,
-                      ),
-                      Text("على الساعة"),
-                    ],
-                  )
-                ],
+            const Text(
+              "السؤال",
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  alignment: Alignment.centerRight,
-                  child: const Text(
-                    "الاجابات",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              ],
+            Text(
+              test.question,
+              textAlign: TextAlign.right,
+            ),
+            const Text(
+              "الإجابات",
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(
               height: 260,
               width: double.infinity,
               child: FutureBuilder<List<Reponce>>(
-                future: getReponce(context),
-                builder: (context, snapchot) {
-                  final reponces = snapchot.data;
+                future: getTestResponses(),
+                builder: (context, snapshot) {
+                  final reponces = snapshot.data;
                   return ListView.builder(
                     itemCount: reponces?.length ?? 0,
                     itemBuilder: (context, index) {

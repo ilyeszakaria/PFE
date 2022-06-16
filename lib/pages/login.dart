@@ -6,23 +6,11 @@ import '../widgets/input.dart';
 import '../utils/client.dart';
 import '../utils/prefs.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  Login({Key? key}) : super(key: key);
 
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordContoller = TextEditingController();
-
-  @override
-  dispose() {
-    emailController.dispose();
-    passwordContoller.dispose();
-    super.dispose();
-  }
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordContoller = TextEditingController();
 
   Future<bool> _login() async {
     var data = await client.post('/login', body: {
@@ -74,7 +62,7 @@ class _LoginState extends State<Login> {
                         ),
                       ))),
               InputWidget(
-                title: 'اسم المستخدم',
+                title: 'البريد الإلكتروني',
                 icon: Icons.person,
                 controller: emailController,
               ),
@@ -103,23 +91,26 @@ class _LoginState extends State<Login> {
                 text: "تسجيل الدخول",
                 expended: true,
                 onPressed: () async {
-                  if (emailController.text.isEmpty ||
-                      passwordContoller.text.isEmpty) {
-                    const text = 'الرجاء ادخال اسم المستخدم وكلملة المرور معا';
-                    final snackbar = SnackBar(
-                      content: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: double.infinity,
-                        child: const Text(
-                          text,
-                          style: TextStyle(
-                            fontSize: 12,
+                  snackbar(text) => SnackBar(
+                        content: Container(
+                          alignment: Alignment.center,
+                          height: 50,
+                          width: double.infinity,
+                          child: Text(
+                            text,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
                           ),
                         ),
+                      );
+                  if (emailController.text.isEmpty ||
+                      passwordContoller.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      snackbar(
+                        'الرجاء ادخال اسم المستخدم وكلملة المرور معا',
                       ),
                     );
-                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
                   } else {
                     var valid = await _login();
                     if (valid) {
@@ -128,7 +119,13 @@ class _LoginState extends State<Login> {
                           builder: (context) => const Home(),
                         ),
                       );
-                    } else {}
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        snackbar(
+                          'الرجاء التأكد من اسم المستخدم وكلملة المرور',
+                        ),
+                      );
+                    }
                   }
                 },
               ),

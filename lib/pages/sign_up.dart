@@ -83,28 +83,27 @@ class _SignUpState extends State<SignUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                {'text': "أنثى", 'value': 'female'},
-                {'text': "ذكر", 'value': 'male'},
-              ]
-                  .map(
-                    (Map<String, String> e) => Row(
-                      children: [
-                        Text(e['text']!),
-                        Radio<String>(
-                          value: e['value']!,
-                          onChanged: (String? v) {
-                            setState(() {
-                              sex = v!;
-                            });
-                          },
-                          fillColor: MaterialStateProperty.all(Colors.brown),
-                          autofocus: e['value'] == 'male',
-                          groupValue: sex,
-                        ),
-                      ],
-                    ),
-                  )
-                  .toList(),
+                for (Map e in [
+                  {'text': "أنثى", 'value': 'female'},
+                  {'text': "ذكر", 'value': 'male'},
+                ])
+                  Row(
+                    children: [
+                      Text(e['text']!),
+                      Radio<String>(
+                        value: e['value']!,
+                        onChanged: (String? v) {
+                          setState(() {
+                            sex = v!;
+                          });
+                        },
+                        fillColor: MaterialStateProperty.all(Colors.brown),
+                        autofocus: e['value'] == 'male',
+                        groupValue: sex,
+                      ),
+                    ],
+                  ),
+              ],
             ),
             const Text("نوع المستخدم"),
             Row(
@@ -204,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                 ButtonWidget(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Login()),
+                      MaterialPageRoute(builder: (context) => Login()),
                     );
                   },
                   text: "إلغاء",

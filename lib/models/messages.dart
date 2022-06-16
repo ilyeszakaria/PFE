@@ -52,6 +52,8 @@ class ConversationModel {
 
 class Tilawa {
   int id;
+  int studentId;
+  int teacherId;
   int startAya;
   String startSora;
   int endAya;
@@ -63,6 +65,8 @@ class Tilawa {
     required this.startSora,
     required this.endAya,
     required this.endSora,
+    required this.studentId,
+    required this.teacherId,
   });
 
   // create fromJson method
@@ -72,5 +76,7 @@ class Tilawa {
         startSora: json['startSora'],
         endAya: json['endAya'],
         endSora: json['endSora'],
+        studentId: json['studentId'],
+        teacherId: json['teacherId'],
       );
 }

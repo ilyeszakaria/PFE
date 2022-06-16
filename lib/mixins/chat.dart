@@ -16,12 +16,7 @@ mixin ChatHeadersMixin {
     List data = await client.get(
       '/conversations/${Globals.userId}?role=${Globals.role}',
     );
-    List<ConversationModel> conversations = data
-        .map(
-          (e) => ConversationModel.fromJson(e),
-        )
-        .toList();
-    return conversations;
+    return [for (Map e in data) ConversationModel.fromJson(e)];
   }
 
   Widget chatListBuilder() {
@@ -30,6 +25,7 @@ mixin ChatHeadersMixin {
       builder: (context, snapchot) {
         final conversations = snapchot.data;
         return ListView.separated(
+          shrinkWrap: true,
           separatorBuilder: (context, index) {
             return const Divider(
               color: Colors.white,
@@ -49,8 +45,7 @@ mixin TilawaHeadersMixin {
   Future<List<Tilawa>> getTilawatList() async {
     List data =
         await client.get('/tilawat/${Globals.userId}?role=${Globals.role}');
-    List<Tilawa> tilawat = data.map((e) => Tilawa.fromJson(e)).toList();
-    return tilawat;
+    return [for (Map e in data) Tilawa.fromJson(e)];
   }
 
   final noneMessage = 'ليس لديك تصحيحات';
@@ -61,13 +56,15 @@ mixin TilawaHeadersMixin {
         return snapshot.hasData
             ? snapshot.data!.isNotEmpty
                 ? ListView.separated(
+                    shrinkWrap: true,
                     separatorBuilder: (context, index) => const Divider(
                       color: Colors.white,
                       height: 2,
                     ),
                     itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) =>
-                        TilawaHeaderWidget(tilawa: snapshot.data![index]),
+                    itemBuilder: (context, index) => TilawaHeaderWidget(
+                      tilawa: snapshot.data![index],
+                    ),
                   )
                 : Center(
                     child: Text(
@@ -104,10 +101,9 @@ mixin MessagesMixin {
 
   Future<List<Message>> getMessages() async {
     List data = await client.get(
-      '$endpoint/${Globals.userId}?role=${Globals.role}',
+      '$endpoint/$chatId',
     );
-    List<Message> messages = data.map((e) => Message.fromJson(e)).toList();
-    return messages;
+    return [for (Map m in data) Message.fromJson(m)];
   }
 
   void sendMessage(String text) async {

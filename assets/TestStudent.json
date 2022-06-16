@@ -3,10 +3,10 @@
     "test": "1",
     "student": "1",
     "date": "20/11/1999",
-    "AyaDebut": "10",
-    "AyaFin": "20",
-    "SouraDebut": "الفاتحة",
-    "SouraFin": "الأنفال",
+    "ayaDebut": "10",
+    "ayaFin": "20",
+    "souraDebut": "الفاتحة",
+    "souraFin": "الأنفال",
     "mark": "10"
   }
 ]
