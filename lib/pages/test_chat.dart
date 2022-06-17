@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import '../widgets/scaffold.dart';
-
-import '../models/message_tilawa_model1.dart';
 import 'package:flutter/material.dart';
+import '../widgets/scaffold.dart';
 
 class TestChat extends StatefulWidget {
   final String username = '';
@@ -16,11 +12,8 @@ class TestChat extends StatefulWidget {
 }
 
 class _TestChatState extends State<TestChat> {
-  Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/MessageTilawa.json');
-    final body = json.decode(data);
-    return body.map<MessageTilawa>(MessageTilawa.fromJson).toList();
+  Future<List> getmessageTilawa() async {
+    return [];
   }
 
   @override
@@ -32,8 +25,8 @@ class _TestChatState extends State<TestChat> {
           SizedBox(
             width: double.infinity,
             height: 600,
-            child: FutureBuilder<List<MessageTilawa>>(
-              future: getmessageTilawa(context),
+            child: FutureBuilder<List>(
+              future: getmessageTilawa(),
               builder: (context, snapshot) {
                 final messagesTilawa = snapshot.data;
                 return ListView.builder(

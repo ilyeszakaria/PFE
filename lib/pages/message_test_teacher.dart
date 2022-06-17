@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import '../models/message_tilawa_model1.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -53,11 +50,8 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
     await recorder.stopRecorder();
   }
 
-  Future<List<MessageTilawa>> getmessageTilawa(BuildContext context) async {
-    final assetBundel = DefaultAssetBundle.of(context);
-    final data = await assetBundel.loadString('assets/MessageTilawa.json');
-    final body = json.decode(data);
-    return body.map<MessageTilawa>(MessageTilawa.fromJson).toList();
+  Future<List> getmessageTilawa() async {
+    return [];
   }
 
   late String note;
@@ -71,10 +65,10 @@ class _MessageTestTeacherState extends State<MessageTestTeacher> {
           SizedBox(
             width: double.infinity,
             height: 600,
-            child: FutureBuilder<List<MessageTilawa>>(
-              future: getmessageTilawa(context),
-              builder: (context, snapchot) {
-                final messagesTilawa = snapchot.data;
+            child: FutureBuilder<List>(
+              future: getmessageTilawa(),
+              builder: (context, snapshot) {
+                final messagesTilawa = snapshot.data;
                 return ListView.builder(
                   itemCount: messagesTilawa?.length ?? 0,
                   shrinkWrap: true,

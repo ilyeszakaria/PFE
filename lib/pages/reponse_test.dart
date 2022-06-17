@@ -1,7 +1,6 @@
 import '../models/tests.dart';
 
 import 'message_test_teacher.dart';
-import '../models/message_tilawa_model1.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class ReponseTest extends StatelessWidget {
     required this.test,
   }) : super(key: key);
 
-  Future<List<Reponce>> getTestResponses() async {
+  Future<List> getTestResponses() async {
     return [];
   }
 
@@ -48,7 +47,7 @@ class ReponseTest extends StatelessWidget {
             SizedBox(
               height: 260,
               width: double.infinity,
-              child: FutureBuilder<List<Reponce>>(
+              child: FutureBuilder<List>(
                 future: getTestResponses(),
                 builder: (context, snapshot) {
                   final reponces = snapshot.data;

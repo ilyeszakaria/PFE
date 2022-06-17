@@ -30,7 +30,7 @@ class StudentsList extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return ProfilEleve(student: student);
+                        return StudentProfile(student: student);
                       },
                     ),
                   );

@@ -58,90 +58,72 @@ class _TestState extends State<Test> {
             minLines: 3,
             maxLines: 3,
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: () async {
-                    DateTime? datetime = await showDatePicker(
-                        context: context,
-                        initialDate: time,
-                        firstDate: time,
-                        lastDate: DateTime(2100));
-                    setState(
-                      () {
-                        if (datetime != null) {
-                          time = datetime;
-                        }
-                      },
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.calendar_month,
-                    color: Colors.brown,
-                  ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () async {
+                  DateTime? datetime = await showDatePicker(
+                    context: context,
+                    initialDate: time,
+                    firstDate: time,
+                    lastDate: DateTime(2100),
+                  );
+                  setState(
+                    () {
+                      if (datetime != null) {
+                        time = datetime;
+                      }
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.calendar_month,
+                  color: Colors.brown,
                 ),
-                Container(
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: 35,
+                width: 80,
+                child: Text(
+                  '${time.year}/${time.month}/${time.day}',
+                ),
+              ),
+              const Text(
+                "يسلم قبل يوم",
+                textAlign: TextAlign.right,
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () async {
+                  var value = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+                  setState(() {
+                    time2 = value!;
+                  });
+                },
+                icon: const Icon(
+                  Icons.watch_later,
+                  color: Colors.brown,
+                ),
+              ),
+              Container(
                   alignment: Alignment.center,
                   height: 35,
                   width: 80,
-                  child: Text(
-                    '${time.year}/${time.month}/${time.day}',
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.brown, width: 2),
-                  ),
-                ),
-                const Text("اخر اجل يوم")
-              ],
-            ),
-            height: 65,
-            width: double.infinity,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.centerRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: () async {
-                        var value = await showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.now(),
-                        );
-                        setState(() {
-                          time2 = value!;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.watch_later,
-                        color: Colors.brown,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 35,
-                      width: 80,
-                      child: Text("${time2.hour}:${time2.minute}"),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.brown, width: 3),
-                      ),
-                    ),
-                    const VerticalDivider(
-                      color: Colors.white,
-                    ),
-                    const Text("على الساعة"),
-                  ],
-                )
-              ],
-            ),
+                  child: Text("${time2.hour}:${time2.minute}")),
+              const Text(
+                "على الساعة",
+                textAlign: TextAlign.right,
+              ),
+            ],
           ),
           const Text(
             "قائمة التلاميذ",

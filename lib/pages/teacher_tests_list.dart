@@ -17,7 +17,7 @@ class TeacherTestsList extends StatefulWidget {
 }
 
 class _TeacherTestsListState extends State<TeacherTestsList> {
-  Future<List<TestModel>> getTeacherTests() async {
+  Future<List<TestModel>> getTests() async {
     var data = await client.get('/tests/teacher/${Globals.userId}');
     return [for (Map t in data) TestModel.fromJson(t)];
   }
@@ -27,7 +27,7 @@ class _TeacherTestsListState extends State<TeacherTestsList> {
     return ScaffoldWidget(
       pageTitle: 'الاختبارات',
       body: FutureBuilder<List<TestModel>>(
-        future: getTeacherTests(),
+        future: getTests(),
         builder: (context, snapshot) {
           final tests = snapshot.data;
           return ListView.builder(

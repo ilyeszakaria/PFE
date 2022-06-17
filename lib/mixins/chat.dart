@@ -42,13 +42,13 @@ mixin ChatHeadersMixin {
 }
 
 mixin TilawaHeadersMixin {
+  final String endpoint = '/tilawat/${Globals.userId}?role=${Globals.role}';
   Future<List<Tilawa>> getTilawatList() async {
-    List data =
-        await client.get('/tilawat/${Globals.userId}?role=${Globals.role}');
+    List data = await client.get(endpoint);
     return [for (Map e in data) Tilawa.fromJson(e)];
   }
 
-  final noneMessage = 'ليس لديك تصحيحات';
+  final noneMessage = 'ليس هناك تلاوات';
   Widget tilawatListBuilder() {
     return FutureBuilder<List<Tilawa>>(
       future: getTilawatList(),

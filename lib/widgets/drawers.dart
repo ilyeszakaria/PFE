@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../pages/liste_test_teacher.dart';
+import '../pages/teacher_tests_list.dart';
 import '../utils/client.dart';
 import '../utils/prefs.dart';
 import '../models/users.dart';
 import '../pages/students_list.dart';
 import '../pages/login.dart';
 import '../pages/moshaf.dart';
-import '../pages/liste_test_student.dart';
+import '../pages/student_tests_list.dart';
 import '../pages/conversations_list.dart';
 import '../pages/revisions_list.dart';
 import '../pages/settings.dart';
