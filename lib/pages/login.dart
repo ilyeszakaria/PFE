@@ -114,10 +114,11 @@ class Login extends StatelessWidget {
                   } else {
                     var valid = await _login();
                     if (valid) {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                           builder: (context) => const Home(),
                         ),
+                        (route) => false,
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

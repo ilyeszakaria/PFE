@@ -4,8 +4,8 @@ import '../widgets/scaffold.dart';
 import '../mixins/chat.dart';
 import '../pages/start_revision.dart';
 
-class ListeRevision extends StatelessWidget with TilawaHeadersMixin {
-  ListeRevision({Key? key}) : super(key: key);
+class RevisionsList extends StatelessWidget with TilawaHeadersMixin {
+  RevisionsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class ListeRevision extends StatelessWidget with TilawaHeadersMixin {
           Icons.add,
           size: 30,
         ),
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.brown,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: tilawatListBuilder(),

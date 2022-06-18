@@ -41,7 +41,7 @@ class _TeacherTestsListState extends State<TeacherTestsList> {
                 ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ReponseTest(test: test),
+                    builder: (context) => TestResponsesList(test: test),
                   ),
                 ),
               );

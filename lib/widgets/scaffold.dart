@@ -31,14 +31,16 @@ class ScaffoldWidget extends Scaffold {
                 ),
                 elevation: 10,
                 backgroundColor: Colors.brown,
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
+                leading: Navigator.of(context).canPop()
+                    ? IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    : null,
               );
             }),
           ),

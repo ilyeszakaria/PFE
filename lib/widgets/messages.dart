@@ -94,20 +94,21 @@ class Timer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<RecordingDisposition>(
-        stream: recorder.onProgress,
-        builder: (context, snapshot) {
-          final duration =
-              snapshot.hasData ? snapshot.data!.duration : Duration.zero;
-          String twoDigits(int n) => n.toString().padLeft(2, '0');
-          String minutes = twoDigits(duration.inMinutes);
-          String seconds = twoDigits(duration.inSeconds % 60);
-          return Text(
-            '$minutes:$seconds',
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-          );
-        });
+      stream: recorder.onProgress,
+      builder: (context, snapshot) {
+        final duration =
+            snapshot.hasData ? snapshot.data!.duration : Duration.zero;
+        String twoDigits(int n) => n.toString().padLeft(2, '0');
+        String minutes = twoDigits(duration.inMinutes);
+        String seconds = twoDigits(duration.inSeconds % 60);
+        return Text(
+          '$minutes:$seconds',
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        );
+      },
+    );
   }
 }

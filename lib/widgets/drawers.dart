@@ -18,7 +18,7 @@ class StudentDrawer extends Drawer {
     {
       'icon': Icons.assignment,
       'title': 'المراجعات',
-      'next': ListeRevision(),
+      'next': RevisionsList(),
     },
     {
       'icon': Icons.chat,

@@ -70,7 +70,7 @@ class TilawaHeaderWidget extends StatelessWidget {
       },
       child: ListTile(
         contentPadding: const EdgeInsets.all(8),
-        tileColor: Colors.grey,
+        tileColor: Colors.grey[300],
         title: Text(
           title,
           textAlign: TextAlign.right,
@@ -181,11 +181,11 @@ class _ChatWidgetState extends State<ChatWidget> with MessagesMixin {
                         _setState(() => recording = !recording);
                       },
                       child: Container(
-                        height: 30,
-                        width: 30,
+                        height: 40,
+                        width: 40,
                         decoration: BoxDecoration(
                           color: Colors.brown,
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(50),
                         ),
                         child: Icon(
                           recording ? Icons.stop : Icons.mic,
@@ -196,30 +196,31 @@ class _ChatWidgetState extends State<ChatWidget> with MessagesMixin {
                     ),
                     Expanded(
                       child: StreamBuilder<RecordingDisposition>(
-                          stream: recorder.onProgress,
-                          builder: (context, snapshot) {
-                            return recording
-                                ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Timer(recorder: recorder),
-                                      const Text('يتم تسجيل صوتية'),
-                                    ],
-                                  )
-                                : TextField(
-                                    textAlign: TextAlign.right,
-                                    controller: messageController,
-                                    textAlignVertical: TextAlignVertical.center,
-                                    decoration: const InputDecoration(
-                                      hintStyle: TextStyle(
-                                        color: Colors.black54,
-                                      ),
-                                      border: InputBorder.none,
-                                      hintText: 'اكتب رسالة',
+                        stream: recorder.onProgress,
+                        builder: (context, snapshot) {
+                          return recording
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Timer(recorder: recorder),
+                                    const Text('يتم تسجيل صوتية'),
+                                  ],
+                                )
+                              : TextField(
+                                  textAlign: TextAlign.right,
+                                  controller: messageController,
+                                  textAlignVertical: TextAlignVertical.center,
+                                  decoration: const InputDecoration(
+                                    hintStyle: TextStyle(
+                                      color: Colors.black54,
                                     ),
-                                  );
-                          }),
+                                    border: InputBorder.none,
+                                    hintText: 'اكتب رسالة',
+                                  ),
+                                );
+                        },
+                      ),
                     ),
                     FloatingActionButton(
                       onPressed: () {
@@ -232,10 +233,10 @@ class _ChatWidgetState extends State<ChatWidget> with MessagesMixin {
                       child: const Icon(
                         Icons.send,
                         color: Colors.white,
-                        size: 18,
+                        size: 20,
                       ),
                       backgroundColor: Colors.brown,
-                      elevation: 5,
+                      elevation: 20,
                     ),
                   ],
                 );

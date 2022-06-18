@@ -1,5 +1,5 @@
 import '../models/users.dart';
-import '../pages/profil_eleve.dart';
+import 'student_profile.dart';
 import '../utils/getters.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,8 @@ class StudentsList extends StatelessWidget {
       pageTitle: 'قائمة الطلاب',
       body: FutureBuilder<List<User>>(
         future: getStudents(),
-        builder: (context, snapchot) {
-          final students = snapchot.data;
+        builder: (context, snapshot) {
+          final students = snapshot.data;
           return ListView.separated(
             separatorBuilder: (context, index) {
               return const Divider(
@@ -60,7 +60,7 @@ class StudentsList extends StatelessWidget {
                   ),
                   height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                     boxShadow: const [BoxShadow(blurRadius: 1)],
                     borderRadius: BorderRadius.circular(3),
                   ),

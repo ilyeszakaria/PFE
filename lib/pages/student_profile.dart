@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../mixins/chat.dart';
 import '../models/users.dart';
-
 import '../widgets/scaffold.dart';
-
-import 'package:flutter/material.dart';
 
 class StudentProfile extends StatelessWidget with TilawaHeadersMixin {
   final User student;

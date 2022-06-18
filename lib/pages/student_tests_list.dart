@@ -1,13 +1,16 @@
-import 'package:application3/models/tests.dart';
 import 'package:flutter/material.dart';
 
-import 'test_chat.dart';
+import '../models/tests.dart';
+import '../utils/client.dart';
+import '../utils/prefs.dart';
 import '../widgets/scaffold.dart';
+import 'test_chat.dart';
 
 class StudentTestsList extends StatelessWidget {
   const StudentTestsList({Key? key}) : super(key: key);
   Future<List<TestModel>> getTests() async {
-    return [];
+    List data = await client.get('/tests/student/${Globals.userId}/');
+    return [for (Map t in data) TestModel.fromJson(t)];
   }
 
   final String pageTitle = 'الاختبارات';
@@ -23,17 +26,18 @@ class StudentTestsList extends StatelessWidget {
             itemCount: tests?.length ?? 0,
             itemBuilder: (context, index) {
               final test = tests![index];
-              return GestureDetector(
+              return ListTile(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) {
-                        return const TestChat();
-                      },
+                      builder: (context) => TestChat(test: test),
                     ),
                   );
                 },
-                child: Text(test.question),
+                title: Text(
+                  test.question,
+                  textAlign: TextAlign.right,
+                ),
               );
             },
           );
