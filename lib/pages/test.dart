@@ -21,11 +21,15 @@ class _TestState extends State<Test> {
         if (value) students.add(key);
       },
     );
-    await client.post('/tests/', body: {
-      'teacherId': Globals.userId,
-      'question': questionContoller.text,
-      'students': students,
-    });
+    try {
+      await client.post('/tests/', body: {
+        'teacherId': Globals.userId,
+        'question': questionContoller.text,
+        'students': students,
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   DateTime time = DateTime.now();
@@ -163,6 +167,7 @@ class _TestState extends State<Test> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           await createTest();
+          Navigator.of(context).pop();
         },
         label: const Text(
           "إرسال",

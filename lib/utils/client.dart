@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'prefs.dart';
 import 'package:http/http.dart' as http;
 
-const serverDomain = '192.168.43.8:8000';
+const serverDomain = '10.42.0.1:8000';
 
 class Client {
   Client(this.baseUrl);
@@ -40,6 +40,22 @@ class Client {
     var _body = jsonEncode(body);
 
     var res = await http.post(
+      Uri.parse('$baseUrl$endpoint'),
+      body: _body,
+      headers: headers,
+    );
+    var decodedRes = utf8.decode(res.bodyBytes);
+    return jsonDecode(decodedRes);
+  }
+
+  Future<dynamic> put(
+    String endpoint, {
+    Map<String, dynamic>? body,
+  }) async {
+    Map<String, String> headers = {'Content-Type': 'application/json'};
+    var _body = jsonEncode(body);
+
+    var res = await http.put(
       Uri.parse('$baseUrl$endpoint'),
       body: _body,
       headers: headers,

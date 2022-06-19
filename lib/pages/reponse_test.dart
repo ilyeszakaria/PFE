@@ -1,10 +1,11 @@
+import '../widgets/input.dart';
+
 import '../models/messages.dart';
 import '../utils/client.dart';
 import '../widgets/messages.dart';
 
 import '../models/tests.dart';
 
-import 'message_test_teacher.dart';
 import '../widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,13 @@ class TestResponsesList extends StatelessWidget {
   Future<List<TestResponse>> getTestResponses() async {
     List data = await client.get('/tests/${test.id}/responses/');
     return [for (Map r in data) TestResponse.fromJson(r)];
+  }
+
+  Future correctResponse(int responseId, bool valid) async {
+    await client.put(
+      '/tests/responses/$responseId',
+      body: {'valid': valid},
+    );
   }
 
   @override
@@ -62,19 +70,66 @@ class TestResponsesList extends StatelessWidget {
                         const Divider(height: 2),
                     itemBuilder: (context, index) {
                       final response = responses![index];
-                      var msg = AudioMessageWidget(
-                        Message(senderId: 0, audio: response.audio!),
-                      );
                       return ListTile(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const MessageTestTeacher(
-                                  idtest: "",
-                                  idstudent: "",
-                                );
-                              },
+                          Widget childWidget;
+                          Widget audioPlayer = response.audio != null
+                              ? AudioMessageWidget(
+                                  Message(
+                                    senderId: 0,
+                                    audio: response.audio!,
+                                  ),
+                                )
+                              : Container();
+                          if (response.audio != null &&
+                              response.valid == null) {
+                            bool correct = false;
+
+                            childWidget = Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Align(
+                                    alignment: Alignment.center,
+                                    child: audioPlayer),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ButtonWidget(
+                                      text: 'إجابة صحيحة',
+                                      onPressed: () async {
+                                        await correctResponse(
+                                            response.id, true);
+                                      },
+                                    ),
+                                    ButtonWidget(
+                                      text: 'إجابة خاطئة',
+                                      onPressed: () async {
+                                        await correctResponse(
+                                            response.id, false);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else if (response.audio == null) {
+                            childWidget = const Text('لم يرسل إجابة بعد');
+                          } else {
+                            childWidget = audioPlayer;
+                          }
+
+                          showDialog(
+                            context: context,
+                            builder: (context) => Center(
+                              child: SizedBox(
+                                height: 180,
+                                child: Container(
+                                  child: childWidget,
+                                  color: Colors.white,
+                                  padding: const EdgeInsets.all(40),
+                                ),
+                              ),
                             ),
                           );
                         },
@@ -82,11 +137,11 @@ class TestResponsesList extends StatelessWidget {
                           response.studentName,
                           textAlign: TextAlign.right,
                         ),
-                        leading: IconButton(
-                          icon: const Icon(Icons.play_arrow),
-                          onPressed: () {},
-                        ),
-                        tileColor: Colors.grey[300],
+                        tileColor: response.valid == null
+                            ? Colors.grey[300]
+                            : response.valid!
+                                ? Colors.green[100]
+                                : Colors.red[100],
                       );
                     },
                   );
